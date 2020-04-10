@@ -11,6 +11,7 @@ namespace Projet_cooking.Classes
         string nomClient;
         string numTel;
         int id;
+        int mdp;
         string recette_favorite;
     }
 }
