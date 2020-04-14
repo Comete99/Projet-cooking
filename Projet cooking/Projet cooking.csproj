@@ -55,6 +55,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Fenêtres\windowAccueil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowCdR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowCreationCompte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowGerant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowGererCdR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowGererStocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowRecettes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +100,33 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Client.cs" />
+    <Compile Include="Fenêtres\windowAccueil.xaml.cs">
+      <DependentUpon>windowAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowCdR.xaml.cs">
+      <DependentUpon>windowCdR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowClient.xaml.cs">
+      <DependentUpon>windowClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowCreationCompte.xaml.cs">
+      <DependentUpon>windowCreationCompte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowDemo.xaml.cs">
+      <DependentUpon>windowDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowGerant.xaml.cs">
+      <DependentUpon>windowGerant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowGererCdR.xaml.cs">
+      <DependentUpon>windowGererCdR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowGererStocks.xaml.cs">
+      <DependentUpon>windowGererStocks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowRecettes.xaml.cs">
+      <DependentUpon>windowRecettes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
