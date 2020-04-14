@@ -75,15 +75,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Fenêtres\windowGerant.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Fenêtres\windowGererCdR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fenêtres\windowGererStocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowGestionnaire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,14 +115,14 @@
     <Compile Include="Fenêtres\windowDemo.xaml.cs">
       <DependentUpon>windowDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Fenêtres\windowGerant.xaml.cs">
-      <DependentUpon>windowGerant.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Fenêtres\windowGererCdR.xaml.cs">
       <DependentUpon>windowGererCdR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fenêtres\windowGererStocks.xaml.cs">
       <DependentUpon>windowGererStocks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowGestionnaire.xaml.cs">
+      <DependentUpon>windowGestionnaire.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fenêtres\windowRecettes.xaml.cs">
       <DependentUpon>windowRecettes.xaml</DependentUpon>

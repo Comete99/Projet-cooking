@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Projet_cooking.Fenêtres
 {
     /// <summary>
-    /// Logique d'interaction pour windowGerant.xaml
+    /// Logique d'interaction pour windowGestionnaire.xaml
     /// </summary>
-    public partial class windowGerant : Window
+    public partial class windowGestionnaire : Window
     {
-        public windowGerant()
+        public windowGestionnaire()
         {
             InitializeComponent();
         }
