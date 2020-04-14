@@ -22,6 +22,18 @@ namespace Projet_cooking.Fenêtres
         public windowClient()
         {
             InitializeComponent();
+            messageConnection.Text += "Mr Cornichon";
+            nbCook.Text += "5";
+        }
+
+        private void buttonCdR_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageDevenirCdR = MessageBox.Show("Voulez-vous devenir CdR ?", "Devenir CdR", MessageBoxButton.YesNo);
+            if(messageDevenirCdR == MessageBoxResult.Yes)
+            {
+                windowCdR w = new windowCdR();
+                w.Show();
+            }
         }
     }
 }

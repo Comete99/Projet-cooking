@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_cooking.Fenêtres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Projet_cooking
         public MainWindow()
         {
             InitializeComponent();
+            windowClient w = new windowClient();
+            w.Show();
         }
     }
 }
