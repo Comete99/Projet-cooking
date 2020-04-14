@@ -10,9 +10,6 @@
         
         <StackPanel Margin="254,126,273.6,142">
             <Button Height="156" Margin="0,0,-0.4,0">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/oignon.jfif"/>
-                </Button.Background>
             </Button>
             
 

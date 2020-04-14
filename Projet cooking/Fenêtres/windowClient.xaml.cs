@@ -24,6 +24,7 @@ namespace Projet_cooking.Fenêtres
             InitializeComponent();
             messageConnection.Text += "Mr Cornichon";
             nbCook.Text += "5";
+            boxNbRecette.Text = "5";
         }
 
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
@@ -33,6 +34,19 @@ namespace Projet_cooking.Fenêtres
             {
                 windowCdR w = new windowCdR();
                 w.Show();
+            }
+        }
+
+        private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
+        {
+            boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) + 1);
+        }
+
+        private void buttonRetirerRecette_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToInt32(boxNbRecette.Text) > 0)
+            {
+                boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) - 1);
             }
         }
     }

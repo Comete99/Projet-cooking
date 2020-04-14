@@ -5,12 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowClient" Height="450" Width="800">
+        Title="windowClient" Height="500" Width="800">
     <Grid>
         <StackPanel Margin="15">
-            <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" Margin="0,0,579.2,0"/>
+            <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" Margin="0,0,130.2,0" FontSize="24"/>
             <TextBlock x:Name="nbCook" Text="Cook : " Margin="650,0,0,0"/>
             <Button x:Name="buttonCdR" Content="Devenir CdR" Margin="650,3,0.2,0" Height="17" Click="buttonCdR_Click"/>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Name="boxListeRecettes" Margin="0,0,30,0"/>
+                <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click"/>
+                <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click"/>
+                <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0"/>
+                <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFE48383"/>
+            </Grid>
+            <TextBlock Text="Panier" FontWeight="Bold" Margin="0,20,0,0"/>
+            <ListBox Height="260" Margin="0,5,400.2,0">
+
+            </ListBox>
+
+            <Button x:Name="buttonPaiement" Content="Validation et paiement" Margin="400,-50,20,0" Height="29"/>
         </StackPanel>
     </Grid>
 </Window>
