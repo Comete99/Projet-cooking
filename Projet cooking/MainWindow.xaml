@@ -4,16 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#FFFFF7B1">
     <Grid>
-        
-        <StackPanel Margin="254,126,273.6,142">
-            <Button Height="156" Margin="0,0,-0.4,0">
-            </Button>
-            
 
+        <StackPanel Margin="30">
+            <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Accueil1.JPG" Height="360" Margin="93,0,-0.4,0"/>
         </StackPanel>
+
+        <StackPanel Margin="30">
+            <StackPanel Background="White" OpacityMask="Black" Height="360" HorizontalAlignment="Left" Width="232">
+                <TextBlock Margin="15"/>
+            </StackPanel>
+        </StackPanel>
+        
+        
 
     </Grid>
 </Window>
