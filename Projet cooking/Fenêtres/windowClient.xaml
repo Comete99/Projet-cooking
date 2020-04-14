@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="windowClient" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="15">
+            <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" Margin="0,0,579.2,0"/>
+            <TextBlock x:Name="nbCook" Text="Cook : " Margin="650,0,0,0"/>
+            <Button x:Name="buttonCdR" Content="Devenir CdR" Margin="650,3,0.2,0" Height="17" Click="buttonCdR_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

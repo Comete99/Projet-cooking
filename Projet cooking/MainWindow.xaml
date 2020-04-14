@@ -10,14 +10,12 @@
         
         <StackPanel Margin="254,126,273.6,142">
             <Button Height="156" Margin="0,0,-0.4,0">
-                <Button.Foreground>
-                    <ImageBrush/>
-                </Button.Foreground>
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/legume.jpg"/>
+                    <ImageBrush ImageSource="/Images/oignon.jfif"/>
                 </Button.Background>
             </Button>
             
+
         </StackPanel>
 
     </Grid>
