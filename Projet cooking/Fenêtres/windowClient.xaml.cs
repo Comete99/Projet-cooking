@@ -23,7 +23,7 @@ namespace Projet_cooking.Fenêtres
         {
             InitializeComponent();
             messageConnection.Text += "Mr Cornichon";
-            nbCook.Text += "5";
+            nbCook.Text += "0";
             boxNbRecette.Text = "5";
         }
 
@@ -34,6 +34,7 @@ namespace Projet_cooking.Fenêtres
             {
                 windowCdR w = new windowCdR();
                 w.Show();
+                MessageBoxResult message = MessageBox.Show("Félicitations ! Vous êtes maintenant un créateur de recettes et participez à l'évolution de la plateforme.");
             }
         }
 
