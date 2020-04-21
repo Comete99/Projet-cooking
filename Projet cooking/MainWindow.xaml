@@ -15,11 +15,12 @@
 
         <StackPanel Margin="30">
             <StackPanel Background="White" OpacityMask="Black" Height="360" HorizontalAlignment="Left" Width="232">
-                <TextBlock Margin="15"/>
+                <TextBlock Margin="16,15" Text="Bienvenue sur Cooking !" HorizontalAlignment="Center" FontSize="18" FontFamily="MV Boli" Height="42" TextAlignment="Center"/>
+                
             </StackPanel>
         </StackPanel>
-        
-        
+
+
 
     </Grid>
 </Window>
