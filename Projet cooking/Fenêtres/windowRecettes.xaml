@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowRecettes" Height="450" Width="800">
+        Title="windowRecettes" Height="500" Width="800">
     <Grid>
-        
+        <TextBlock x:Name="messageConnection" Text="Mes Recettes" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
+        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="605,150,10,240"/>
+        <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="605,280,10,110" Click="buttonRetourAuMenu_Click"/>
+        <ListView x:Name="ListViewPersonne" Margin="10,60,200,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" Width="150" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Produits" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox x:Name="boxProduits">
+
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Quantité" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox x:Name="boxQuantité"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Info" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="buttonInfoRecette" Content="Recette"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn> 
+                    <GridViewColumn Header="Prix en Cook" Width="100" DisplayMemberBinding="{Binding PrixCook, Mode=TwoWay}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

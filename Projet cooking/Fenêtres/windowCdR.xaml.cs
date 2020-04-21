@@ -53,8 +53,9 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonRecettes_Click(object sender, RoutedEventArgs e)
         {
-            windowRecettes w = new windowRecettes();
+            windowRecettes w = new windowRecettes(this);
             w.Show();
+            this.Hide();
         }
     }
 }

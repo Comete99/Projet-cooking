@@ -34,6 +34,7 @@ namespace Projet_cooking.Fenêtres
             {
                 windowCdR w = new windowCdR();
                 w.Show();
+                this.Close();
                 MessageBoxResult message = MessageBox.Show("Félicitations ! Vous êtes maintenant un créateur de recettes et participez à l'évolution de la plateforme.");
             }
         }

@@ -19,9 +19,17 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowRecettes : Window
     {
-        public windowRecettes()
+        private windowCdR currentCdR;
+        public windowRecettes(windowCdR cdR)
         {
             InitializeComponent();
+            currentCdR = cdR;
+        }
+
+        private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
+        {
+            currentCdR.Show();
+            this.Close();
         }
     }
 }
