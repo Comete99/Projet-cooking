@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_cooking.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace Projet_cooking.Fenêtres
 {
+
     /// <summary>
     /// Logique d'interaction pour windowClient.xaml
     /// </summary>
     public partial class windowClient : Window
     {
+        public static Dictionary<string, double> ingredientsRecette1 = new Dictionary<string, double>();
+        Recette recette1 = new Recette("Galettes de quinoa", "Plat", ingredientsRecette1, "Plat parfait pour les végatariens", 5, 2, "jean.dupont@gmail.com");
         public windowClient()
         {
             InitializeComponent();
@@ -49,6 +54,20 @@ namespace Projet_cooking.Fenêtres
             if (Convert.ToInt32(boxNbRecette.Text) > 0)
             {
                 boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) - 1);
+            }
+        }
+
+        private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
+        {
+            if (!listPanier.Items.Contains(recette1))
+            {
+                listPanier.Items.Add(recette1);
+                recette1.Quantite += 1;
+            }
+            else
+            {
+                recette1.Quantite += 1;
+                listPanier.Items.Refresh();
             }
         }
     }

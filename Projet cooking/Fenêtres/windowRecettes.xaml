@@ -8,9 +8,9 @@
         Title="windowRecettes" Height="500" Width="800">
     <Grid>
         <TextBlock x:Name="messageConnection" Text="Mes Recettes" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
-        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="605,150,10,240"/>
+        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="605,150,10,240" Click="buttonAjouterRecette_Click"/>
         <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="605,280,10,110" Click="buttonRetourAuMenu_Click"/>
-        <ListView x:Name="ListViewPersonne" Margin="10,60,200,0">
+        <ListView x:Name="listViewRecettes" Margin="10,60,200,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" Width="150" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>

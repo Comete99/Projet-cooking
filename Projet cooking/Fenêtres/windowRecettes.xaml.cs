@@ -31,5 +31,12 @@ namespace Projet_cooking.Fenêtres
             currentCdR.Show();
             this.Close();
         }
+
+        private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
+        {
+            windowAjouterRecette w = new windowAjouterRecette(this);
+            this.Hide();
+            w.Show();
+        }
     }
 }

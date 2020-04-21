@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Fenêtres\windowAjouterRecette.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fenêtres\windowCdR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,8 +104,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Client.cs" />
+    <Compile Include="Classes\Recette.cs" />
+    <Compile Include="Classes\RessourceSQL.cs" />
     <Compile Include="Fenêtres\windowAccueil.xaml.cs">
       <DependentUpon>windowAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowAjouterRecette.xaml.cs">
+      <DependentUpon>windowAjouterRecette.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fenêtres\windowCdR.xaml.cs">
       <DependentUpon>windowCdR.xaml</DependentUpon>

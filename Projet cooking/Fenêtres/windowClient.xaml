@@ -23,12 +23,18 @@
                 <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click"/>
                 <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click"/>
                 <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0"/>
-                <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFE48383"/>
+                <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFE48383" Click="buttonAjouterPanier_Click"/>
             </Grid>
             <TextBlock Text="Panier" FontWeight="Bold" Margin="0,20,0,0"/>
-            <ListBox Height="260" Margin="0,5,400.2,0">
-
-            </ListBox>
+            <ListView x:Name="listPanier" Height="260" Margin="0,5,400.2,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Recettes" Width="160" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                        <GridViewColumn x:Name="quantite" Header="Quantité" Width="80" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Prix" Width="120" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
             <Button x:Name="buttonPaiement" Content="Validation et paiement" Margin="400,-50,20,0" Height="29"/>
         </StackPanel>

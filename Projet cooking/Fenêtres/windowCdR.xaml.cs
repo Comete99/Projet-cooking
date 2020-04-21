@@ -21,6 +21,8 @@ namespace Projet_cooking.Fenêtres
     {
         int prixCook=15;
         int nbCookCdR = 30;
+        List<string> recettes;
+        List<string> panier;
         public windowCdR()
         {
             InitializeComponent();
@@ -56,6 +58,11 @@ namespace Projet_cooking.Fenêtres
             windowRecettes w = new windowRecettes(this);
             w.Show();
             this.Hide();
+        }
+
+        private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
