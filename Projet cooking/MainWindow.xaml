@@ -18,11 +18,15 @@
                 <TextBlock Margin="16,15" Text="Bienvenue sur Cooking !" HorizontalAlignment="Center" FontSize="18" FontFamily="MV Boli" Height="42" TextAlignment="Center" Foreground="Brown"/>
                 <Separator></Separator>
                 <Label Content="Mail" Foreground="Brown" FontSize="18"  HorizontalAlignment="Center"></Label>
-                <TextBox Name="txtMail" Margin="10 0" Background="#FFFFF2E0" Foreground="Black" FontSize="18" />
+                <TextBox Name="txtMail" Margin="10 0" Background="#FFFFF2E0" Foreground="Black" FontSize="18">
+                </TextBox>
+
                 <Label Content="Mot de passe" Foreground="Brown" FontSize="18"  HorizontalAlignment="Center"></Label>
                 <TextBox Name="txtMDP" Margin="10 0" Background="#FFFFF2E0" Foreground="Black" FontSize="18" />
-                <Button Name="btnSubmit" Click="btnSubmit_Click" Content="Se connecter" Margin="40 20 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
-                <Button Name="btnRegister" Click="btnRegister_Click" Content="Créer un compte" Margin="40 10 40 20" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
+                
+                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnSubmit" Click="btnSubmit_Click" Content="Se connecter" Margin="40 20 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
+                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnRegister" Content="Créer un compte" Margin="40 10 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
+                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnDemo" Content="Démo" Margin="40 25 40 10" Background="#FFDF8100" Foreground="White" FontSize="18"/>
             </StackPanel>
         </StackPanel>
 

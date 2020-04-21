@@ -196,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Accueil1.JPG" />
+    <Resource Include="Images\Creation compte.JPG" />
     <Content Include="Images\oignon.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

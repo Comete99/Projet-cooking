@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowCreationCompte" Height="450" Width="800">
+        Title="windowCreationCompte" Height="450" Width="800" Background="#FFFFF7B1">
     <Grid>
-        
+        <StackPanel Margin="30,30,278.6,30" Background="#FFFFD874">
+            <TextBlock Margin="10,0,126.8,0" Text="Création de compte Cooking" HorizontalAlignment="Center" FontSize="25" FontFamily="MV Boli" Height="42" TextAlignment="Center" Foreground="Brown" Width="348"/>
+            <Separator/>
+            <Label Content="Nom" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="415"/>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,0,0" Width="400" HorizontalAlignment="Left">
+                <TextBox x:Name="txtNom" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+            </Border>
+
+            <Label Content="Prenom" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,0,0" HorizontalAlignment="Left" Width="400">
+                <TextBox x:Name="txtPrenom" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+            </Border>
+
+            <Label Content="Mail" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400" >
+                <TextBox x:Name="txtMail" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+            </Border>
+
+            <Label Content="Mot de passe" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400">
+                <TextBox x:Name="txtMDP" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+            </Border>
+
+            <Label Content="Verification du mot de passe" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
+            <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400">
+                <TextBox x:Name="txtVerification" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+            </Border>
+
+
+        </StackPanel>
+        <StackPanel Margin="400 30 30 30">
+            <Image Height="359" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Creation compte.JPG" Margin="59,0,-55.8,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="360">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </StackPanel>
+
+        <Button Style="{StaticResource RoundButtonTemplate}"  Name="btnValider" Content="Valider" FontSize="25" Foreground="White" Background="#FF30B61C" Margin="552,325,60.6,46" BorderBrush="#FF97D98E">
+        </Button>
+
     </Grid>
 </Window>

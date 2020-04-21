@@ -30,10 +30,10 @@ namespace Projet_cooking
             windowClient w = new windowClient();
             w.Show();
         }
-
+        
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             try
@@ -52,7 +52,39 @@ namespace Projet_cooking
                 }
                 else
                 {
-                    MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
+                    string query2 = "select count(1) from cdr where mailClient=@mailClient and mdpClient=@mdpClient;";
+                    MySqlCommand sqlCmd2 = new MySqlCommand(query2, connection);
+                    sqlCmd.CommandType = CommandType.Text;
+                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                    int count2 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    if (count == 1)
+                    {
+                        MainWindow dashboard = new MainWindow();
+                        dashboard.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        string query3 = "select count(1) from client where mailClient=@mailClient and mdpClient=@mdpClient;";
+                        MySqlCommand sqlCmd3 = new MySqlCommand(query3, connection);
+                        sqlCmd.CommandType = CommandType.Text;
+                        sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                        sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                        int count3 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                        if (count == 1)
+                        {
+                            MainWindow dashboard = new MainWindow();
+                            dashboard.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
+                        }
+
+                    }
+  
                 };
             }
             catch(Exception ex)
