@@ -8,37 +8,51 @@
         Title="windowRecettes" Height="500" Width="800">
     <Grid>
         <TextBlock x:Name="messageConnection" Text="Mes Recettes" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
-        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="605,150,10,240" Click="buttonAjouterRecette_Click"/>
-        <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="605,280,10,110" Click="buttonRetourAuMenu_Click"/>
-        <ListView x:Name="listViewRecettes" Margin="10,60,200,0">
+        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="650,150,10,240" Click="buttonAjouterRecette_Click"/>
+        <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="650,280,10,110" Click="buttonRetourAuMenu_Click"/>
+        <ListView x:Name="listRecettes" Margin="10,60,150,0" HorizontalAlignment="Center">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Nom" Width="150" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
-                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type, Mode=TwoWay}"/>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="Nom" Width="130" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Type" Width="50" DisplayMemberBinding="{Binding Type, Mode=TwoWay}"/>
                     <GridViewColumn Header="Produits" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox x:Name="boxProduits">
+                                <ComboBox x:Name="boxProduits" Width="100">
 
                                 </ComboBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Quantité" Width="60">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox x:Name="boxQuantité"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Info" Width="50">
+                    <GridViewColumn Header="Quantité" Width="60" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Info" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="buttonInfoRecette" Content="Recette"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn> 
-                    <GridViewColumn Header="Prix en Cook" Width="100" DisplayMemberBinding="{Binding PrixCook, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Prix Cook" Width="70" DisplayMemberBinding="{Binding PrixCook, Mode=TwoWay}"/>
+                    <GridViewColumn Header="NbCommande" Width="100" DisplayMemberBinding="{Binding NbCommande, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Modifier" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="buttonModifRecette" Content="modifier"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Supprimer" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="buttonSupprRecette" Content="supprimer" Background="#FFFD0000"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

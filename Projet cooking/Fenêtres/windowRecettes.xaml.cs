@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_cooking.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,14 @@ namespace Projet_cooking.Fenêtres
     public partial class windowRecettes : Window
     {
         private windowCdR currentCdR;
+        static Dictionary<string, double> ingredients = new Dictionary<string, double>();
+        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6, 2, "jean.dupont@cook.com");
         public windowRecettes(windowCdR cdR)
         {
             InitializeComponent();
             currentCdR = cdR;
+            listRecettes.Items.Add(recette1);
+            listRecettes.Items.Refresh();
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)

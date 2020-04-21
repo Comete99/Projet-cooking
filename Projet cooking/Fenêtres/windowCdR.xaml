@@ -26,9 +26,15 @@
                 <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFE48383" Click="buttonAjouterPanier_Click"/>
             </Grid>
             <TextBlock Text="Panier" FontWeight="Bold" Margin="0,20,700,0"/>
-            <ListBox Height="260" Margin="0,5,400.2,0">
-
-            </ListBox>
+            <ListView x:Name="listPanier" Height="260" Margin="0,5,400.2,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Recette" Width="160" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Quantite" Width="80" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Prix" Width="118" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <Button x:Name="buttonPaiementCB" Content="Payer par CB" Margin="400,-50,200,0" Height="29"/>
             <Button x:Name="buttonPaiementCook" Content="Payer avec Cook" Margin="600,-50,0.2,0" Height="29" Click="buttonPaiementCook_Click"/>
         </StackPanel>

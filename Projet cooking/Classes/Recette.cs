@@ -15,6 +15,7 @@ namespace Projet_cooking.Classes
         int remunerationCdRcook;
         string mailCdR;
         int quantite=0;
+        int nbCommande = 0;
 		Dictionary<string, double> ingredients = new Dictionary<string, double>();
 
         public Recette(string n, string t, Dictionary<string, double> i, string d, double p, int r, string m)
@@ -41,6 +42,21 @@ namespace Projet_cooking.Classes
         {
             get { return this.quantite; }
             set { this.quantite = value; }
+        }
+        public string Type
+        {
+            get { return this.type; }
+            set { this.type = value; }
+        }
+        public int PrixCook
+        {
+            get { return this.remunerationCdRcook; }
+            set { this.remunerationCdRcook = value; }
+        }
+        public int NbCommande
+        {
+            get { return this.nbCommande; }
+            set { this.nbCommande = value; }
         }
     }
 }

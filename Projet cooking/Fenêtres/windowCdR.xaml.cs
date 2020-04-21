@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_cooking.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowCdR : Window
     {
+        static Dictionary<string, double> ingredients = new Dictionary<string, double>();
+        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6, 2, "jean.dupont@cook.com");
         int prixCook=15;
         int nbCookCdR = 30;
         List<string> recettes;
@@ -62,7 +65,16 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!listPanier.Items.Contains(recette1))
+            {
+                recette1.Quantite += 1;
+                listPanier.Items.Add(recette1);
+            }
+            else
+            {
+                recette1.Quantite += 1;
+                listPanier.Items.Refresh();
+            }
         }
     }
 }
