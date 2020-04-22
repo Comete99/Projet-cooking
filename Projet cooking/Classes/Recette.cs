@@ -18,7 +18,7 @@ namespace Projet_cooking.Classes
         int quantite=0;
         int nbCommande = 0;
 		Dictionary<string, double> ingredients = new Dictionary<string, double>();
-
+        List<DateTime> commandes = new List<DateTime> { };
         public Recette(string n, string t, Dictionary<string, double> i, string d, double p, int r, string m)
         {
             this.nom = n;
