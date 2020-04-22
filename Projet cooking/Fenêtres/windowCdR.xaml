@@ -9,7 +9,12 @@
     <Grid>
         <StackPanel Margin="15">
             <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" Margin="0,0,130.2,0" FontSize="24"/>
-            <TextBlock x:Name="nbCook" Text="Cook : " Margin="650,0,0,0"/>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Cook : " Margin="650,0,0,0"/>
+                    <TextBox x:Name="nbCook" Margin="0,0,0,0" Width="46" Height="20"/>
+                </StackPanel>
+            </StackPanel>
             <Button x:Name="buttonRecettes" Content="Gérer mes recettes" Margin="600,3,0.2,0" Height="17" Background="#FFFDE37F" Click="buttonRecettes_Click"/>
             <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -19,7 +24,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Name="boxListeRecettes" Margin="0,0,30,0"/>
+                <ComboBox Grid.Column="0" Name="boxListeRecettes" DisplayMemberPath="Nom" Margin="0,0,30,0"/>
                 <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click"/>
                 <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click"/>
                 <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0"/>
@@ -31,7 +36,7 @@
                     <GridView>
                         <GridViewColumn Header="Recette" Width="160" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
                         <GridViewColumn Header="Quantite" Width="80" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
-                        <GridViewColumn Header="Prix" Width="118" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Prix (en €)" Width="118" DisplayMemberBinding="{Binding PrixTotal, Mode=TwoWay}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

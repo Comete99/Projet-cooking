@@ -13,5 +13,18 @@ namespace Projet_cooking.Classes
         //string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
         //MySqlConnection connection = new MySqlConnection(connectionString);
         //connection.Open();
+        public static List<Recette> recettes = new List<Recette> { };
+
+        public static Recette rechercheRecette(string nom)
+        {
+            foreach(Recette r in recettes)
+            {
+                if (r.Nom == nom)
+                {
+                    return r;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Projet_cooking.Classes
 {
-    class Recette
+    public class Recette
     {
         string nom;
         string type;
         string descriptif;
         double prixVente;
+        double prixTotal=0;
         int remunerationCdRcook;
         string mailCdR;
         int quantite=0;
@@ -53,10 +54,15 @@ namespace Projet_cooking.Classes
             get { return this.remunerationCdRcook; }
             set { this.remunerationCdRcook = value; }
         }
+        public double PrixTotal
+        {   get { return this.prixTotal; }
+            set { this.prixTotal = value; }
+        }
         public int NbCommande
         {
             get { return this.nbCommande; }
             set { this.nbCommande = value; }
         }
+
     }
 }

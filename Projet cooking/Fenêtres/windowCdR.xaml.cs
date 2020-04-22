@@ -24,7 +24,7 @@ namespace Projet_cooking.Fenêtres
         Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6, 2, "jean.dupont@cook.com");
         int prixCook=15;
         int nbCookCdR = 30;
-        List<string> recettes;
+        
         List<string> panier;
         public windowCdR()
         {
@@ -32,6 +32,9 @@ namespace Projet_cooking.Fenêtres
             messageConnection.Text += "Mr Cornichon";
             nbCook.Text += "30";
             boxNbRecette.Text = "5";
+            boxListeRecettes.Items.Add(recette1);
+            boxListeRecettes.Items.Refresh();
+            RessourceSQL.recettes.Add(recette1);
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
@@ -53,6 +56,7 @@ namespace Projet_cooking.Fenêtres
             {
                 MessageBoxResult message = MessageBox.Show("Paiement accepté");
                 nbCookCdR -= prixCook;
+                nbCook.Text = Convert.ToString(nbCookCdR);
             }
         }
 
@@ -65,14 +69,17 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            if (!listPanier.Items.Contains(recette1))
+            Recette recette = (Recette)boxListeRecettes.SelectedItem;
+            if (!listPanier.Items.Contains(recette))
             {
-                recette1.Quantite += 1;
-                listPanier.Items.Add(recette1);
+                recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
+                recette.PrixTotal += recette.PrixVente*Convert.ToInt32(boxNbRecette.Text);
+                listPanier.Items.Add(recette);
             }
             else
             {
-                recette1.Quantite += 1;
+                recette.Quantite += Convert.ToInt32(boxNbRecette.Text); ;
+                recette.PrixTotal += recette1.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Refresh();
             }
         }
