@@ -27,8 +27,9 @@ namespace Projet_cooking.Fenêtres
         {
             InitializeComponent();
             currentCdR = cdR;
-            listRecettes.Items.Add(recette1);
-            listRecettes.Items.Refresh();
+            listRecettes.ItemsSource = RessourceSQL.recetteCdR("kevin.vaut@gmail.com");
+            //listRecettes.Items.Add(recette1);
+            //listRecettes.Items.Refresh();
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)

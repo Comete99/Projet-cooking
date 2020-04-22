@@ -88,5 +88,31 @@ namespace Projet_cooking.Classes
                 return false;
             }
         }
+
+        public static List<string> recetteCdR(string mail)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nomRecette FROM recette WHERE mailCdR=" + "'" + mail + "'" + ";";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            List<string> recettes = new List<string> { };
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    recettes.Add(valueAsString);
+                    currentRowAsString += valueAsString + ",";
+                }
+            }
+            return recettes;
+        }
     }
 }
