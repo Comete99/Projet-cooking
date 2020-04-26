@@ -10,7 +10,7 @@ namespace Projet_cooking.Classes
 {
     public static class RessourceSQL
     {
-        
+        //public static MySqlConnection connection;
         public static List<Recette> recettes = new List<Recette> { };
 
         public static Recette rechercheRecette(string nom)
@@ -24,6 +24,13 @@ namespace Projet_cooking.Classes
             }
             return null;
         }
+
+        //public static void connexionBDD()
+        //{
+        //    string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+        //    connection = new MySqlConnection(connectionString);
+        //    connection.Open();
+        //}
 
         public static bool est_client(string mail, string mdp)
         {
@@ -104,12 +111,12 @@ namespace Projet_cooking.Classes
             List<string> recettes = new List<string> { };
             while (reader.Read())
             {
-                string currentRowAsString = "";
+                //string currentRowAsString = "";
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
                     string valueAsString = reader.GetValue(i).ToString();
                     recettes.Add(valueAsString);
-                    currentRowAsString += valueAsString + ",";
+                    //currentRowAsString += valueAsString + ",";
                 }
             }
             return recettes;

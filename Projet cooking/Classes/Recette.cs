@@ -19,15 +19,13 @@ namespace Projet_cooking.Classes
         int nbCommande = 0;
 		Dictionary<string, double> ingredients = new Dictionary<string, double>();
         List<DateTime> commandes = new List<DateTime> { };
-        public Recette(string n, string t, Dictionary<string, double> i, string d, double p, int r, string m)
+        public Recette(string n, string t, Dictionary<string, double> i, string d, double p)
         {
             this.nom = n;
             this.type = t;
             this.ingredients = i;
             this.descriptif = d;
             this.prixVente = p;
-            this.remunerationCdRcook = r;
-            this.mailCdR = m;
         }
         public string Nom
         {

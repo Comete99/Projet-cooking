@@ -21,7 +21,7 @@ namespace Projet_cooking.Fenêtres
     public partial class windowCdR : Window
     {
         static Dictionary<string, double> ingredients = new Dictionary<string, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6, 2, "jean.dupont@cook.com");
+        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
         int prixCook=15;
         int nbCookCdR = 30;
         
@@ -31,7 +31,7 @@ namespace Projet_cooking.Fenêtres
             InitializeComponent();
             messageConnection.Text += "Mr Cornichon";
             nbCook.Text += "30";
-            boxNbRecette.Text = "5";
+            boxNbRecette.Text = "0";
             boxListeRecettes.Items.Add(recette1);
             boxListeRecettes.Items.Refresh();
             RessourceSQL.recettes.Add(recette1);

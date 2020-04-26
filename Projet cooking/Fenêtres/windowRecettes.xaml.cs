@@ -22,14 +22,14 @@ namespace Projet_cooking.Fenêtres
     {
         private windowCdR currentCdR;
         static Dictionary<string, double> ingredients = new Dictionary<string, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6, 2, "jean.dupont@cook.com");
+        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
         public windowRecettes(windowCdR cdR)
         {
             InitializeComponent();
             currentCdR = cdR;
-            listRecettes.ItemsSource = RessourceSQL.recetteCdR("kevin.vaut@gmail.com");
-            //listRecettes.Items.Add(recette1);
-            //listRecettes.Items.Refresh();
+            //listRecettes.ItemsSource = RessourceSQL.recetteCdR("kevin.vaut@gmail.com");
+            listRecettes.Items.Add(recette1);
+            listRecettes.Items.Refresh();
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)

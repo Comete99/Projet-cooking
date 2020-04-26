@@ -23,7 +23,7 @@ namespace Projet_cooking.Fenêtres
     public partial class windowClient : Window
     {
         public static Dictionary<string, double> ingredientsRecette1 = new Dictionary<string, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Plat", ingredientsRecette1, "Plat parfait pour les végatariens", 5, 2, "jean.dupont@gmail.com");
+        Recette recette1 = new Recette("Galettes de quinoa", "Plat", ingredientsRecette1, "Plat parfait pour les végatariens", 5);
         public windowClient()
         {
             InitializeComponent();
