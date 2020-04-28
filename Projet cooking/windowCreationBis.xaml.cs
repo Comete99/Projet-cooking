@@ -1,5 +1,4 @@
-﻿using Projet_cooking.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +14,18 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Projet_cooking.Fenêtres
+namespace Projet_cooking
 {
     /// <summary>
-    /// Logique d'interaction pour windowCreationCompte.xaml
+    /// Logique d'interaction pour windowCreationBis.xaml
     /// </summary>
-    public partial class windowCreationCompte : Window
+    public partial class windowCreationBis : Window
     {
-
-        public windowCreationCompte()
+        public windowCreationBis()
         {
             InitializeComponent();
         }
+
 
 
         public bool Verification_MDP()
@@ -72,7 +71,7 @@ namespace Projet_cooking.Fenêtres
             }
 
             List<string> liste = null;
-            for(int i = 0; i < tab.Length; i++)
+            for (int i = 0; i < tab.Length; i++)
             {
                 liste.Add(tab[i]);
             }
@@ -82,7 +81,7 @@ namespace Projet_cooking.Fenêtres
 
 
 
-        private void btnValider_Click(object sender, RoutedEventArgs e, MainWindow main)
+        private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -119,7 +118,10 @@ namespace Projet_cooking.Fenêtres
             }
 
             connection.Close();
-            main.Show();
+
+            MainWindow w = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            w.Show();
 
         }
     }
