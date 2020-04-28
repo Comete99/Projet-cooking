@@ -21,7 +21,8 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowCreationCompte : Window
     {
-        public windowCreationCompte()
+
+        public windowCreationCompte(MainWindow main)
         {
             InitializeComponent();
         }
