@@ -82,7 +82,7 @@ namespace Projet_cooking.Fenêtres
 
 
 
-        private void btnValider_Click(object sender, RoutedEventArgs e, MainWindow main)
+        private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -119,8 +119,54 @@ namespace Projet_cooking.Fenêtres
             }
 
             connection.Close();
-            main.Show();
 
+            MainWindow w = new MainWindow();
+            w.Show();
+            this.Close();
+
+        }
+
+        private void btnValider_Click2(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            bool verif = Verification_MDP();
+            string mail = txtMail.Text;
+            List<string> liste = Liste_Mails();
+
+            if (verif && !(liste.Contains(mail)))
+            {
+                try
+                {
+                    string query = "insert into client values(@mailClient,@nom,@prenom,@mdpClient)";
+                    MySqlCommand sqlCmd = new MySqlCommand(query, connection);
+                    sqlCmd.CommandType = CommandType.Text;
+                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                    sqlCmd.Parameters.AddWithValue("@nom", txtNom.Text);
+                    sqlCmd.Parameters.AddWithValue("@prenom", txtPrenom.Text);
+
+                    MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Le mot de passe entré et la vérification ne sont pas les mêmes, veuillez réessayer.");
+            }
+
+            connection.Close();
+
+            MainWindow w = new MainWindow();
+            w.Show();
+            this.Close();
         }
     }
 }
