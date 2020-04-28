@@ -25,7 +25,7 @@
                 <TextBox Name="txtMDP" Margin="10 0" Background="#FFFFF2E0" Foreground="Black" FontSize="18" />
                 
                 <Button Style="{StaticResource RoundButtonTemplate}" Name="btnSubmit" Click="btnSubmit_Click" Content="Se connecter" Margin="40 20 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnRegister" Content="Créer un compte" Margin="40 10 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
+                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnRegister" Content="Créer un compte" Margin="40 10 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18" Click="btnRegister_Click"/>
                 <Button Style="{StaticResource RoundButtonTemplate}" Name="btnDemo" Content="Démo" Margin="40 25 40 10" Background="#FFDF8100" Foreground="White" FontSize="18"/>
             </StackPanel>
         </StackPanel>

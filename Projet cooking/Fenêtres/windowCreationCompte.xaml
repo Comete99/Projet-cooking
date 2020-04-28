@@ -50,7 +50,7 @@
             </Image>
         </StackPanel>
 
-        <Button Style="{StaticResource RoundButtonTemplate}"  Name="btnValider" Content="Valider" FontSize="25" Foreground="White" Background="#FF30B61C" Margin="552,325,60.6,46" BorderBrush="#FF97D98E">
+        <Button Style="{StaticResource RoundButtonTemplate}"  Name="btnValider" Content="Valider" FontSize="25" Foreground="White" Background="#FF30B61C" Margin="552,325,60.6,46" BorderBrush="#FF97D98E" Click="btnValider_Click">
         </Button>
 
     </Grid>

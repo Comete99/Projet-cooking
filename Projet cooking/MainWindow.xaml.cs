@@ -99,5 +99,10 @@ namespace Projet_cooking
 
         }
 
+        private void btnRegister_Click(object sender, RoutedEventArgs e,windowCreationCompte crea)
+        {
+            this.Hide();
+            crea.Show();
+        }
     }
 }
