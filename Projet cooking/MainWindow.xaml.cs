@@ -101,9 +101,9 @@ namespace Projet_cooking
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            windowCreationCompte w = new windowCreationCompte(this);
+            windowCreationCompte w = new windowCreationCompte();
+            this.Visibility = Visibility.Hidden;
             w.Show();
-            this.Hide();
         }
     }
 }
