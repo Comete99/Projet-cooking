@@ -31,7 +31,7 @@
                     <GridView>
                         <GridViewColumn Header="Recettes" Width="160" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
                         <GridViewColumn x:Name="quantite" Header="Quantité" Width="80" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
-                        <GridViewColumn Header="Prix" Width="120" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Prix" Width="120" DisplayMemberBinding="{Binding PrixTotal, Mode=TwoWay}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -69,11 +69,10 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            //string recetteSelected;
-            //recetteSelected = boxListeRecettes.SelectedItem.ToString();
+            string recetteSelected;
+            recetteSelected = boxListeRecettes.SelectedItem.ToString();
 
-            //Recette recette = RessourceSQL.rechercheRecette(recetteSelected);
-            Recette recette = new Recette();
+            Recette recette = RessourceSQL.rechercheRecette(recetteSelected);
             if (!listPanier.Items.Contains(recette))
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
