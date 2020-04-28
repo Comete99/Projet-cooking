@@ -11,11 +11,11 @@ namespace Projet_cooking.Classes
     public static class RessourceSQL
     {
         //public static MySqlConnection connection;
-        public static List<Recette> recettes = new List<Recette> { };
+        public static List<Recette> allRecettes = new List<Recette> { };
 
         public static Recette rechercheRecette(string nom)
         {
-            foreach(Recette r in recettes)
+            foreach(Recette r in allRecettes)
             {
                 if (r.Nom == nom)
                 {
@@ -120,6 +120,35 @@ namespace Projet_cooking.Classes
                 }
             }
             return recettes;
+        }
+        public static void toutesRecettes()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente FROM recette;";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Recette recetteTable = new Recette();
+                //string currentRowAsString = "";
+                recetteTable.Nom = reader.GetValue(0).ToString();
+                recetteTable.Type = reader.GetValue(1).ToString();
+                Dictionary<string, double> ingredients = new Dictionary<string, double>();
+                string[] nomIngredients = reader.GetValue(2).ToString().Split(';');
+                foreach(string i in nomIngredients)
+                {
+                    ingredients.Add(i, 1);
+                }
+                recetteTable.Descriptif = reader.GetValue(3).ToString();
+                recetteTable.PrixVente= Convert.ToDouble(reader.GetValue(4));
+                allRecettes.Add(recetteTable);
+            }
         }
     }
 }

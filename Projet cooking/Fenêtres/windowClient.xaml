@@ -36,7 +36,7 @@
                 </ListView.View>
             </ListView>
 
-            <Button x:Name="buttonPaiement" Content="Validation et paiement" Margin="400,-50,20,0" Height="29"/>
+            <Button x:Name="buttonPaiement" Content="Validation et paiement" Margin="400,-50,20,0" Height="29" Click="buttonPaiement_Click"/>
         </StackPanel>
     </Grid>
 </Window>

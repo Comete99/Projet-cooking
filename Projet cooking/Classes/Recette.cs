@@ -19,6 +19,7 @@ namespace Projet_cooking.Classes
         int nbCommande = 0;
 		Dictionary<string, double> ingredients = new Dictionary<string, double>();
         List<DateTime> commandes = new List<DateTime> { };
+        public Recette() { }
         public Recette(string n, string t, Dictionary<string, double> i, string d, double p)
         {
             this.nom = n;
@@ -46,6 +47,12 @@ namespace Projet_cooking.Classes
         {
             get { return this.type; }
             set { this.type = value; }
+        }
+
+        public string Descriptif
+        {
+            get { return this.descriptif; }
+            set { this.descriptif = value; }
         }
         public int PrixCook
         {

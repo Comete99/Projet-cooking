@@ -22,14 +22,18 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowClient : Window
     {
-        public static Dictionary<string, double> ingredientsRecette1 = new Dictionary<string, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Plat", ingredientsRecette1, "Plat parfait pour les végatariens", 5);
         public windowClient()
         {
             InitializeComponent();
             messageConnection.Text += "Mr Cornichon";
             nbCook.Text += "0";
             boxNbRecette.Text = "5";
+            RessourceSQL.toutesRecettes();
+            foreach(Recette recette in RessourceSQL.allRecettes)
+            {
+                boxListeRecettes.Items.Add(recette.Nom);
+            }
+            boxListeRecettes.Items.Refresh();
         }
 
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
@@ -46,28 +50,53 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
         {
-            boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) + 1);
+            if (boxListeRecettes.SelectedItem != null)
+            {
+                boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) + 1);
+            }
         }
 
         private void buttonRetirerRecette_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToInt32(boxNbRecette.Text) > 0)
+            if (boxListeRecettes.SelectedItem != null)
             {
-                boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) - 1);
+                if (Convert.ToInt32(boxNbRecette.Text) > 0)
+                {
+                    boxNbRecette.Text = Convert.ToString(Convert.ToInt32(boxNbRecette.Text) - 1);
+                }
             }
         }
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            if (!listPanier.Items.Contains(recette1))
+            //string recetteSelected;
+            //recetteSelected = boxListeRecettes.SelectedItem.ToString();
+
+            //Recette recette = RessourceSQL.rechercheRecette(recetteSelected);
+            Recette recette = new Recette();
+            if (!listPanier.Items.Contains(recette))
             {
-                listPanier.Items.Add(recette1);
-                recette1.Quantite += 1;
+                recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
+                recette.PrixTotal += recette.PrixVente * Convert.ToInt32(boxNbRecette.Text);
+                listPanier.Items.Add(recette);
             }
             else
             {
-                recette1.Quantite += 1;
+                recette.Quantite += Convert.ToInt32(boxNbRecette.Text); ;
+                recette.PrixTotal += recette.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Refresh();
+            }
+            boxNbRecette.Text = "0";
+        }
+
+        private void buttonPaiement_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(Recette r in listPanier.Items)
+            {
+                //Verifier stock
+                r.NbCommande += r.Quantite;
+                r.Quantite = 0;
+                r.PrixTotal = 0;
             }
         }
     }

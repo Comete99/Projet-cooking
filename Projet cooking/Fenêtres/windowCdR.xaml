@@ -40,7 +40,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="buttonPaiementCB" Content="Payer par CB" Margin="400,-50,200,0" Height="29"/>
+            <Button x:Name="buttonPaiementCB" Content="Payer par CB" Margin="400,-50,200,0" Height="29" Click="buttonPaiementCB_Click"/>
             <Button x:Name="buttonPaiementCook" Content="Payer avec Cook" Margin="600,-50,0.2,0" Height="29" Click="buttonPaiementCook_Click"/>
         </StackPanel>
     </Grid>

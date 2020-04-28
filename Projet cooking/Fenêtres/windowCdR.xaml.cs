@@ -34,7 +34,7 @@ namespace Projet_cooking.Fenêtres
             boxNbRecette.Text = "0";
             boxListeRecettes.Items.Add(recette1);
             boxListeRecettes.Items.Refresh();
-            RessourceSQL.recettes.Add(recette1);
+            RessourceSQL.allRecettes.Add(recette1);
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
@@ -84,6 +84,11 @@ namespace Projet_cooking.Fenêtres
                 recette.PrixTotal += recette1.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Refresh();
             }
+        }
+
+        private void buttonPaiementCB_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
