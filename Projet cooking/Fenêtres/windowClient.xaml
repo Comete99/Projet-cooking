@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Name="boxListeRecettes" Margin="0,0,30,0"/>
+                <ComboBox Grid.Column="0" Name="boxListeRecettes" Margin="0,0,30,0" ItemsSource="{Binding Path=Recette}" SelectedItem="{Binding Path = Nom}" DisplayMemberPath="Nom"/>
                 <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click"/>
                 <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click"/>
                 <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0"/>

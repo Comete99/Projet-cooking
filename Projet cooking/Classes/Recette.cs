@@ -54,7 +54,7 @@ namespace Projet_cooking.Classes
             get { return this.descriptif; }
             set { this.descriptif = value; }
         }
-        public int PrixCook
+        public int RemunerationCdRCook
         {
             get { return this.remunerationCdRcook; }
             set { this.remunerationCdRcook = value; }
@@ -68,6 +68,15 @@ namespace Projet_cooking.Classes
             get { return this.nbCommande; }
             set { this.nbCommande = value; }
         }
-
+        public string MailCdR
+        {
+            get { return this.mailCdR; }
+            set { this.mailCdR = value; }
+        }
+        public Dictionary<string, double> Ingredients
+        {
+            get { return this.ingredients; }
+            set { this.ingredients = value; }
+        }
     }
 }

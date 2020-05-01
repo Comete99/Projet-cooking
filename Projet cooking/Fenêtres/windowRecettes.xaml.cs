@@ -21,15 +21,13 @@ namespace Projet_cooking.Fenêtres
     public partial class windowRecettes : Window
     {
         private windowCdR currentCdR;
-        static Dictionary<string, double> ingredients = new Dictionary<string, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
+        private string mailCdR;
         public windowRecettes(windowCdR cdR)
         {
             InitializeComponent();
             currentCdR = cdR;
-            //listRecettes.ItemsSource = RessourceSQL.recetteCdR("kevin.vaut@gmail.com");
-            listRecettes.Items.Add(recette1);
-            listRecettes.Items.Refresh();
+            mailCdR = "loli.stitch@aloha";
+            listRecettes.ItemsSource = RessourceSQL.recetteCdR(mailCdR);
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
@@ -40,7 +38,7 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
         {
-            windowAjouterRecette w = new windowAjouterRecette(this);
+            windowAjouterRecette w = new windowAjouterRecette(this, mailCdR);
             this.Hide();
             w.Show();
         }
