@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowGererCdR" Height="450" Width="800">
+        Title="windowGererCdR" Height="350" Width="600">
     <Grid>
-        
+        <StackPanel>
+            <Label Content="Gestion CdR" FontWeight="Bold" Margin="20,10,10,10" FontSize="18"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row="0" Grid.Column="0" Name="boxCdR" Margin="50,20,20,80" DropDownClosed="boxCdR_DropDownClosed"/>
+                <Button Grid.Column="1" Grid.Row="0" x:Name="buttonSupprCdR" Content=" X Supprimer CdR" Margin="20,20,50,80" Background="#FFF40303" Click="buttonSupprCdR_Click"/>
+                <ComboBox Grid.Row="1" Grid.Column="0" Name="boxRecetteCdR" Margin="50,20,20,0" ItemsSource="{Binding Path=Recette}" SelectedItem="{Binding Path = Nom}" DisplayMemberPath="Nom"/>
+                <Button Grid.Column="1" Grid.Row="1" x:Name="buttonSupprRecette" Content=" X Supprimer Recette" Margin="20,20,50,0" Background="#FFF40303" Click="buttonSupprRecette_Click"/>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
