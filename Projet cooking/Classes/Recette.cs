@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_cooking.Classes
 {
-    public class Recette : IComparable<Recette>
+    public class Recette
     {
         string nom;
         string type;
@@ -54,7 +54,7 @@ namespace Projet_cooking.Classes
             get { return this.descriptif; }
             set { this.descriptif = value; }
         }
-        public int RemunerationCdRCook
+        public int PrixCook
         {
             get { return this.remunerationCdRcook; }
             set { this.remunerationCdRcook = value; }
@@ -68,19 +68,6 @@ namespace Projet_cooking.Classes
             get { return this.nbCommande; }
             set { this.nbCommande = value; }
         }
-        public string MailCdR
-        {
-            get { return this.mailCdR; }
-            set { this.mailCdR = value; }
-        }
-        public Dictionary<string, double> Ingredients
-        {
-            get { return this.ingredients; }
-            set { this.ingredients = value; }
-        }
-        public int CompareTo(Recette r)
-        {
-            return this.nbCommande.CompareTo(r.nbCommande);
-        }
+
     }
 }

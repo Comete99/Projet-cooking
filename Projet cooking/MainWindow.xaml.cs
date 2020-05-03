@@ -46,51 +46,51 @@ namespace Projet_cooking
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 if (count == 1)
                 {
-                    MainWindow dashboard = new MainWindow();
-                    dashboard.Show();
-                    this.Close();
+                    windowClient w = new windowClient();
+                    this.Visibility = Visibility.Hidden;
+                    w.Show();
+                    
                 }
+                
+
+                string query2 = "select count(1) from cdr where mailCdr=@mailCdr and mdpCdr=@mdpCdr;";
+                MySqlCommand sqlCmd2 = new MySqlCommand(query2, connection);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@mailCdr", txtMail.Text);
+                sqlCmd.Parameters.AddWithValue("@mdpCdr", txtMDP.Text);
+                int count2 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                if (count2 == 1)
+                {
+                    windowCdR w = new windowCdR();
+                    this.Visibility = Visibility.Hidden;
+                    w.Show();
+                }
+                
+                string query3 = "select count(1) from gestionnaire where mailGestionnaire=@mailGestionnaire and mdpGestionnaire=@mdpGestionnaire;";
+                MySqlCommand sqlCmd3 = new MySqlCommand(query3, connection);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@mailGestionnaire", txtMail.Text);
+                sqlCmd.Parameters.AddWithValue("@mdpGestionnaire", txtMDP.Text);
+                int count3 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                if (count3 == 1)
+                {
+                    windowGestionnaire w = new windowGestionnaire();
+                    this.Visibility = Visibility.Hidden;
+                    w.Show();
+                }
+
                 else
                 {
-                    string query2 = "select count(1) from cdr where mailClient=@mailClient and mdpClient=@mdpClient;";
-                    MySqlCommand sqlCmd2 = new MySqlCommand(query2, connection);
-                    sqlCmd.CommandType = CommandType.Text;
-                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
-                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
-                    int count2 = Convert.ToInt32(sqlCmd.ExecuteScalar());
-                    if (count == 1)
-                    {
-                        MainWindow dashboard = new MainWindow();
-                        dashboard.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        string query3 = "select count(1) from client where mailClient=@mailClient and mdpClient=@mdpClient;";
-                        MySqlCommand sqlCmd3 = new MySqlCommand(query3, connection);
-                        sqlCmd.CommandType = CommandType.Text;
-                        sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
-                        sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
-                        int count3 = Convert.ToInt32(sqlCmd.ExecuteScalar());
-                        if (count == 1)
-                        {
-                            MainWindow dashboard = new MainWindow();
-                            dashboard.Show();
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
-                        }
+                    MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
+                }
 
-                    }
+                    
   
-                };
+                
             }
             catch(Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
             }
             finally
             {
