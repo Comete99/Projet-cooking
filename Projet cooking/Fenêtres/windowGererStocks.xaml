@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowGererStocks" Height="450" Width="800">
+        Title="windowGererStocks" Height="450" Width="850" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <StackPanel>
+            <Label Content="Stocks" FontWeight="Bold" Margin="10" FontSize="18"/>
+            <Grid Margin="10,5,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.1*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Produits" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <ComboBox Grid.Row="1" Grid.Column="0" x:Name="boxIngredients" Margin="10,0,10,0"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="Quantité actuelle"/>
+                <TextBox x:Name="boxQteRestante" Grid.Row="1" Grid.Column="1" Margin="25,0,25,0"/>
+                <Label Grid.Row="0" Grid.Column="2" Content="Quantité max" HorizontalAlignment="Center"/>
+                <TextBox x:Name="boxQteMax" Grid.Row="1" Grid.Column="2" Margin="20,0,20,0"/>
+                <Label Grid.Row="0" Grid.Column="3" Content="Quantité min" HorizontalAlignment="Center"/>
+                <TextBox x:Name="boxQteMin" Grid.Row="1" Grid.Column="3" Margin="20,0,20,0"/>
+                <Label Grid.Row="0" Grid.Column="4" Content="Commande" HorizontalAlignment="Center"/>
+                <TextBox x:Name="boxQteCommande" Grid.Row="1" Grid.Column="4" Margin="20,0,20,0"/>
+                <Label Grid.Row="0" Grid.Column="5" Content="Fournisseur" HorizontalAlignment="Center" Margin="0,0,15,0"/>
+                <ComboBox x:Name="boxFournisseur" Grid.Row="1" Grid.Column="5" Margin="0,0,15,0"/>
+                <Button x:Name="buttonCommander" Content="Commander" Grid.Row="1" Grid.Column="6" Margin="5,0,5,0"/>
+            </Grid>
+            <ListView x:Name="listProduit" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Produit" Width="120"/>
+                        <GridViewColumn Header="Quantité actuelle" Width="110"/>
+                        <GridViewColumn Header="Quantité max" Width="100"/>
+                        <GridViewColumn Header="Quantité min" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>
