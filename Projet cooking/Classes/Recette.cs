@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_cooking.Classes
 {
-    public class Recette
+    public class Recette : IComparable<Recette>
     {
         string nom;
         string type;
@@ -77,6 +77,10 @@ namespace Projet_cooking.Classes
         {
             get { return this.ingredients; }
             set { this.ingredients = value; }
+        }
+        public int CompareTo(Recette r)
+        {
+            return this.nbCommande.CompareTo(r.nbCommande);
         }
     }
 }
