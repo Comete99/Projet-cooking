@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace Projet_cooking.Fenêtres
 {
@@ -35,6 +36,51 @@ namespace Projet_cooking.Fenêtres
             boxListeRecettes.Items.Add(recette1);
             boxListeRecettes.Items.Refresh();
             RessourceSQL.allRecettes.Add(recette1);
+        }
+
+        public windowCdR(string mail, string nom, string prenom, int nombCook)
+        {
+            InitializeComponent();
+            messageConnection.Text += nom+" "+prenom;
+            nbCook.Text += Convert.ToString(nombCook);
+
+            int nbRec = nbRecettes(mail);
+
+            boxNbRecette.Text = Convert.ToString(nbRec) ;
+            boxListeRecettes.Items.Add(recette1);
+            boxListeRecettes.Items.Refresh();
+            RessourceSQL.allRecettes.Add(recette1);
+        }
+
+        public int nbRecettes(string mail)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT nomRecette from Recette where mailCdr='"+mail+"';";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string resultat = "";
+            string[] tab = null;
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                resultat = currentRowAsString;
+                ///Console.WriteLine(currentRowAsString);
+                tab = currentRowAsString.Split(',');
+            }
+
+            int count = tab.Length;
+
+            return count;
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)

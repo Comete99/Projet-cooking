@@ -36,6 +36,20 @@ namespace Projet_cooking.Fenêtres
             boxListeRecettes.Items.Refresh();
         }
 
+        public windowClient(string nom, string prenom)
+        {
+            InitializeComponent();
+            messageConnection.Text += nom+" "+prenom;
+            nbCook.Text += "0";
+            boxNbRecette.Text = "5";
+            foreach (Recette recette in RessourceSQL.allRecettes)
+            {
+                boxListeRecettes.Items.Add(recette.Nom);
+            }
+            boxListeRecettes.Items.Refresh();
+
+        }
+
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult messageDevenirCdR = MessageBox.Show("Voulez-vous devenir CdR ?", "Devenir CdR", MessageBoxButton.YesNo);
