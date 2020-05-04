@@ -74,9 +74,6 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            //string recetteSelected;
-            //recetteSelected = boxListeRecettes.SelectedItem.ToString();
-
             Recette recette = (Recette)boxListeRecettes.SelectedItem;
             if (!listPanier.Items.Contains(recette))
             {
@@ -98,6 +95,24 @@ namespace Projet_cooking.Fenêtres
             foreach (Recette r in listPanier.Items)
             {
                 //Verifier stock
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    if (produit.Value * r.Quantite < produit.Key.StockActuel)
+                    {
+                        listPanier.Items.Remove(r);
+                        MessageBoxResult message = MessageBox.Show("Veuillez-nous excuser mais la recette : " + r.Nom + " ne peut pas être commandée par manque de " + produit.Key.NomProduit + "cette recette a été retirée de votre panier, veuillez repasser la commande si vous le souhaitez");
+                        return;
+                    }
+                }
+            }
+            double prixCook = 0;
+            foreach (Recette r in listPanier.Items)
+            {
+                //On ajuste les stocks
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    produit.Key.StockActuel -= produit.Value * r.Quantite;
+                }
                 //rémunérer CdR
                 if (r.NbCommande < 10 && r.NbCommande + r.Quantite >= 10)
                 {
@@ -119,9 +134,15 @@ namespace Projet_cooking.Fenêtres
                     RessourceSQL.CdRPaiementCook(r, false, false);
                 }
                 r.NbCommande += r.Quantite;
+                for (int i = 0; i < r.Quantite; i++)
+                {
+                    r.Commandes.Add(DateTime.Now);
+                }
+                prixCook += r.PrixTotal;
                 r.Quantite = 0;
                 r.PrixTotal = 0;
             }
+            MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
             listPanier.Items.Clear();
         }
     }

@@ -78,9 +78,15 @@ namespace Projet_cooking.Classes
             get { return this.ingredients; }
             set { this.ingredients = value; }
         }
+        public List<DateTime> Commandes
+        {
+            get { return this.commandes; }
+            set { this.commandes = value; }
+        }
         public int CompareTo(Recette r)
         {
             return this.nbCommande.CompareTo(r.nbCommande);
         }
+        
     }
 }

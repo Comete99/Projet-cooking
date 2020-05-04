@@ -20,8 +20,7 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowCdR : Window
     {
-        int prixCook=15;
-        int nbCookCdR = 30;
+        double nbCookCdR = 0;
         
         public windowCdR(string mail, string nom, string prenom, int nombCook)
         {
@@ -30,6 +29,7 @@ namespace Projet_cooking.Fenêtres
             nbCook.Text = Convert.ToString(nombCook);
             boxNbRecette.Text = "0"; ///nb de recettes commandées
             boxListeRecettes.ItemsSource = RessourceSQL.allRecettes;
+            nbCookCdR = Convert.ToDouble(nombCook);
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
@@ -47,12 +47,65 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonPaiementCook_Click(object sender, RoutedEventArgs e)
         {
-            if ( nbCookCdR >= prixCook)
+            foreach (Recette r in listPanier.Items)
             {
-                MessageBoxResult message = MessageBox.Show("Paiement accepté");
+                //Verifier stock
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    if (produit.Value * r.Quantite < produit.Key.StockActuel)
+                    {
+                        listPanier.Items.Remove(r);
+                        MessageBoxResult message = MessageBox.Show("Veuillez-nous excuser mais la recette : " + r.Nom + " ne peut pas être commandée par manque de " + produit.Key.NomProduit + "cette recette a été retirée de votre panier, veuillez repasser la commande si vous le souhaitez");
+                        return;
+                    }
+                }
+            }
+            double prixCook = 0;
+            foreach (Recette r in listPanier.Items)
+            {
+                //On ajuste les stocks
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    produit.Key.StockActuel -= produit.Value * r.Quantite;
+                }
+                //rémunérer CdR
+                if (r.NbCommande < 10 && r.NbCommande + r.Quantite >= 10)
+                {
+                    if (r.NbCommande + r.Quantite >= 50)
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, true);
+                    }
+                    else
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, false);
+                    }
+                }
+                else if (r.NbCommande < 50 && r.NbCommande + r.Quantite >= 50)
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, true);
+                }
+                else
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, false);
+                }
+                r.NbCommande += r.Quantite;
+                for (int i = 0; i < r.Quantite; i++)
+                {
+                    r.Commandes.Add(DateTime.Now);
+                }
+                prixCook += r.PrixTotal;
+                r.Quantite = 0;
+                r.PrixTotal = 0;
+            }
+            if (nbCookCdR >= prixCook)
+            {
+                MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
                 nbCookCdR -= prixCook;
                 nbCook.Text = Convert.ToString(nbCookCdR);
             }
+            
+            listPanier.Items.Clear();
+            
         }
 
         private void buttonRecettes_Click(object sender, RoutedEventArgs e)
@@ -65,25 +118,76 @@ namespace Projet_cooking.Fenêtres
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
             Recette recette = (Recette)boxListeRecettes.SelectedItem;
-
-            //if(RessourceSQL.est_client("kevin.vaut@gmail.com", "gh54p"))
             if (!listPanier.Items.Contains(recette))
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
-                recette.PrixTotal += recette.PrixVente*Convert.ToInt32(boxNbRecette.Text);
+                recette.PrixTotal += recette.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Add(recette);
             }
             else
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text); ;
-                //recette.PrixTotal += recette1.PrixVente * Convert.ToInt32(boxNbRecette.Text);
+                recette.PrixTotal += recette.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Refresh();
             }
+            boxNbRecette.Text = "0";
         }
 
         private void buttonPaiementCB_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (Recette r in listPanier.Items)
+            {
+                //Verifier stock
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    if (produit.Value * r.Quantite < produit.Key.StockActuel)
+                    {
+                        listPanier.Items.Remove(r);
+                        MessageBoxResult message = MessageBox.Show("Veuillez-nous excuser mais la recette : " + r.Nom + " ne peut pas être commandée par manque de " + produit.Key.NomProduit + "cette recette a été retirée de votre panier, veuillez repasser la commande si vous le souhaitez");
+                        return;
+                    }
+                }
+            }
+            double prixCook = 0;
+            foreach (Recette r in listPanier.Items)
+            {
+                //On ajuste les stocks
+                foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
+                {
+                    produit.Key.StockActuel -= produit.Value * r.Quantite;
+                }
+                //rémunérer CdR
+                if (r.NbCommande < 10 && r.NbCommande + r.Quantite >= 10)
+                {
+                    if (r.NbCommande + r.Quantite >= 50)
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, true);
+                    }
+                    else
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, false);
+                    }
+                }
+                else if (r.NbCommande < 50 && r.NbCommande + r.Quantite >= 50)
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, true);
+                }
+                else
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, false);
+                }
+                r.NbCommande += r.Quantite;
+                for (int i = 0; i < r.Quantite; i++)
+                {
+                    r.Commandes.Add(DateTime.Now);
+                }
+                prixCook += r.PrixTotal;
+                r.Quantite = 0;
+                r.PrixTotal = 0;
+            }
+            MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
+            listPanier.Items.Clear();
         }
     }
+    
 }

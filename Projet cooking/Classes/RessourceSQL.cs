@@ -186,6 +186,7 @@ namespace Projet_cooking.Classes
                 recetteTable.PrixVente= Convert.ToDouble(reader.GetValue(4));
                 recetteTable.RemunerationCdRCook = reader.GetInt32(5);
                 recetteTable.MailCdR = reader.GetValue(6).ToString();
+                recetteTable.NbCommande = 1;
                 allRecettes.Add(recetteTable);
             }
         }
