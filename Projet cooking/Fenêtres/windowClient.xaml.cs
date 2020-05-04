@@ -33,7 +33,6 @@ namespace Projet_cooking.Fenêtres
             messageConnection.Text += nom + " " + prenom;
             nbCook.Text += "0";
             boxNbRecette.Text = "5";
-            RessourceSQL.toutesRecettes();
             foreach (Recette recette in RessourceSQL.allRecettes)
             {
                 boxListeRecettes.Items.Add(recette);
