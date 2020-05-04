@@ -40,7 +40,7 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
         {
-            string mail = "";
+            string mail = "kevin.vaut@gmail.com";
             windowAjouterRecette w = new windowAjouterRecette(this, mail);
             this.Hide();
             w.Show();

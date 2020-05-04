@@ -246,7 +246,7 @@ namespace Projet_cooking.Classes
                 ingredients+=produit.Key.NomProduit + " " + produit.Value+";";
             }
             ingredients = ingredients.Remove(ingredients.Length - 1);
-            string requete = "INSERT INTO recette (nomRecette, type, ingredients, descritif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + ingredients + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
+            string requete = "INSERT INTO recette (nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + ingredients + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
             command.CommandText = requete;
 
             MySqlDataReader readerRecette;

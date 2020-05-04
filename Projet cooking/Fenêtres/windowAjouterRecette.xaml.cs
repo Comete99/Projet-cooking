@@ -36,8 +36,8 @@ namespace Projet_cooking.Fenêtres
 
         private void validerRecette_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
                 nouvelleRecette.RemunerationCdRCook = 2;
                 nouvelleRecette.MailCdR = mailCdR;
@@ -46,36 +46,56 @@ namespace Projet_cooking.Fenêtres
                 recettesCdR.listRecettes.Items.Refresh();
                 recettesCdR.Show();
                 this.Close();
-            }
-            catch
-            {
-                MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
+            //}
 
         }
 
         private void buttonAjouterARecette_Click(object sender, RoutedEventArgs e)
         {
-            boxSupprIngredients.Items.Add((Produit)boxListeIngredients.SelectedItem);
-            ingredientsRecette.Add((Produit)boxListeIngredients.SelectedItem, Convert.ToDouble(boxQuantite.Text));
-            boxListeIngredients.Items.Remove((Produit)boxListeIngredients.SelectedItem);
-            labelUnite.Content = "";
+            if (boxListeIngredients.SelectedItem != null)
+            {
+                Produit p = (Produit)boxListeIngredients.SelectedItem;
+                boxSupprIngredients.Items.Add(p);
+                try
+                {
+                    ingredientsRecette.Add(p, Convert.ToDouble(boxQuantite.Text));
+                }
+                catch
+                {
+                    MessageBoxResult message = MessageBox.Show("Veuillez vérifier la quantité entrée, veillez à mettre une virgule et non un point s'il s'agit d'une quantité non entière");
+                }
+                boxListeIngredients.Items.Remove(p);
+                boxListeIngredients.Items.Refresh();
+                labelUnite.Content = "";
+            }
         }
 
         private void buttonSupprIngredient_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 boxListeIngredients.Items.Add((Produit)boxSupprIngredients.SelectedItem);
                 ingredientsRecette.Remove((Produit)boxSupprIngredients.SelectedItem);
                 boxSupprIngredients.Items.Remove((Produit)boxSupprIngredients.SelectedItem);
-            }
-            catch { }
+                boxSupprIngredients.Items.Refresh();
+            //}
+            //catch { }
         }
 
         private void boxListeIngredients_DropDownClosed(object sender, EventArgs e)
         {
-            labelUnite.Content = (((Produit)boxListeIngredients.SelectedItem)).Unite;
+            try
+            {
+                if (boxListeIngredients.SelectedItem != null)
+                {
+                    labelUnite.Content = ((Produit)boxListeIngredients.SelectedItem).Unite;
+                }
+            }
+            catch { }
         }
     }
 }

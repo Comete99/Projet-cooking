@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
         Title="windowDemo" Height="450" Width="800" Background="#FFFFD874">
-    <Grid Name="Next" KeyUp="Grid_KeyUp">
+    <Grid Name="Next">
         <StackPanel Margin="30">
             <TextBlock Margin="15" Text="Bienvenue dans le mode Démo !" HorizontalAlignment="Center" FontSize="40" FontFamily="MV Boli" Height="50" TextAlignment="Center" Foreground="Brown" >
             </TextBlock>
