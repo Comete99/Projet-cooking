@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Produit.cs" />
     <Compile Include="Fenêtres\windowDemo_2.xaml.cs">
       <DependentUpon>windowDemo_2.xaml</DependentUpon>
     </Compile>

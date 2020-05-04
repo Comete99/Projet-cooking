@@ -17,10 +17,10 @@ namespace Projet_cooking.Classes
         string mailCdR;
         int quantite=0;
         int nbCommande = 0;
-		Dictionary<string, double> ingredients = new Dictionary<string, double>();
+		Dictionary<Produit, double> ingredients = new Dictionary<Produit, double>();
         List<DateTime> commandes = new List<DateTime> { };
         public Recette() { }
-        public Recette(string n, string t, Dictionary<string, double> i, string d, double p)
+        public Recette(string n, string t, Dictionary<Produit, double> i, string d, double p)
         {
             this.nom = n;
             this.type = t;
@@ -73,7 +73,7 @@ namespace Projet_cooking.Classes
             get { return this.mailCdR; }
             set { this.mailCdR = value; }
         }
-        public Dictionary<string, double> Ingredients
+        public Dictionary<Produit, double> Ingredients
         {
             get { return this.ingredients; }
             set { this.ingredients = value; }

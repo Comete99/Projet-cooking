@@ -21,7 +21,7 @@ namespace Projet_cooking.Fenêtres
     public partial class windowRecettes : Window
     {
         private windowCdR currentCdR;
-        static Dictionary<string, double> ingredients = new Dictionary<string, double>();
+        static Dictionary<Produit, double> ingredients = new Dictionary<Produit, double>();
         Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
         public windowRecettes(windowCdR cdR)
         {

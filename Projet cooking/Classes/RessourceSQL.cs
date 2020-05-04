@@ -12,6 +12,7 @@ namespace Projet_cooking.Classes
     {
         //public static MySqlConnection connection;
         public static List<Recette> allRecettes = new List<Recette> { };
+        public static List<Produit> allProduits = new List<Produit> { };
 
         public static Recette rechercheRecette(string nom)
         {
@@ -44,13 +45,18 @@ namespace Projet_cooking.Classes
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-            if (reader.FieldCount != 0)
+            string client = "";
+            while (reader.Read())
             {
-                return true;
+                client = reader.GetValue(0).ToString();
+            }
+            if (client == "")
+            {
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
         public static bool est_CdR(string mail, string mdp)
@@ -65,13 +71,18 @@ namespace Projet_cooking.Classes
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-            if (reader.FieldCount != 0)
+            string CdR = "";
+            while (reader.Read())
             {
-                return true;
+                CdR = reader.GetValue(0).ToString();
+            }
+            if (CdR == "")
+            {
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
         public static bool est_gestionnaire(string mail, string mdp)
@@ -86,13 +97,18 @@ namespace Projet_cooking.Classes
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-            if (reader.FieldCount != 0)
+            string gestionnaire = "";
+            while (reader.Read())
             {
-                return true;
+                gestionnaire = reader.GetValue(0).ToString();
+            }
+            if (gestionnaire == "")
+            {
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -150,6 +166,32 @@ namespace Projet_cooking.Classes
                 allRecettes.Add(recetteTable);
             }
         }
+        public static void tousProduits()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nomProduit, categorie, unite, stockActuel, stockMin, stockMax, nomFournisseur FROM produit;";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Produit produitTable = new Produit();
+                //string currentRowAsString = "";
+                produitTable.NomProduit = reader.GetValue(0).ToString();
+                produitTable.Categorie = reader.GetValue(1).ToString();
+                produitTable.Unite = reader.GetValue(2).ToString();
+                produitTable.StockActuel = reader.GetDouble(3);
+                produitTable.StockMin = reader.GetDouble(4);
+                produitTable.StockMax = reader.GetDouble(5);
+                produitTable.NomFournisseur = reader.GetValue(6).ToString();
+                allProduits.Add(produitTable);
+            }
+        }
         public static void CdRPaiementCook(Recette recette, bool commande10, bool commande50)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
@@ -198,7 +240,13 @@ namespace Projet_cooking.Classes
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            string requete = "INSERT INTO recette (nomRecette, type, ingredients, descritif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + recette.Ingredients.ToString() + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
+            string ingredients = "";
+            foreach (KeyValuePair<Produit, double> produit in recette.Ingredients)
+            {
+                ingredients+=produit.Key.NomProduit + " " + produit.Value+";";
+            }
+            ingredients = ingredients.Remove(ingredients.Length - 1);
+            string requete = "INSERT INTO recette (nomRecette, type, ingredients, descritif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + ingredients + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
             command.CommandText = requete;
 
             MySqlDataReader readerRecette;

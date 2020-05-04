@@ -28,6 +28,8 @@ namespace Projet_cooking
         public MainWindow()
         {
             InitializeComponent();
+            RessourceSQL.toutesRecettes();
+            RessourceSQL.tousProduits();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
@@ -37,36 +39,36 @@ namespace Projet_cooking
 
             if (RessourceSQL.est_client(mail, mdp))
             {
-                    string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    connection.Open();
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+                MySqlConnection connection = new MySqlConnection(connectionString);
+                connection.Open();
 
-                    MySqlCommand command = connection.CreateCommand();
-                    command.CommandText = "SELECT nom,prenom FROM Client where mailClient='"+mail+"';";
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT nom,prenom FROM Client where mailClient='"+mail+"';";
 
-                    MySqlDataReader reader;
-                    reader = command.ExecuteReader();
-                    string[] tab = null;
+                MySqlDataReader reader;
+                reader = command.ExecuteReader();
+                string[] tab = null;
 
-                    while (reader.Read())
+                while (reader.Read())
+                {
+                    string currentRowAsString = "";
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        string currentRowAsString = "";
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            string valueAsString = reader.GetValue(i).ToString();
-                            currentRowAsString += valueAsString + ",";
-                        }
-                        tab = currentRowAsString.Split(',');
+                        string valueAsString = reader.GetValue(i).ToString();
+                        currentRowAsString += valueAsString + ",";
                     }
+                    tab = currentRowAsString.Split(',');
+                }
 
-                    windowClient w = new windowClient(tab[0], tab[1]);
-                    this.Visibility = Visibility.Hidden;
-                    w.Show();
+                windowClient w = new windowClient(tab[0], tab[1]);
+                this.Visibility = Visibility.Hidden;
+                w.Show();
             }
 
             if (RessourceSQL.est_CdR(mail, mdp))
             {
-                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
@@ -95,7 +97,7 @@ namespace Projet_cooking
 
             if (RessourceSQL.est_gestionnaire(mail, mdp))
             {
-                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 

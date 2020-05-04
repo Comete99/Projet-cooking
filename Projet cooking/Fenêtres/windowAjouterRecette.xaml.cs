@@ -21,17 +21,15 @@ namespace Projet_cooking.Fenêtres
     public partial class windowAjouterRecette : Window
     {
         windowRecettes recettesCdR;
-        Dictionary<string, double> ingredientsRecette = new Dictionary<string, double>();
-        List<string> ingredientsDisponibles = new List<string> { };
+        Dictionary<Produit, double> ingredientsRecette = new Dictionary<Produit, double>();
         string mailCdR;
         public windowAjouterRecette(windowRecettes mesRecettes, string mail)
         {
             InitializeComponent();
             recettesCdR = mesRecettes;
-            labelUnite.Content = "ml";
-            foreach (string i in ingredientsDisponibles)
+            foreach (Produit p in RessourceSQL.allProduits)
             {
-                boxListeIngredients.Items.Add(i);
+                boxListeIngredients.Items.Add(p);
             }
             mailCdR = mail;
         }
@@ -45,8 +43,8 @@ namespace Projet_cooking.Fenêtres
                 nouvelleRecette.MailCdR = mailCdR;
                 RessourceSQL.ajouterRecette(nouvelleRecette);
                 MessageBoxResult message = MessageBox.Show("Recette créée !");
-                recettesCdR.Show();
                 recettesCdR.listRecettes.Items.Refresh();
+                recettesCdR.Show();
                 this.Close();
             }
             catch
@@ -58,20 +56,26 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterARecette_Click(object sender, RoutedEventArgs e)
         {
-            boxSupprIngredients.Items.Add(boxListeIngredients.SelectedItem);
-            boxListeIngredients.Items.Remove(boxListeIngredients.SelectedItem);
-            ingredientsRecette.Add(boxListeIngredients.SelectedItem.ToString(), Convert.ToDouble(boxQuantite));
+            boxSupprIngredients.Items.Add((Produit)boxListeIngredients.SelectedItem);
+            ingredientsRecette.Add((Produit)boxListeIngredients.SelectedItem, Convert.ToDouble(boxQuantite.Text));
+            boxListeIngredients.Items.Remove((Produit)boxListeIngredients.SelectedItem);
+            labelUnite.Content = "";
         }
 
         private void buttonSupprIngredient_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                boxListeIngredients.Items.Add(boxSupprIngredients.SelectedItem);
-                ingredientsRecette.Remove(boxSupprIngredients.SelectedItem.ToString());
-                boxSupprIngredients.Items.Remove(boxSupprIngredients.SelectedItem);
+                boxListeIngredients.Items.Add((Produit)boxSupprIngredients.SelectedItem);
+                ingredientsRecette.Remove((Produit)boxSupprIngredients.SelectedItem);
+                boxSupprIngredients.Items.Remove((Produit)boxSupprIngredients.SelectedItem);
             }
             catch { }
+        }
+
+        private void boxListeIngredients_DropDownClosed(object sender, EventArgs e)
+        {
+            labelUnite.Content = (((Produit)boxListeIngredients.SelectedItem)).Unite;
         }
     }
 }
