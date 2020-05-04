@@ -47,7 +47,7 @@ namespace Projet_cooking.Fenêtres
 
         public List<string> Liste_Mails()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=loueur;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 

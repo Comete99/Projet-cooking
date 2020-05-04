@@ -33,175 +33,70 @@ namespace Projet_cooking
         
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string mail = txtMail.Text;
-            string mdp = txtMDP.Text;
-
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
             try
             {
-                if (EstClient(mail, mdp))
+                string query = "select count(1) from client where mailClient=@mailClient and mdpClient=@mdpClient;";
+                MySqlCommand sqlCmd = new MySqlCommand(query, connection);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                if (count == 1)
                 {
-                    string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    connection.Open();
-
-                    MySqlCommand command = connection.CreateCommand();
-                    command.CommandText = "SELECT nom,prenom FROM Client where mailClient='kevin.vaut@gmail.com';";
-
-                    MySqlDataReader reader;
-                    reader = command.ExecuteReader();
-                    string[] tab = null;
-
-                    while (reader.Read())
-                    {
-                        string currentRowAsString = "";
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            string valueAsString = reader.GetValue(i).ToString();
-                            currentRowAsString += valueAsString + ",";
-                        }
-                        tab = currentRowAsString.Split(',');
-                    }
-
-                    windowClient w = new windowClient(tab[0],tab[1]);
-                    this.Visibility = Visibility.Hidden;
-                    w.Show();
+                    MainWindow dashboard = new MainWindow();
+                    dashboard.Show();
+                    this.Close();
                 }
+                else
+                {
+                    string query2 = "select count(1) from cdr where mailClient=@mailClient and mdpClient=@mdpClient;";
+                    MySqlCommand sqlCmd2 = new MySqlCommand(query2, connection);
+                    sqlCmd.CommandType = CommandType.Text;
+                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                    int count2 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    if (count == 1)
+                    {
+                        MainWindow dashboard = new MainWindow();
+                        dashboard.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        string query3 = "select count(1) from client where mailClient=@mailClient and mdpClient=@mdpClient;";
+                        MySqlCommand sqlCmd3 = new MySqlCommand(query3, connection);
+                        sqlCmd.CommandType = CommandType.Text;
+                        sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                        sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                        int count3 = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                        if (count == 1)
+                        {
+                            MainWindow dashboard = new MainWindow();
+                            dashboard.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
+                        }
 
-                
-
-                
+                    }
+  
+                };
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Le mail et le mot de passe ne correspondent pas.");
+
+                throw;
             }
             finally
             {
 
             }
 
-        }
-
-
-        private bool EstClient(string mail, string mdp)
-        {
-            bool estClient = false;
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT count(1) FROM Client where mailClient=='" + mail + " and mdpClient='" + mdp + "';";
-
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-
-            int count = 0;
-            string c = "";
-
-            while (reader.Read())
-            {
-                string currentRowAsString = "";
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string valueAsString = reader.GetValue(i).ToString();
-                    currentRowAsString += valueAsString;
-                }
-                c = currentRowAsString;
-                count = Convert.ToInt32(c);
-            }
-
-            if (count == 1)
-            {
-                estClient = true;
-
-            }
-
-            connection.Close();
-
-            return estClient;
-        }
-
-
-        private bool EstCdr(string mail, string mdp)
-        {
-            bool estCdr = false;
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT count(1) FROM Cdr where mailCdr=='" + mail + " and mdpCdr='" + mdp + "';";
-
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-
-            int count = 0;
-            string c = "";
-
-            while (reader.Read())
-            {
-                string currentRowAsString = "";
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string valueAsString = reader.GetValue(i).ToString();
-                    currentRowAsString += valueAsString;
-                }
-                c = currentRowAsString;
-                count = Convert.ToInt32(c);
-            }
-
-            if (count == 1)
-            {
-                estCdr = true;
-
-            }
-
-            connection.Close();
-
-            return estCdr;
-        }
-
-        private bool EstGestionnaire(string mail, string mdp)
-        {
-            bool estGest = false;
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT count(1) FROM Gestionnaire where mailGestionnaire=='" + mail + " and mdpGestionnaire='" + mdp + "';";
-
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-
-            int count = 0;
-            string c = "";
-
-            while (reader.Read())
-            {
-                string currentRowAsString = "";
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string valueAsString = reader.GetValue(i).ToString();
-                    currentRowAsString += valueAsString;
-                }
-                c = currentRowAsString;
-                count = Convert.ToInt32(c);
-            }
-
-            if (count == 1)
-            {
-                estGest = true;
-
-            }
-
-            connection.Close();
-
-            return estGest;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
