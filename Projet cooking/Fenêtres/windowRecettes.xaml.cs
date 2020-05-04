@@ -1,6 +1,8 @@
 ﻿using Projet_cooking.Classes;
+using Renci.SshNet.Messages.Transport;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +23,14 @@ namespace Projet_cooking.Fenêtres
     public partial class windowRecettes : Window
     {
         private windowCdR currentCdR;
-        static Dictionary<Produit, double> ingredients = new Dictionary<Produit, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
         public windowRecettes(windowCdR cdR)
         {
             InitializeComponent();
             currentCdR = cdR;
-            //listRecettes.ItemsSource = RessourceSQL.recetteCdR("kevin.vaut@gmail.com");
-            listRecettes.Items.Add(recette1);
-            listRecettes.Items.Refresh();
+            foreach(Recette rCdR in RessourceSQL.mesRecettes("kevin.vaut@gmail.com"))
+            {
+                listRecettes.Items.Add(rCdR);
+            }
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)

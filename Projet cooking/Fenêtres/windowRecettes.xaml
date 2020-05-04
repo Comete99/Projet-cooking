@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="windowRecettes" Height="500" Width="800">
     <Grid>
+        <TextBox x:Name="boxTest"/>
         <TextBlock x:Name="messageConnection" Text="Mes Recettes" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
+        
         <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="650,150,20,240" Click="buttonAjouterRecette_Click"/>
         <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="650,280,20,110" Click="buttonRetourAuMenu_Click"/>
         <ListView x:Name="listRecettes" Margin="10,60,150,0" Width="600" Height="380" HorizontalAlignment="Center">
@@ -23,9 +25,9 @@
                     <GridViewColumn Header="Produits" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox x:Name="boxProduits" Width="100">
+                                <ComboBox x:Name="boxProduits" Width="100" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=Ingredients}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
 
-                                </ComboBox>
+
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -37,7 +39,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn> 
-                    <GridViewColumn Header="Prix Cook" Width="70" DisplayMemberBinding="{Binding PrixCook, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Prix Cook" Width="70" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
                     <GridViewColumn Header="NbCommande" Width="100" DisplayMemberBinding="{Binding NbCommande, Mode=TwoWay}"/>
                     <GridViewColumn Header="Modifier" Width="70">
                         <GridViewColumn.CellTemplate>

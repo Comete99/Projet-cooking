@@ -59,13 +59,9 @@ namespace Projet_cooking.Fenêtres
             if (boxCdR.SelectedItem != null)
             {
                 string[] infoCdR = boxCdR.SelectedItem.ToString().Split(' ');
-                foreach (Recette r in RessourceSQL.allRecettes)
+                foreach (Recette r in RessourceSQL.mesRecettes(RessourceSQL.rechercheMailCdR(infoCdR[0],infoCdR[1])))
                 {
-                    //On affiche les recettes en liées au CdR sélectionné
-                    if (RessourceSQL.rechercheMailCdR(infoCdR[0], infoCdR[1]).Contains(r.MailCdR))
-                    {
-                        boxRecetteCdR.Items.Add(r.Nom);
-                    }
+                    boxRecetteCdR.Items.Add(r);
                 }
             }
             //Sinon on affiche toutes les recettes

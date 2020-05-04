@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Column="0" x:Name="boxSupprIngredients" DisplayMemberPath="NomProduit" Margin="0,0,10,0"/>
-                <Button x:Name="buttonSupprIngredient" Content="Supprimer l'ingrédient" Grid.Column="1" Background="#FFCA3030" />
+                <Button x:Name="buttonSupprIngredient" Content="Supprimer l'ingrédient" Grid.Column="1" Background="#FFCA3030" Click="buttonSupprIngredient_Click_1" />
             </Grid>
             <Grid Margin="80,20,80,0">
                 <Grid.ColumnDefinitions>

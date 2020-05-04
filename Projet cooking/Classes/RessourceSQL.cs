@@ -137,14 +137,27 @@ namespace Projet_cooking.Classes
             }
             return recettes;
         }
+        public static List<Recette> mesRecettes(string mail)
+        {
+            List<Recette> recettes = new List<Recette> { };
+            foreach(Recette r in allRecettes)
+            {
+                if (r.MailCdR.Contains(mail))
+                {
+                    recettes.Add(r);
+                }
+            }
+            return recettes;
+        }
         public static void toutesRecettes()
         {
+            tousProduits();
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente FROM recette;";
+            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdr FROM recette;";
             command.CommandText = requete;
 
             MySqlDataReader reader;
@@ -155,14 +168,24 @@ namespace Projet_cooking.Classes
                 //string currentRowAsString = "";
                 recetteTable.Nom = reader.GetValue(0).ToString();
                 recetteTable.Type = reader.GetValue(1).ToString();
-                Dictionary<string, double> ingredients = new Dictionary<string, double>();
-                string[] nomIngredients = reader.GetValue(2).ToString().Split(';');
-                foreach(string i in nomIngredients)
+                Dictionary<Produit, double> ingredients = new Dictionary<Produit, double>();
+                string[] Ingredients = reader.GetValue(2).ToString().Split(';');
+                foreach(string i in Ingredients)
                 {
-                    ingredients.Add(i, 1);
+                    string[] ingredient_quantite = i.Split(' ');
+                    foreach(Produit p in allProduits)
+                    {
+                        if(p.NomProduit == ingredient_quantite[0])
+                        {
+                            ingredients.Add(p, Convert.ToDouble(ingredient_quantite[1]));
+                        }
+                    }
                 }
+                recetteTable.Ingredients = ingredients;
                 recetteTable.Descriptif = reader.GetValue(3).ToString();
                 recetteTable.PrixVente= Convert.ToDouble(reader.GetValue(4));
+                recetteTable.RemunerationCdRCook = reader.GetInt32(5);
+                recetteTable.MailCdR = reader.GetValue(6).ToString();
                 allRecettes.Add(recetteTable);
             }
         }
@@ -294,6 +317,10 @@ namespace Projet_cooking.Classes
                     if (i == 0)
                     {
                         currentRowAsString += valueAsString + " ";
+                    }
+                    else
+                    {
+                        currentRowAsString += valueAsString;
                     }
                 }
                 CdR.Add(currentRowAsString);

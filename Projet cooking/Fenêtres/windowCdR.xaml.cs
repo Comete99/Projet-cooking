@@ -20,21 +20,16 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowCdR : Window
     {
-        static Dictionary<Produit, double> ingredients = new Dictionary<Produit, double>();
-        Recette recette1 = new Recette("Galettes de quinoa", "Test", ingredients, "c'est bon", 6);
         int prixCook=15;
         int nbCookCdR = 30;
         
-        List<string> panier;
         public windowCdR(string mail, string nom, string prenom, int nombCook)
         {
             InitializeComponent();
             messageConnection.Text += nom + " " + prenom;
             nbCook.Text = Convert.ToString(nombCook);
             boxNbRecette.Text = "0"; ///nb de recettes commandées
-            boxListeRecettes.Items.Add(recette1);
-            boxListeRecettes.Items.Refresh();
-            RessourceSQL.allRecettes.Add(recette1);
+            boxListeRecettes.ItemsSource = RessourceSQL.allRecettes;
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
@@ -81,7 +76,7 @@ namespace Projet_cooking.Fenêtres
             else
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text); ;
-                recette.PrixTotal += recette1.PrixVente * Convert.ToInt32(boxNbRecette.Text);
+                //recette.PrixTotal += recette1.PrixVente * Convert.ToInt32(boxNbRecette.Text);
                 listPanier.Items.Refresh();
             }
         }

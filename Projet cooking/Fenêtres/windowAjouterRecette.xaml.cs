@@ -74,18 +74,6 @@ namespace Projet_cooking.Fenêtres
             }
         }
 
-        private void buttonSupprIngredient_Click(object sender, RoutedEventArgs e)
-        {
-            //try
-            //{
-                boxListeIngredients.Items.Add((Produit)boxSupprIngredients.SelectedItem);
-                ingredientsRecette.Remove((Produit)boxSupprIngredients.SelectedItem);
-                boxSupprIngredients.Items.Remove((Produit)boxSupprIngredients.SelectedItem);
-                boxSupprIngredients.Items.Refresh();
-            //}
-            //catch { }
-        }
-
         private void boxListeIngredients_DropDownClosed(object sender, EventArgs e)
         {
             try
@@ -94,6 +82,18 @@ namespace Projet_cooking.Fenêtres
                 {
                     labelUnite.Content = ((Produit)boxListeIngredients.SelectedItem).Unite;
                 }
+            }
+            catch { }
+        }
+
+        private void buttonSupprIngredient_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                boxListeIngredients.Items.Add((Produit)boxSupprIngredients.SelectedItem);
+                ingredientsRecette.Remove((Produit)boxSupprIngredients.SelectedItem);
+                boxSupprIngredients.Items.Remove((Produit)boxSupprIngredients.SelectedItem);
+                boxSupprIngredients.Items.Refresh();
             }
             catch { }
         }
