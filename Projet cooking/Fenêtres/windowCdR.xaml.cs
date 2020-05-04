@@ -31,7 +31,7 @@ namespace Projet_cooking.Fenêtres
             InitializeComponent();
             messageConnection.Text += nom + " " + prenom;
             nbCook.Text = Convert.ToString(nombCook);
-            boxNbRecette.Text = "0";
+            boxNbRecette.Text = "0"; ///nb de recettes commandées
             boxListeRecettes.Items.Add(recette1);
             boxListeRecettes.Items.Refresh();
             RessourceSQL.allRecettes.Add(recette1);

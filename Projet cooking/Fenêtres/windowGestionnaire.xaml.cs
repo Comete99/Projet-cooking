@@ -32,6 +32,19 @@ namespace Projet_cooking.Fenêtres
             }
         }
 
+        public windowGestionnaire(string nom, string prenom)
+        {
+            InitializeComponent();
+            messageConnection.Text += " " + nom + " " + prenom;
+            RessourceSQL.allRecettes.Sort();
+            int i = 0;
+            while (i < 5 && i < RessourceSQL.allRecettes.Count)
+            {
+                listTopRecette.Items.Add(RessourceSQL.allRecettes[i]);
+                i++;
+            }
+        }
+
         private void buttonGererStock_Click(object sender, RoutedEventArgs e)
         {
             windowGererStocks w = new windowGererStocks();

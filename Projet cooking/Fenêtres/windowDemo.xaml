@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo" Height="450" Width="800">
+        Title="windowDemo" Height="450" Width="800" Background="#FFFFF7B1">
     <Grid>
+        <StackPanel Margin="30">
+            <TextBlock Margin="15" Text="Bienvenue dans le mode Démo !" HorizontalAlignment="Center" FontSize="40" FontFamily="MV Boli" Height="50" TextAlignment="Center" Foreground="Brown" >
+            </TextBlock>
+            <Separator></Separator>
+            <StackPanel Background="#FFFFD874" Height="180" Width="400">
+                <TextBlock Margin="15" Text="Vous allez être familiarisé avec notre site Cooking à travers différentes fonctionnalités. Nous espérons que notre application vous plaira." FontSize="18" FontFamily="MV Boli" Foreground="Brown" Background="#FFFFD874" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Height="139"/>
+            </StackPanel>
+            <Separator></Separator>
+            <TextBlock Margin="15" Width="450" Text="Veuillez appuyer sur la touche Entrer pour commencer la démo et la poursuivre." FontFamily="MV Boli" TextAlignment="Center" Foreground="Brown">
+                
+            </TextBlock>
+            
+        </StackPanel>
         
     </Grid>
 </Window>
