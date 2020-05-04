@@ -395,5 +395,33 @@ namespace Projet_cooking.Classes
             readerSuppression = commandSuppression.ExecuteReader();
             connectionSuppression.Close();
         }
+
+
+        public static int NbClients()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "Select count(*) from client";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string res = "";
+            int count;
+            while (reader.Read())
+            {
+                res = reader.GetValue(0).ToString();
+            }
+            count = Convert.ToInt32(res);
+
+            connection.Close();
+
+            return count;
+        }
+
+
     }
 }

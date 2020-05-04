@@ -79,11 +79,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Produit.cs" />
-    <Compile Include="Fenêtres\windowDemo_2.xaml.cs">
-      <DependentUpon>windowDemo_2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Fenêtres\windowDemo2.xaml.cs">
       <DependentUpon>windowDemo2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowDemo3.xaml.cs">
+      <DependentUpon>windowDemo3.xaml</DependentUpon>
     </Compile>
     <Compile Include="IComparable.cs" />
     <Compile Include="windowCreationBis.xaml.cs">
@@ -118,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fenêtres\windowDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowDemo3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

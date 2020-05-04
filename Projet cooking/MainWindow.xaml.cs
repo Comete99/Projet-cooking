@@ -136,7 +136,9 @@ namespace Projet_cooking
 
         private void btnDemo_Click(object sender, RoutedEventArgs e)
         {
-            
+            windowDemo w = new windowDemo();
+            this.Visibility = Visibility.Hidden;
+            w.Show();
         }
     }
 }
