@@ -211,13 +211,16 @@ namespace Projet_cooking.Classes
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            string requete = "SELECT mailCdR FROM cdr WHERE nom =" + "'" + nomCdR + "'" + "AND prenom =" + "'" + prenomCdR + "'" + ";";
+            string requete = "SELECT mailCdr FROM cdr WHERE nom =" + "'" + nomCdR + "'" + "AND prenom =" + "'" + prenomCdR + "'" + ";";
             command.CommandText = requete;
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-
-            string mailCdR = reader.GetValue(0).ToString();
+            string mailCdR="";
+            while (reader.Read())
+            {
+                mailCdR = reader.GetValue(0).ToString();
+            }  
             return mailCdR;
         }
         public static List<string> listeCdR()
@@ -281,6 +284,68 @@ namespace Projet_cooking.Classes
             command.CommandText = requete;
             MySqlDataReader reader;
             reader = command.ExecuteReader();
+        }
+        public static void devenirCdR(string nom, string prenom)
+        {
+            //On récupère toutes les informations pour transférer le client dans la table CdR
+            //Le mail
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connectionMail = new MySqlConnection(connectionString);
+            connectionMail.Open();
+
+            MySqlCommand commandMail = connectionMail.CreateCommand();
+            string requeteMail = "SELECT mailClient FROM client WHERE nom =" + "'" + nom + "'" + "AND prenom =" + "'" + prenom + "'" + ";";
+            commandMail.CommandText = requeteMail;
+
+            MySqlDataReader readerMail;
+            readerMail = commandMail.ExecuteReader();
+            string mailCdR = "";
+            while (readerMail.Read())
+            {
+                mailCdR = readerMail.GetValue(0).ToString();
+            }
+
+            connectionMail.Close();
+
+            //Le mot de passe
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT mdpClient FROM client WHERE nom =" + "'" + nom + "'" + "AND prenom =" + "'" + prenom + "'" + ";";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string mdpClient = "";
+            while (reader.Read())
+            {
+                mdpClient = reader.GetValue(0).ToString();
+            }
+            connection.Close();
+
+            //On l'insère dans la table CdR
+            MySqlConnection connectionInsertion = new MySqlConnection(connectionString);
+            connectionInsertion.Open();
+            MySqlCommand commandInsertion = connectionInsertion.CreateCommand();
+            string requeteInsertion = "INSERT INTO cdr (mailCdr, nom, prenom, nbCook, mdpCdr) VALUES (" + "'" + mailCdR + "'," + "'" + nom + "'," + "'" + prenom + "'," + 0 + "," + "'" + mdpClient + "') ;";
+            commandInsertion.CommandText = requeteInsertion;
+
+            MySqlDataReader readerInsertion;
+            readerInsertion = commandInsertion.ExecuteReader();
+
+            connectionInsertion.Close();
+
+            //On le supprime de la table client
+            MySqlConnection connectionSuppression = new MySqlConnection(connectionString);
+            connectionSuppression.Open();
+            MySqlCommand commandSuppression = connectionSuppression.CreateCommand();
+            string requeteSuppression = "DELETE FROM client WHERE mailClient =" + "'" + mailCdR + "'"+ " ;";
+            commandSuppression.CommandText = requeteSuppression;
+
+            MySqlDataReader readerSuppression;
+            readerSuppression = commandSuppression.ExecuteReader();
+            connectionSuppression.Close();
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using System.Transactions;
 
 namespace Projet_cooking.Fenêtres
 {
@@ -45,6 +46,7 @@ namespace Projet_cooking.Fenêtres
             MessageBoxResult messageDevenirCdR = MessageBox.Show("Voulez-vous devenir CdR ?", "Devenir CdR", MessageBoxButton.YesNo);
             if (messageDevenirCdR == MessageBoxResult.Yes)
             {
+                RessourceSQL.devenirCdR(nomClient, prenomClient);
                 windowCdR w = new windowCdR("", nomClient, prenomClient, 0);
                 w.Show();
                 this.Close();
