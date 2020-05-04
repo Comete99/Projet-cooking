@@ -200,6 +200,87 @@ namespace Projet_cooking.Classes
             MySqlCommand command = connection.CreateCommand();
             string requete = "INSERT INTO recette (nomRecette, type, ingredients, descritif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + recette.Ingredients.ToString() + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
             command.CommandText = requete;
+
+            MySqlDataReader readerRecette;
+            readerRecette = command.ExecuteReader();
+        }
+        public static string rechercheMailCdR(string nomCdR, string prenomCdR)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT mailCdR FROM cdr WHERE nom =" + "'" + nomCdR + "'" + "AND prenom =" + "'" + prenomCdR + "'" + ";";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+            string mailCdR = reader.GetValue(0).ToString();
+            return mailCdR;
+        }
+        public static List<string> listeCdR()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nom, prenom FROM cdr ;";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+            List<string> CdR = new List<string> { };
+            while (reader.Read()) 
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    if (i == 0)
+                    {
+                        currentRowAsString += valueAsString + " ";
+                    }
+                }
+                CdR.Add(currentRowAsString);
+            }
+            return CdR;
+        }
+        public static void supprCdR(string nomCdR, string prenomCdR)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            MySqlCommand command = connection.CreateCommand();
+
+            string mailCdR = rechercheMailCdR(nomCdR, prenomCdR);
+
+            //On supprime les recettes du CdR de la table recette
+            string requete = "DELETE FROM recette WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
+            command.CommandText = requete;
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+            //On supprime le CdR de la table
+            requete = "DELETE FROM cdr WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
+            command.CommandText = requete;
+            reader = command.ExecuteReader();
+        }
+        public static void supprRecette(string nomRecette, string mailCdR)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            MySqlCommand command = connection.CreateCommand();
+
+            //On supprime la recette de la table recette
+            string requete = "DELETE FROM recette WHERE mailCdR =" + "'" + mailCdR + "'" + " AND nomRecette ="+"'"+nomRecette+"'"+";";
+            command.CommandText = requete;
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
         }
     }
 }
