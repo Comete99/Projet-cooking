@@ -31,9 +31,23 @@ namespace Projet_cooking.Fenêtres
             RessourceSQL.toutesRecettes();
             foreach(Recette recette in RessourceSQL.allRecettes)
             {
-                boxListeRecettes.Items.Add(recette);
+                boxListeRecettes.Items.Add(recette.Nom);
             }
             boxListeRecettes.Items.Refresh();
+        }
+
+        public windowClient(string nom, string prenom)
+        {
+            InitializeComponent();
+            messageConnection.Text += nom+" "+prenom;
+            nbCook.Text += "0";
+            boxNbRecette.Text = "5";
+            foreach (Recette recette in RessourceSQL.allRecettes)
+            {
+                boxListeRecettes.Items.Add(recette.Nom);
+            }
+            boxListeRecettes.Items.Refresh();
+
         }
 
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
@@ -69,10 +83,10 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            //string recetteSelected;
-            //recetteSelected = boxListeRecettes.SelectedItem.ToString();
+            string recetteSelected;
+            recetteSelected = boxListeRecettes.SelectedItem.ToString();
 
-            Recette recette = (Recette)boxListeRecettes.SelectedItem;
+            Recette recette = RessourceSQL.rechercheRecette(recetteSelected);
             if (!listPanier.Items.Contains(recette))
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
@@ -93,31 +107,10 @@ namespace Projet_cooking.Fenêtres
             foreach(Recette r in listPanier.Items)
             {
                 //Verifier stock
-                //rémunérer CdR
-                if(r.NbCommande<10 && r.NbCommande + r.Quantite >= 10)
-                {
-                    if(r.NbCommande + r.Quantite >= 50)
-                    {
-                        RessourceSQL.CdRPaiementCook(r, true, true);
-                    }
-                    else
-                    {
-                        RessourceSQL.CdRPaiementCook(r, true, false);
-                    }
-                }
-                else if (r.NbCommande < 50 && r.NbCommande + r.Quantite >= 50)
-                {
-                    RessourceSQL.CdRPaiementCook(r, false, true);
-                }
-                else
-                {
-                    RessourceSQL.CdRPaiementCook(r, false, false);
-                }
                 r.NbCommande += r.Quantite;
                 r.Quantite = 0;
                 r.PrixTotal = 0;
             }
-            listPanier.Items.Clear();
         }
     }
 }

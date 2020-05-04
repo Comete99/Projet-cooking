@@ -96,45 +96,39 @@ namespace Projet_cooking.Classes
             }
         }
 
-        public static List<Recette> recetteCdR(string mailCdR)
-        {
-            //string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
-            //MySqlConnection connection = new MySqlConnection(connectionString);
-            //connection.Open();
-
-            //MySqlCommand command = connection.CreateCommand();
-            //string requete = "SELECT nomRecette FROM recette WHERE mailCdR=" + "'" + mail + "'" + ";";
-            //command.CommandText = requete;
-
-            //MySqlDataReader reader;
-            //reader = command.ExecuteReader();
-            //List<string> nomRecettes = new List<string> { };
-            //while (reader.Read())
-            //{
-            //    for (int i = 0; i < reader.FieldCount; i++)
-            //    {
-            //        string valueAsString = reader.GetValue(i).ToString();
-            //        nomRecettes.Add(valueAsString);
-            //    }
-            //}
-            List<Recette> recettesCdR = new List<Recette> { };
-            foreach(Recette r in allRecettes)
-            {
-                if (r.MailCdR == mailCdR)
-                {
-                    recettesCdR.Add(r);
-                }
-            }
-            return recettesCdR;
-        }
-        public static void toutesRecettes()
+        public static List<string> recetteCdR(string mail)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdR FROM recette;";
+            string requete = "SELECT nomRecette FROM recette WHERE mailCdR=" + "'" + mail + "'" + ";";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            List<string> recettes = new List<string> { };
+            while (reader.Read())
+            {
+                //string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    recettes.Add(valueAsString);
+                    //currentRowAsString += valueAsString + ",";
+                }
+            }
+            return recettes;
+        }
+        public static void toutesRecettes()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente FROM recette;";
             command.CommandText = requete;
 
             MySqlDataReader reader;
@@ -153,8 +147,6 @@ namespace Projet_cooking.Classes
                 }
                 recetteTable.Descriptif = reader.GetValue(3).ToString();
                 recetteTable.PrixVente= Convert.ToDouble(reader.GetValue(4));
-                recetteTable.RemunerationCdRCook = Convert.ToInt32(reader.GetValue(5));
-                recetteTable.MailCdR = reader.GetValue(6).ToString();
                 allRecettes.Add(recetteTable);
             }
         }

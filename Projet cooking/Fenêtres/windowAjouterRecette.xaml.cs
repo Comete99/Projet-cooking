@@ -21,30 +21,22 @@ namespace Projet_cooking.Fenêtres
     public partial class windowAjouterRecette : Window
     {
         windowRecettes recettesCdR;
-        Dictionary<string, double> ingredientsRecette = new Dictionary<string, double>();
+        Dictionary<string, double> ingredients = new Dictionary<string, double>();
         List<string> ingredientsDisponibles = new List<string> { };
-        string mailCdR;
-        public windowAjouterRecette(windowRecettes mesRecettes, string mail)
+        public windowAjouterRecette(windowRecettes mesRecettes)
         {
             InitializeComponent();
             recettesCdR = mesRecettes;
             labelUnite.Content = "ml";
-            foreach(string i in ingredientsDisponibles)
-            {
-                boxListeIngredients.Items.Add(i);
-            }
-            mailCdR = mail;
         }
 
         private void validerRecette_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
-                nouvelleRecette.RemunerationCdRCook = 2;
-                nouvelleRecette.MailCdR = mailCdR;
-                RessourceSQL.ajouterRecette(nouvelleRecette);
-                MessageBoxResult message = MessageBox.Show("Recette créée !");
+                
+                Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredients, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
+                MessageBoxResult message = MessageBox.Show("Recette ajoutée !");
                 recettesCdR.Show();
                 recettesCdR.listRecettes.Items.Refresh();
                 this.Close();
@@ -60,18 +52,8 @@ namespace Projet_cooking.Fenêtres
         {
             boxSupprIngredients.Items.Add(boxListeIngredients.SelectedItem);
             boxListeIngredients.Items.Remove(boxListeIngredients.SelectedItem);
-            ingredientsRecette.Add(boxListeIngredients.SelectedItem.ToString(), Convert.ToDouble(boxQuantite));
+            ingredients.Add(boxListeIngredients.SelectedItem.ToString(), Convert.ToDouble(boxQuantite));
         }
 
-        private void buttonSupprIngredient_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                boxListeIngredients.Items.Add(boxSupprIngredients.SelectedItem);
-                ingredientsRecette.Remove(boxSupprIngredients.SelectedItem.ToString());
-                boxSupprIngredients.Items.Remove(boxSupprIngredients.SelectedItem);
-            }
-            catch { }
-        }
     }
 }

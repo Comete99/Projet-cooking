@@ -1,5 +1,4 @@
-﻿using Projet_cooking.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,27 +22,6 @@ namespace Projet_cooking.Fenêtres
         public windowGestionnaire()
         {
             InitializeComponent();
-            RessourceSQL.allRecettes.Sort();
-            int i = 0;
-            while(i<5 && i < RessourceSQL.allRecettes.Count)
-            {
-                listTopRecette.Items.Add(RessourceSQL.allRecettes[i]);
-                i++;
-            }
-        }
-
-        private void buttonGererStock_Click(object sender, RoutedEventArgs e)
-        {
-            windowGererStocks w = new windowGererStocks();
-            w.Show();
-            this.Hide();
-        }
-
-        private void buttonGererCdR_Click(object sender, RoutedEventArgs e)
-        {
-            windowGererCdR w = new windowGererCdR();
-            w.Show();
-            this.Hide();
         }
     }
 }
