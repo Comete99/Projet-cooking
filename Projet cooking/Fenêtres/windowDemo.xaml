@@ -5,21 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo" Height="450" Width="800" Background="#FFFFF7B1">
-    <Grid>
+        Title="windowDemo" Height="450" Width="800" Background="#FFFFD874">
+    <Grid Name="Next" KeyUp="Grid_KeyUp">
         <StackPanel Margin="30">
             <TextBlock Margin="15" Text="Bienvenue dans le mode Démo !" HorizontalAlignment="Center" FontSize="40" FontFamily="MV Boli" Height="50" TextAlignment="Center" Foreground="Brown" >
             </TextBlock>
             <Separator></Separator>
-            <StackPanel Background="#FFFFD874" Height="180" Width="400">
-                <TextBlock Margin="15" Text="Vous allez être familiarisé avec notre site Cooking à travers différentes fonctionnalités. Nous espérons que notre application vous plaira." FontSize="18" FontFamily="MV Boli" Foreground="Brown" Background="#FFFFD874" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Height="139"/>
-            </StackPanel>
-            <Separator></Separator>
-            <TextBlock Margin="15" Width="450" Text="Veuillez appuyer sur la touche Entrer pour commencer la démo et la poursuivre." FontFamily="MV Boli" TextAlignment="Center" Foreground="Brown">
+
+            <Grid Height="179" Margin="0,0,-0.4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="0,0,203.4,-1"></Image>
+                <Image Grid.Column="1" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="205.8,0,-0.4,0" ></Image>
+
+                <TextBlock FontSize="17" FontFamily="MV Boli" Foreground="Brown" Background="#FFFFF7B1" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Height="180" HorizontalAlignment="Right" Margin="0,0,0.4,-1" Width="367" Grid.ColumnSpan="2">
+                    <LineBreak/>
+                    <Run Text="Vous allez être familiarisé avec notre site Cooking à travers différentes fonctionnalités. Nous espérons que notre application vous plaira."/>
+                </TextBlock>
                 
-            </TextBlock>
-            
+
+
+            </Grid>
+
+            <Separator></Separator>
+            <Grid Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Margin="14.8,15,10.4,15" Text="Veuillez appuyer sur le bouton rouge pour commencer la démo et la poursuivre." FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="17"/>
+                <Button Grid.Column="2" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Démo" Margin="0,49,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="69"/>
+            </Grid>
+
+
+
         </StackPanel>
-        
+
     </Grid>
 </Window>

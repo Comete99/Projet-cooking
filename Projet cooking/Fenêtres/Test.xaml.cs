@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace Projet_cooking.Fenêtres
 {
     /// <summary>
-    /// Logique d'interaction pour windowDemo.xaml
+    /// Logique d'interaction pour Test.xaml
     /// </summary>
-    public partial class windowDemo : Window
+    public partial class Test : Window
     {
-        public windowDemo()
+        public Test()
         {
             InitializeComponent();
-        }
-
-
-        private void btnDemo_Click(object sender, RoutedEventArgs e)
-        {
-            windowDemo2 w = new windowDemo2();
-            w.Show();
-            this.Hide();
         }
     }
 }

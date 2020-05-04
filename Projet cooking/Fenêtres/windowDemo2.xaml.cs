@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projet_cooking.Fenêtres
 {
     /// <summary>
-    /// Logique d'interaction pour windowDemo_2.xaml
+    /// Logique d'interaction pour windowDemo2.xaml
     /// </summary>
-    public partial class windowDemo_2 : Page
+    public partial class windowDemo2 : Window
     {
-        public windowDemo_2()
+        public windowDemo2()
         {
             InitializeComponent();
+            nbClients.Text = Convert.ToString();
         }
     }
 }

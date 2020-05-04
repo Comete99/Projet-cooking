@@ -78,13 +78,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Fenêtres\windowDemo_2.xaml.cs">
-      <DependentUpon>windowDemo_2.xaml</DependentUpon>
+    <Compile Include="Fenêtres\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fenêtres\windowDemo2.xaml.cs">
+      <DependentUpon>windowDemo2.xaml</DependentUpon>
     </Compile>
     <Compile Include="IComparable.cs" />
     <Compile Include="windowCreationBis.xaml.cs">
       <DependentUpon>windowCreationBis.xaml</DependentUpon>
     </Compile>
+    <Page Include="Fenêtres\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fenêtres\windowAccueil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,7 +116,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Fenêtres\windowDemo_2.xaml">
+    <Page Include="Fenêtres\windowDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +220,8 @@
     <Resource Include="Images\Accueil1.JPG" />
     <Resource Include="Images\Creation compte.JPG" />
     <Resource Include="Images\Demo_1.JPG" />
+    <Resource Include="Images\Demo_1_bis.JPG" />
+    <Resource Include="Images\Demo2.JPG" />
     <Content Include="Images\oignon.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
