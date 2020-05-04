@@ -21,22 +21,30 @@ namespace Projet_cooking.Fenêtres
     public partial class windowAjouterRecette : Window
     {
         windowRecettes recettesCdR;
-        Dictionary<string, double> ingredients = new Dictionary<string, double>();
+        Dictionary<string, double> ingredientsRecette = new Dictionary<string, double>();
         List<string> ingredientsDisponibles = new List<string> { };
-        public windowAjouterRecette(windowRecettes mesRecettes)
+        string mailCdR;
+        public windowAjouterRecette(windowRecettes mesRecettes, string mail)
         {
             InitializeComponent();
             recettesCdR = mesRecettes;
             labelUnite.Content = "ml";
+            foreach (string i in ingredientsDisponibles)
+            {
+                boxListeIngredients.Items.Add(i);
+            }
+            mailCdR = mail;
         }
 
         private void validerRecette_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                
-                Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredients, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
-                MessageBoxResult message = MessageBox.Show("Recette ajoutée !");
+                Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
+                nouvelleRecette.RemunerationCdRCook = 2;
+                nouvelleRecette.MailCdR = mailCdR;
+                RessourceSQL.ajouterRecette(nouvelleRecette);
+                MessageBoxResult message = MessageBox.Show("Recette créée !");
                 recettesCdR.Show();
                 recettesCdR.listRecettes.Items.Refresh();
                 this.Close();
@@ -45,15 +53,25 @@ namespace Projet_cooking.Fenêtres
             {
                 MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
             }
-            
+
         }
 
         private void buttonAjouterARecette_Click(object sender, RoutedEventArgs e)
         {
             boxSupprIngredients.Items.Add(boxListeIngredients.SelectedItem);
             boxListeIngredients.Items.Remove(boxListeIngredients.SelectedItem);
-            ingredients.Add(boxListeIngredients.SelectedItem.ToString(), Convert.ToDouble(boxQuantite));
+            ingredientsRecette.Add(boxListeIngredients.SelectedItem.ToString(), Convert.ToDouble(boxQuantite));
         }
 
+        private void buttonSupprIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                boxListeIngredients.Items.Add(boxSupprIngredients.SelectedItem);
+                ingredientsRecette.Remove(boxSupprIngredients.SelectedItem.ToString());
+                boxSupprIngredients.Items.Remove(boxSupprIngredients.SelectedItem);
+            }
+            catch { }
+        }
     }
 }

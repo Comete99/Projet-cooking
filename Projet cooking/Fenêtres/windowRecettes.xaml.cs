@@ -40,7 +40,8 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
         {
-            windowAjouterRecette w = new windowAjouterRecette(this);
+            string mail = "";
+            windowAjouterRecette w = new windowAjouterRecette(this, mail);
             this.Hide();
             w.Show();
         }

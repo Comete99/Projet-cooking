@@ -22,40 +22,30 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowClient : Window
     {
-        public windowClient()
-        {
-            InitializeComponent();
-            messageConnection.Text += "Mr Cornichon";
-            nbCook.Text += "0";
-            boxNbRecette.Text = "5";
-            RessourceSQL.toutesRecettes();
-            foreach(Recette recette in RessourceSQL.allRecettes)
-            {
-                boxListeRecettes.Items.Add(recette.Nom);
-            }
-            boxListeRecettes.Items.Refresh();
-        }
-
+        string nomClient;
+        string prenomClient;
         public windowClient(string nom, string prenom)
         {
             InitializeComponent();
-            messageConnection.Text += nom+" "+prenom;
+            nomClient = nom;
+            prenomClient = prenom;
+            messageConnection.Text += nom + " " + prenom;
             nbCook.Text += "0";
             boxNbRecette.Text = "5";
+            RessourceSQL.toutesRecettes();
             foreach (Recette recette in RessourceSQL.allRecettes)
             {
-                boxListeRecettes.Items.Add(recette.Nom);
+                boxListeRecettes.Items.Add(recette);
             }
             boxListeRecettes.Items.Refresh();
-
         }
 
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult messageDevenirCdR = MessageBox.Show("Voulez-vous devenir CdR ?", "Devenir CdR", MessageBoxButton.YesNo);
-            if(messageDevenirCdR == MessageBoxResult.Yes)
+            if (messageDevenirCdR == MessageBoxResult.Yes)
             {
-                windowCdR w = new windowCdR();
+                windowCdR w = new windowCdR("", nomClient, prenomClient, 0);
                 w.Show();
                 this.Close();
                 MessageBoxResult message = MessageBox.Show("Félicitations ! Vous êtes maintenant un créateur de recettes et participez à l'évolution de la plateforme.");
@@ -83,10 +73,10 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
-            string recetteSelected;
-            recetteSelected = boxListeRecettes.SelectedItem.ToString();
+            //string recetteSelected;
+            //recetteSelected = boxListeRecettes.SelectedItem.ToString();
 
-            Recette recette = RessourceSQL.rechercheRecette(recetteSelected);
+            Recette recette = (Recette)boxListeRecettes.SelectedItem;
             if (!listPanier.Items.Contains(recette))
             {
                 recette.Quantite += Convert.ToInt32(boxNbRecette.Text);
@@ -104,13 +94,34 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonPaiement_Click(object sender, RoutedEventArgs e)
         {
-            foreach(Recette r in listPanier.Items)
+            foreach (Recette r in listPanier.Items)
             {
                 //Verifier stock
+                //rémunérer CdR
+                if (r.NbCommande < 10 && r.NbCommande + r.Quantite >= 10)
+                {
+                    if (r.NbCommande + r.Quantite >= 50)
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, true);
+                    }
+                    else
+                    {
+                        RessourceSQL.CdRPaiementCook(r, true, false);
+                    }
+                }
+                else if (r.NbCommande < 50 && r.NbCommande + r.Quantite >= 50)
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, true);
+                }
+                else
+                {
+                    RessourceSQL.CdRPaiementCook(r, false, false);
+                }
                 r.NbCommande += r.Quantite;
                 r.Quantite = 0;
                 r.PrixTotal = 0;
             }
+            listPanier.Items.Clear();
         }
     }
 }

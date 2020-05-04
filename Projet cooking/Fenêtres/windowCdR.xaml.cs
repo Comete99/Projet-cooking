@@ -26,11 +26,11 @@ namespace Projet_cooking.Fenêtres
         int nbCookCdR = 30;
         
         List<string> panier;
-        public windowCdR()
+        public windowCdR(string mail, string nom, string prenom, int nombCook)
         {
             InitializeComponent();
-            messageConnection.Text += "Mr Cornichon";
-            nbCook.Text += "30";
+            messageConnection.Text += nom + " " + prenom;
+            nbCook.Text = Convert.ToString(nombCook);
             boxNbRecette.Text = "0";
             boxListeRecettes.Items.Add(recette1);
             boxListeRecettes.Items.Refresh();
