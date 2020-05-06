@@ -1,5 +1,4 @@
-﻿using Projet_cooking.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,22 +15,13 @@ using System.Windows.Shapes;
 namespace Projet_cooking.Fenêtres
 {
     /// <summary>
-    /// Logique d'interaction pour windowDemo4.xaml
+    /// Logique d'interaction pour windowDemo5.xaml
     /// </summary>
-    public partial class windowDemo4 : Window
+    public partial class windowDemo5 : Window
     {
-        public windowDemo4()
+        public windowDemo5()
         {
             InitializeComponent();
-            int count = RessourceSQL.NbRecettes();
-            nbRecettes.Text = Convert.ToString(count);
-        }
-
-        private void btnDemo_Click(object sender, RoutedEventArgs e)
-        {
-            windowDemo5 w = new windowDemo5();
-            w.Show();
-            this.Hide();
         }
     }
 }

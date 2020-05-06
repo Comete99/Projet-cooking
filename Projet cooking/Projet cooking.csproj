@@ -88,6 +88,9 @@
     <Compile Include="Fenêtres\windowDemo4.xaml.cs">
       <DependentUpon>windowDemo4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fenêtres\windowDemo5.xaml.cs">
+      <DependentUpon>windowDemo5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IComparable.cs" />
     <Compile Include="windowCreationBis.xaml.cs">
       <DependentUpon>windowCreationBis.xaml</DependentUpon>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fenêtres\windowDemo4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowDemo5.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +236,7 @@
     <Resource Include="Images\legume.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Plats.JPG" />
     <Resource Include="Images\Accueil1.JPG" />
     <Resource Include="Images\Creation compte.JPG" />
     <Resource Include="Images\Demo_1.JPG" />

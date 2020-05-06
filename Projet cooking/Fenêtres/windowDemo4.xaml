@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo4" Height="450" Width="800">
-    <Grid>
+        Title="windowDemo4" Height="450" Width="800" Background="#FFFFF7B1">
+    <Grid Margin="30" Background="#FFFFD874">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Plats.JPG" Grid.ColumnSpan="2" Margin="134,0,-0.4,10" Grid.RowSpan="3"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,35.6,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40"></Button>
         
+        <TextBlock Background="#FFFFD874" Grid.Row="0" Text="Grâce à nos nombreux créateurs de recettes, Cooking est heureux de pouvoir vous proposer"  FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="28"></TextBlock>
+
+        <TextBox x:Name="nbRecettes" Text="5" Background="#FFFFD874" BorderBrush="#FFFFD874" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="40" Grid.Row="1" Height="100"/>
+
+        <TextBlock Background="#FFFFD874" Grid.Row="2" Text="différentes recettes de    toutes variétés."  FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="28"></TextBlock>
+
     </Grid>
 </Window>
