@@ -49,7 +49,7 @@ namespace Projet_cooking.Fenêtres
                     foreach (KeyValuePair<Produit, double> prod in r.Ingredients)
                     {
 
-                        if (produit == prod.Key)
+                        if (produit.NomProduit == prod.Key.NomProduit)
                         {
                             listProduits.Items.Add(new MyItem { Nom = r.Nom, Quantite = prod.Value, Unite=prod.Key.Unite });
                         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_cooking.Classes
 {
-    public class Produit
+    public class Produit : IComparable<Produit>
     {
         string nomProduit;
         string categorie;
@@ -53,6 +53,10 @@ namespace Projet_cooking.Classes
         {
             get { return this.nomFournisseur; }
             set { this.nomFournisseur = value; }
+        }
+        public int CompareTo(Produit p)
+        {
+            return this.nomFournisseur.CompareTo(p.nomFournisseur);
         }
     }
 }

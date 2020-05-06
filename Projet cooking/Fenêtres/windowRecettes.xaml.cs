@@ -27,7 +27,10 @@ namespace Projet_cooking.Fenêtres
         {
             InitializeComponent();
             currentCdR = cdR;
-            listRecettes.ItemsSource = RessourceSQL.mesRecettes("kevin.vaut@gmail.com");
+            foreach(Recette r in RessourceSQL.mesRecettes("kevin.vaut@gmail.com"))
+            {
+                listRecettes.Items.Add(r);
+            }
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
@@ -58,8 +61,8 @@ namespace Projet_cooking.Fenêtres
             MessageBoxResult supprimerRecette = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette recette ?", "Supprimer recette", MessageBoxButton.YesNo);
             if (supprimerRecette == MessageBoxResult.Yes)
             {
+                listRecettes.Items.Remove(r);
                 RessourceSQL.supprRecette(r.Nom, r.MailCdR);
-                //listRecettes.View
             }
         }
 

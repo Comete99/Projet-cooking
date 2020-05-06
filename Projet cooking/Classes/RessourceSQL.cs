@@ -158,7 +158,7 @@ namespace Projet_cooking.Classes
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdr FROM recette;";
+            string requete = "SELECT nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdr, nbCommande FROM recette;";
             command.CommandText = requete;
 
             MySqlDataReader reader;
@@ -187,7 +187,7 @@ namespace Projet_cooking.Classes
                 recetteTable.PrixVente= Convert.ToDouble(reader.GetValue(4));
                 recetteTable.RemunerationCdRCook = reader.GetInt32(5);
                 recetteTable.MailCdR = reader.GetValue(6).ToString();
-                recetteTable.NbCommande = 1;
+                recetteTable.NbCommande = reader.GetInt32(7);
                 allRecettes.Add(recetteTable);
             }
         }
@@ -479,7 +479,60 @@ namespace Projet_cooking.Classes
 
             return count;
         }
+        public static List<string> listeFournisseur()
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
 
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nomFournisseur FROM fournisseur ;";
+            command.CommandText = requete;
 
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+            List<string> fournisseurs = new List<string> { };
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString;
+
+                }
+                fournisseurs.Add(currentRowAsString);
+            }
+            return fournisseurs;
+        }
+        public static void commandeProduit(string nomProduit, double quantiteCommandee, double stockActuel)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            //On met à jour les stocks
+            MySqlCommand commandCdR = connection.CreateCommand();
+            double stock = quantiteCommandee + stockActuel;
+            string requeteCdR = "UPDATE produit SET stockActuel=" + "'" + stock + "'" + "WHERE nomProduit=" + "'" + nomProduit + "'" + ";";
+            commandCdR.CommandText = requeteCdR;
+            MySqlDataReader readerCdR;
+            readerCdR = commandCdR.ExecuteReader();
+            RessourceSQL.tousProduits();
+        }
+        public static void commandesProduitsXml()
+        {
+            List<Produit> produitsAcommander = new List<Produit> { };
+            List<double> quantiteAcommander = new List<double> { };
+            foreach(Produit p in allProduits)
+            {
+                if (p.StockActuel < p.StockMin)
+                {
+                    produitsAcommander.Add(p);
+                    quantiteAcommander.Add(p.StockMax - p.StockActuel);
+                }
+            }
+        }
     }
 }

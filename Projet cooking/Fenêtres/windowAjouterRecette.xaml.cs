@@ -43,7 +43,7 @@ namespace Projet_cooking.Fenêtres
                 nouvelleRecette.MailCdR = mailCdR;
                 RessourceSQL.ajouterRecette(nouvelleRecette);
                 MessageBoxResult message = MessageBox.Show("Recette créée !");
-                recettesCdR.listRecettes.Items.Refresh();
+                recettesCdR.listRecettes.Items.Add(nouvelleRecette);
                 recettesCdR.Show();
                 this.Close();
             //}
