@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_cooking.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,51 @@ namespace Projet_cooking.Fenêtres
         public windowDemo3()
         {
             InitializeComponent();
+            int countCdr = RessourceSQL.listeCdR().Count;
+            nbCdr.Text = Convert.ToString(countCdr);
+            foreach (string s in RessourceSQL.listeCdR())
+            {
+                boxListeCdr.Items.Add(s);
+            }
+            boxListeCdr.Items.Refresh();
         }
+        
+
+        private void Show_Click(object sender, RoutedEventArgs e)
+        {
+            string cdr = (string)boxListeCdr.SelectedItem;
+            string[] tab = cdr.Split(' ');
+            string mail = RessourceSQL.rechercheMailCdR(tab[0], tab[1]);
+            List<string> listeRecettes = RessourceSQL.recetteCdR(mail);
+
+            nbRecettes.Text = Convert.ToString(listeRecettes.Count);
+
+            int count = 0;
+
+            if (boxListeCdr.SelectedItem != null)
+            {
+                string[] infoCdR = boxListeCdr.SelectedItem.ToString().Split(' ');
+                foreach (Recette r in RessourceSQL.allRecettes)
+                {
+                    //On compte les recettes en liées au CdR sélectionné
+                    if (RessourceSQL.rechercheMailCdR(infoCdR[0], infoCdR[1]).Contains(r.MailCdR))
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            nbRecettes.Text = Convert.ToString(count);
+
+        }
+
+
+        private void btnDemo_Click(object sender, RoutedEventArgs e)
+        {
+            windowDemo4 w = new windowDemo4();
+            w.Show();
+            this.Hide();
+        }
+
     }
 }

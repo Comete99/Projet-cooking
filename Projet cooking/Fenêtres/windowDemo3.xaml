@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo3" Height="450" Width="800">
-    <Grid>
+        Title="windowDemo3" Height="450" Width="800" Background="#FFFFF7B1">
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="1" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_3.JPG" Grid.ColumnSpan="2" Margin="83.2,0,-0.4,0" Grid.RowSpan="4"/>
+        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,81,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="69"></Button>
         
+        
+        <StackPanel Grid.Row="0" Background="#FFFFD874">
+            <TextBlock Text=" Voici le nombre de Créateur    de Recettes travaillant avec   nous sur la plateforme :" FontFamily="MV Boli" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="#FFFFD874">
+            <TextBlock Margin="10 5" Text="Choisissez un Créateur de Recettes dans la liste pour voir combien de recettes celui-ci a proposé sur Cooking" FontFamily="MV Boli" TextWrapping="Wrap" Foreground="Brown" TextAlignment="Center">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Background="#FFFFD874">
+            <ComboBox Grid.Row="2" Name="boxListeCdr" Height="20" Width="200" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        
+
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="nbCdr" Text="21" Background="#FFFFD874" BorderBrush="#FFFFD874" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="30" Grid.Row="1" Height="110" Margin="0,0,0.4,0"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="3">
+            <TextBox x:Name="nbRecettes" Text=" " Background="#FFFFD874" BorderBrush="#FFFFD874" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="60" Grid.Row="1" Height="144" Margin="0,0,-0.2,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Background="#FFFFD874"></StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Background="#FFFFD874">
+            <Button x:Name="Show"  Style="{StaticResource RoundButtonTemplate}" Background="Brown" Foreground="White" Content="Show"  Grid.Column="1" Grid.Row="1" Height="20" Width="60" Click="Show_Click"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Background="#FFFFD874"></StackPanel>
+
+        
+
     </Grid>
 </Window>

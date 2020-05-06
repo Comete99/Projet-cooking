@@ -85,6 +85,9 @@
     <Compile Include="Fenêtres\windowDemo3.xaml.cs">
       <DependentUpon>windowDemo3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fenêtres\windowDemo4.xaml.cs">
+      <DependentUpon>windowDemo4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IComparable.cs" />
     <Compile Include="windowCreationBis.xaml.cs">
       <DependentUpon>windowCreationBis.xaml</DependentUpon>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fenêtres\windowDemo3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fenêtres\windowDemo4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +234,7 @@
     <Resource Include="Images\Demo_1.JPG" />
     <Resource Include="Images\Demo_1_bis.JPG" />
     <Resource Include="Images\Demo2.JPG" />
+    <Resource Include="Images\Demo_3.JPG" />
     <Content Include="Images\oignon.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

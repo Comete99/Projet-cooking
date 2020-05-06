@@ -19,11 +19,11 @@
         </Grid.RowDefinitions>
 
         <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo2.JPG" Margin="29,0,-0.4,0" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Démo" Margin="0,49,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="69"></Button>
+        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,49,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="69"></Button>
         
         <TextBlock Background="#FFFFD874" Text="Cooking est heureux de compter à ce jour"  FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="30"></TextBlock>
         <StackPanel Grid.Row="1" Background="#FFFFD874">
-            <TextBox Background="#FFFFD874" Grid.Row="1" x:Name="nbClients" Height="100" Margin="20"/>
+            <TextBox Text="21" Background="#FFFFD874" BorderBrush="#FFFFD874" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="60" Grid.Row="1" x:Name="nbClients" Height="100" Margin="20"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Background="#FFFFD874">
         </StackPanel>
