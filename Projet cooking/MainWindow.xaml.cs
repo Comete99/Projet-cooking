@@ -30,6 +30,7 @@ namespace Projet_cooking
             InitializeComponent();
             RessourceSQL.toutesRecettes();
             RessourceSQL.tousProduits();
+            RessourceSQL.commandesProduitsXml();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)

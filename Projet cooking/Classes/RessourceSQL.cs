@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using MySql.Data.MySqlClient;
+using System.Xml;
 
 namespace Projet_cooking.Classes
 {
@@ -25,14 +26,6 @@ namespace Projet_cooking.Classes
             }
             return null;
         }
-
-        //public static void connexionBDD()
-        //{
-        //    string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
-        //    connection = new MySqlConnection(connectionString);
-        //    connection.Open();
-        //}
-
         public static bool est_client(string mail, string mdp)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
@@ -523,16 +516,54 @@ namespace Projet_cooking.Classes
         }
         public static void commandesProduitsXml()
         {
-            List<Produit> produitsAcommander = new List<Produit> { };
-            List<double> quantiteAcommander = new List<double> { };
-            foreach(Produit p in allProduits)
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT nomFournisseur, nomProduit, (stockMax-stockActuel), unite FROM produit ORDER BY nomFournisseur, nomProduit;"; //WHERE stockActuel<stockMin
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+
+            XmlDocument docXml = new XmlDocument();
+
+            // création de l'élément racine ... qu'on ajoute au document
+            XmlElement racine = docXml.CreateElement("Réapprovisionnement_Hebdomadaire");
+            docXml.AppendChild(racine);
+
+            // création et insertion de l'en-tête XML (no <=> pas de DTD associée)
+            XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
+            docXml.InsertBefore(xmldecl, racine);
+
+            // création noeud fournisseur
+            XmlNode fournisseur = docXml.CreateElement("Fournisseur");
+            
+
+            string nomFournisseur = "";
+
+            while (reader.Read())
             {
-                if (p.StockActuel < p.StockMin)
+                if (reader.GetValue(0).ToString()!=nomFournisseur)
                 {
-                    produitsAcommander.Add(p);
-                    quantiteAcommander.Add(p.StockMax - p.StockActuel);
+                    nomFournisseur = reader.GetValue(0).ToString();
+                    fournisseur.InnerText = nomFournisseur;
+                    racine.AppendChild(fournisseur);
                 }
+                string nomProduit = reader.GetValue(1).ToString();
+                double quantiteCommandee = reader.GetDouble(2);
+                string unite = reader.GetValue(3).ToString();
+
+                XmlElement produit = docXml.CreateElement("Produit");
+                produit.InnerText = nomProduit;
+                fournisseur.AppendChild(produit);
+
+                XmlElement quantite = docXml.CreateElement("Quantité");
+                quantite.InnerText = quantiteCommandee.ToString()+" "+unite;
+                produit.AppendChild(quantite);
             }
+            // enregistrement du document XML ==> à retrouver dans le dossier bin\ debug de Visual Studio
+            docXml.Save("Reapprovisionnement_Hebdo.xml");
         }
     }
 }
