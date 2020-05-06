@@ -40,7 +40,7 @@ namespace Projet_cooking
 
             if (RessourceSQL.est_client(mail, mdp))
             {
-                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" +RessourceSQL.mdp_utilisateur+";Convert Zero Datetime=True";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
@@ -69,7 +69,7 @@ namespace Projet_cooking
 
             if (RessourceSQL.est_CdR(mail, mdp))
             {
-                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + RessourceSQL.mdp_utilisateur + ";Convert Zero Datetime=True";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
@@ -98,7 +98,7 @@ namespace Projet_cooking
 
             if (RessourceSQL.est_gestionnaire(mail, mdp))
             {
-                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+                string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + RessourceSQL.mdp_utilisateur + ";Convert Zero Datetime=True";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
