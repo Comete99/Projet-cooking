@@ -31,9 +31,16 @@ namespace Projet_cooking.Fenêtres
             }
             boxListeCdr.Items.Refresh();
         }
-        
+       
 
-        private void Show_Click(object sender, RoutedEventArgs e)
+        private void btnDemo_Click(object sender, RoutedEventArgs e)
+        {
+            windowDemo4 w = new windowDemo4();
+            w.Show();
+            this.Hide();
+        }
+
+        private void boxListeCdr_DropDownClosed(object sender, EventArgs e)
         {
             string cdr = (string)boxListeCdr.SelectedItem;
             string[] tab = cdr.Split(' ');
@@ -58,16 +65,6 @@ namespace Projet_cooking.Fenêtres
             }
 
             nbRecettes.Text = Convert.ToString(count);
-
         }
-
-
-        private void btnDemo_Click(object sender, RoutedEventArgs e)
-        {
-            windowDemo4 w = new windowDemo4();
-            w.Show();
-            this.Hide();
-        }
-
     }
 }

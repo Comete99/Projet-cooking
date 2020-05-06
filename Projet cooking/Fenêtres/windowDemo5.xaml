@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo5" Height="450" Width="800">
-    <Grid>
-        
+        Title="windowDemo5" Height="450" Width="800" Background="#FFFFF7B1">
+    <Grid Margin="30">
+
+        <TextBlock Height="50" VerticalAlignment="Top" Background="#FFFFD874" Text="Voici un aperçu des produits actuellement en stock ainsi que leurs quantitées. Comme vous le voyez, nous en possédons une grande quantité, chaque produit est issu de fournisseurs locaux." FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" Margin="10,10,136.6,0"/>
+
+
+        <ListView x:Name="listProduits" Margin="10,60,150,0" Width="600" Height="380" HorizontalAlignment="Center">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="Nom du produit" Width="425" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+
+                    <GridViewColumn Header="Quantité" Width="100" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
+
+                    <GridViewColumn Header="Unité" Width="75" DisplayMemberBinding="{Binding Unite, Mode=TwoWay}"/>
+
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,300,9.6,20" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40"></Button>
+
     </Grid>
 </Window>

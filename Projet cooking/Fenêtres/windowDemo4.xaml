@@ -18,7 +18,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Plats.JPG" Grid.ColumnSpan="2" Margin="134,0,-0.4,10" Grid.RowSpan="3"/>
+        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Plats.JPG" Grid.ColumnSpan="2" Margin="118,0,-0.4,0" Grid.RowSpan="3"/>
         <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,35.6,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40"></Button>
         
         <TextBlock Background="#FFFFD874" Grid.Row="0" Text="Grâce à nos nombreux créateurs de recettes, Cooking est heureux de pouvoir vous proposer"  FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="28"></TextBlock>
