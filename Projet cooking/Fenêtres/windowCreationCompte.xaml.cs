@@ -47,12 +47,14 @@ namespace Projet_cooking.Fenêtres
 
         public List<string> Liste_Mails()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=loueur;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
+
+            ///On liste les mails des clients
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT mailClient, mailCdr, mailGestionnare FROM client, cdr, gestionnaire";
+            command.CommandText = "SELECT mailClient from client";
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
@@ -72,10 +74,75 @@ namespace Projet_cooking.Fenêtres
             }
 
             List<string> liste = null;
-            for(int i = 0; i < tab.Length; i++)
+            if (tab != null)
+            {
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    liste.Add(tab[i]);
+                }
+            }
+            connection.Close();
+
+            ///On ajoute les mails des cdr
+            connection.Open();
+
+            MySqlCommand command2 = connection.CreateCommand();
+            command2.CommandText = "SELECT mailCdr from cdr";
+
+            MySqlDataReader reader2;
+            reader2 = command2.ExecuteReader();
+            string resultat2 = "";
+            string[] tab2 = null;
+            while (reader2.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader2.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                resultat2 = currentRowAsString;
+                ///Console.WriteLine(currentRowAsString);
+                tab2 = currentRowAsString.Split(',');
+            }
+
+            
+            for (int i = 0; i < tab2.Length; i++)
             {
                 liste.Add(tab[i]);
             }
+            connection.Close();
+
+
+            ///On ajoute la liste des mails des gestionnaires
+            connection.Open();
+
+            MySqlCommand command3 = connection.CreateCommand();
+            command3.CommandText = "SELECT mailGestionnaire from gestionnaire";
+
+            MySqlDataReader reader3;
+            reader3 = command3.ExecuteReader();
+            string resultat3 = "";
+            string[] tab3 = null;
+            while (reader3.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader3.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                resultat3 = currentRowAsString;
+                ///Console.WriteLine(currentRowAsString);
+                tab3 = currentRowAsString.Split(',');
+            }
+
+
+            for (int i = 0; i < tab3.Length; i++)
+            {
+                liste.Add(tab[i]);
+            }
+            connection.Close();
 
             return liste;
         }
@@ -90,26 +157,30 @@ namespace Projet_cooking.Fenêtres
 
             bool verif = Verification_MDP();
             string mail = txtMail.Text;
-            List<string> liste = Liste_Mails();
+            
 
-            if (verif && !(liste.Contains(mail)))
+            if (verif==true)
             {
-                try
+                List<string> liste = Liste_Mails();
+                if (!(liste.Contains(mail)))
                 {
-                    string query = "insert into client values(@mailClient,@nom,@prenom,@mdpClient)";
-                    MySqlCommand sqlCmd = new MySqlCommand(query, connection);
-                    sqlCmd.CommandType = CommandType.Text;
-                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
-                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
-                    sqlCmd.Parameters.AddWithValue("@nom", txtNom.Text);
-                    sqlCmd.Parameters.AddWithValue("@prenom", txtPrenom.Text);
+                    try
+                    {
+                        string query = "insert into client values(@mailClient,@nom,@prenom,@mdpClient)";
+                        MySqlCommand sqlCmd = new MySqlCommand(query, connection);
+                        sqlCmd.CommandType = CommandType.Text;
+                        sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                        sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                        sqlCmd.Parameters.AddWithValue("@nom", txtNom.Text);
+                        sqlCmd.Parameters.AddWithValue("@prenom", txtPrenom.Text);
 
-                    MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
+                        MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    } 
                 }
             }
 
@@ -134,26 +205,34 @@ namespace Projet_cooking.Fenêtres
 
             bool verif = Verification_MDP();
             string mail = txtMail.Text;
-            List<string> liste = Liste_Mails();
+            
 
-            if (verif && !(liste.Contains(mail)))
+            if (verif)
             {
-                try
+                List<string> liste = Liste_Mails();
+                if (!(liste.Contains(mail)))
                 {
-                    string query = "insert into client values(@mailClient,@nom,@prenom,@mdpClient)";
-                    MySqlCommand sqlCmd = new MySqlCommand(query, connection);
-                    sqlCmd.CommandType = CommandType.Text;
-                    sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
-                    sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
-                    sqlCmd.Parameters.AddWithValue("@nom", txtNom.Text);
-                    sqlCmd.Parameters.AddWithValue("@prenom", txtPrenom.Text);
+                    try
+                    {
+                        string query = "insert into client values(@mailClient,@nom,@prenom,@mdpClient)";
+                        MySqlCommand sqlCmd = new MySqlCommand(query, connection);
+                        sqlCmd.CommandType = CommandType.Text;
+                        sqlCmd.Parameters.AddWithValue("@mailClient", txtMail.Text);
+                        sqlCmd.Parameters.AddWithValue("@mdpClient", txtMDP.Text);
+                        sqlCmd.Parameters.AddWithValue("@nom", txtNom.Text);
+                        sqlCmd.Parameters.AddWithValue("@prenom", txtPrenom.Text);
 
-                    MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
+                        MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                        MainWindow w = new MainWindow();
+                        w.Show();
+                        this.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
 
@@ -164,9 +243,7 @@ namespace Projet_cooking.Fenêtres
 
             connection.Close();
 
-            MainWindow w = new MainWindow();
-            w.Show();
-            this.Close();
+            
         }
     }
 }
