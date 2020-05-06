@@ -25,33 +25,23 @@
                     <GridViewColumn Header="Produits" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox x:Name="boxProduits" Width="100" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=Ingredients}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
-
-
+                                <ComboBox x:Name="boxProduits" Width="100" ItemsSource="{Binding Ingredients, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Key.NomProduit"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Quantité" Width="60" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
                     <GridViewColumn Header="Info" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="buttonInfoRecette" Content="Recette"/>
+                                <Button x:Name="buttonInfoRecette" Content="Recette" CommandParameter="{Binding}" Click="buttonInfoRecette_Click"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn> 
                     <GridViewColumn Header="Prix Cook" Width="70" DisplayMemberBinding="{Binding PrixVente, Mode=TwoWay}"/>
-                    <GridViewColumn Header="NbCommande" Width="100" DisplayMemberBinding="{Binding NbCommande, Mode=TwoWay}"/>
-                    <GridViewColumn Header="Modifier" Width="70">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button x:Name="buttonModifRecette" Content="modifier"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="NbCommande" Width="90" DisplayMemberBinding="{Binding NbCommande, Mode=TwoWay}"/>
                     <GridViewColumn Header="Supprimer" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="buttonSupprRecette" Content="supprimer" Background="#FFFD0000"/>
+                                <Button x:Name="buttonSupprRecette" Content="supprimer" CommandParameter="{Binding}" Background="#FFFD0000" Click="buttonSupprRecette_Click"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

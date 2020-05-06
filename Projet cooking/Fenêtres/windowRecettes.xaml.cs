@@ -27,10 +27,7 @@ namespace Projet_cooking.Fenêtres
         {
             InitializeComponent();
             currentCdR = cdR;
-            foreach(Recette rCdR in RessourceSQL.mesRecettes("kevin.vaut@gmail.com"))
-            {
-                listRecettes.Items.Add(rCdR);
-            }
+            listRecettes.ItemsSource = RessourceSQL.mesRecettes("kevin.vaut@gmail.com");
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
@@ -46,5 +43,33 @@ namespace Projet_cooking.Fenêtres
             this.Hide();
             w.Show();
         }
+
+        private void buttonInfoRecette_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Recette r = button.DataContext as Recette;
+            MessageBoxResult descriptionRecette = MessageBox.Show(r.Descriptif);
+        }
+
+        private void buttonSupprRecette_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Recette r = button.DataContext as Recette;
+            MessageBoxResult supprimerRecette = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette recette ?", "Supprimer recette", MessageBoxButton.YesNo);
+            if (supprimerRecette == MessageBoxResult.Yes)
+            {
+                RessourceSQL.supprRecette(r.Nom, r.MailCdR);
+                //listRecettes.View
+            }
+        }
+
+        //private void boxProduits_DropDownClosed(object sender, EventArgs e)
+        //{
+        //    ComboBox comboBox = sender as ComboBox;
+        //    Produit p = comboBox.SelectedItem as Produit;
+        //    Recette r = comboBox.DataContext as Recette;
+        //    TextBox textBox = sender as TextBox;
+        //    textBox.Text = r.Ingredients[p].ToString();
+        //}
     }
 }

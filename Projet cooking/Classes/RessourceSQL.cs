@@ -114,7 +114,7 @@ namespace Projet_cooking.Classes
 
         public static List<string> recetteCdR(string mail)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -151,8 +151,9 @@ namespace Projet_cooking.Classes
         }
         public static void toutesRecettes()
         {
+            allRecettes.Clear();
             tousProduits();
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -192,7 +193,8 @@ namespace Projet_cooking.Classes
         }
         public static void tousProduits()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            allProduits.Clear();
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -218,7 +220,7 @@ namespace Projet_cooking.Classes
         }
         public static void CdRPaiementCook(Recette recette, bool commande10, bool commande50)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -259,7 +261,7 @@ namespace Projet_cooking.Classes
         }
         public static void ajouterRecette(Recette recette)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -275,10 +277,11 @@ namespace Projet_cooking.Classes
 
             MySqlDataReader readerRecette;
             readerRecette = command.ExecuteReader();
+            RessourceSQL.toutesRecettes();
         }
         public static string rechercheMailCdR(string nomCdR, string prenomCdR)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -297,7 +300,7 @@ namespace Projet_cooking.Classes
         }
         public static List<string> listeCdR()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
@@ -330,7 +333,7 @@ namespace Projet_cooking.Classes
         }
         public static void supprCdR(string nomCdR, string prenomCdR)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             MySqlCommand command = connection.CreateCommand();
@@ -350,7 +353,7 @@ namespace Projet_cooking.Classes
         }
         public static void supprRecette(string nomRecette, string mailCdR)
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             MySqlCommand command = connection.CreateCommand();
@@ -360,12 +363,13 @@ namespace Projet_cooking.Classes
             command.CommandText = requete;
             MySqlDataReader reader;
             reader = command.ExecuteReader();
+            RessourceSQL.toutesRecettes();
         }
         public static void devenirCdR(string nom, string prenom)
         {
             //On récupère toutes les informations pour transférer le client dans la table CdR
             //Le mail
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connectionMail = new MySqlConnection(connectionString);
             connectionMail.Open();
 
@@ -427,7 +431,7 @@ namespace Projet_cooking.Classes
 
         public static int NbClients()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             
@@ -453,7 +457,7 @@ namespace Projet_cooking.Classes
 
         public static int NbRecettes()
         {
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=SQL.ESILV.Comete.99;Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
