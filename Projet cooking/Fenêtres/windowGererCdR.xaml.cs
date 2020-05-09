@@ -20,7 +20,8 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowGererCdR : Window
     {
-        public windowGererCdR()
+        windowGestionnaire windowGestionnaire;
+        public windowGererCdR(windowGestionnaire w)
         {
             InitializeComponent();
             foreach(string cdr in RessourceSQL.listeCdR())
@@ -31,6 +32,7 @@ namespace Projet_cooking.Fenêtres
             {
                 boxRecetteCdR.Items.Add(r);
             }
+            windowGestionnaire = w;
         }
 
         private void buttonSupprCdR_Click(object sender, RoutedEventArgs e)
@@ -91,6 +93,12 @@ namespace Projet_cooking.Fenêtres
             {
                 MessageBoxResult message = MessageBox.Show("Veuillez sélectionner une recette");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            windowGestionnaire.Show();
         }
     }
 }

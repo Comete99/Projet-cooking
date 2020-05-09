@@ -110,14 +110,16 @@ namespace Projet_cooking.Fenêtres
         private void buttonRetour_Click(object sender, RoutedEventArgs e)
         {
             //on possède le mail du cdr
-            //on récupère le nom, prenom grâce à une première fonction
-            string nom = RessourceSQL.nom_prenom_CdR(mailCdR)[0];
-            string prenom = RessourceSQL.nom_prenom_CdR(mailCdR)[1] ;
+            //on récupère le nom, prenom et le nombre de cook 
 
-            //le nb de cook avec une deuxième
-            int nbCook = RessourceSQL.nbCookCdR(mailCdR);
+            string [] infoCdR = RessourceSQL.nom_prenom_CdR(mailCdR);
+            string nom = infoCdR[1];
+            string prenom = infoCdR[2] ;
+            int nbCook = Convert.ToInt32(infoCdR[3]);
 
             windowCdR w = new windowCdR(mailCdR, nom, prenom, nbCook);
+            w.Show();
+            this.Close();
         }
     }
 }

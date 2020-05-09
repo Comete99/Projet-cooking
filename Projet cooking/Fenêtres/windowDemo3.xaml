@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowDemo3"
         mc:Ignorable="d"
-        Title="windowDemo3" Height="450" Width="800" Background="#FFFFF7B1">
+        Title="windowDemo3" Height="450" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

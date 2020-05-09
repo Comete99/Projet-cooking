@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowCreationCompte" Height="450" Width="800" Background="#FFFFF7B1">
+        Title="windowCreationCompte" Height="450" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="30,30,278.6,30" Background="#FFFFD874">
 

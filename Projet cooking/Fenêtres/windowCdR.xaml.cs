@@ -109,10 +109,15 @@ namespace Projet_cooking.Fenêtres
                 MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
                 nbCookCdR -= prixCook;
                 nbCook.Text = Convert.ToString(nbCookCdR);
+                listPanier.Items.Clear();
             }
-            
-            listPanier.Items.Clear();
-            
+            else
+            {
+                MessageBoxResult messageCommande = MessageBox.Show("Vous n'avez pas assez de Cook. \nPrix de la commande : " + prixCook + " Cook \nLe reste a été crédité sur votre CB");
+                nbCookCdR = 0;
+                nbCook.Text = Convert.ToString(nbCookCdR);
+                listPanier.Items.Clear();
+            }
         }
 
         private void buttonRecettes_Click(object sender, RoutedEventArgs e)
@@ -212,7 +217,7 @@ namespace Projet_cooking.Fenêtres
         {
             MainWindow w = new MainWindow();
             w.Show();
-            this.Hide();
+            this.Close();
         }
     }
     

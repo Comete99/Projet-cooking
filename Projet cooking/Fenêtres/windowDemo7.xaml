@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowDemo7" Height="450" Width="800" Background="#FFFFF7B1">
+        Title="windowDemo7" Height="450" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Grid Margin="30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>

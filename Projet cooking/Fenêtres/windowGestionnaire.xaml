@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowGestionnaire" Height="450" Width="900" Background="#FFFFF7B1">
+        Title="windowGestionnaire" Height="450" Width="900" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="15" Background="#FFFFD874">
             <Grid>

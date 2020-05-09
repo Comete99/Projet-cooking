@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowGererCdR"
         mc:Ignorable="d"
-        Title="windowGererCdR" Height="350" Width="600" Background="#FFFFF7B1">
+        Title="windowGererCdR" Height="350" Width="600" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -399,5 +400,31 @@
                 </Button>
             </Grid>
         </StackPanel>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="494,24,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FFC30000"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                    </ContentPresenter>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF930404"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
     </Grid>
 </Window>

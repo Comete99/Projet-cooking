@@ -340,8 +340,33 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="740,18,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="25">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FFC30000"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                    </ContentPresenter>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF930404"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <StackPanel>
-            <Label Content="Stocks" FontWeight="Bold" Margin="10" FontSize="18" FontFamily="MV Boli" Foreground="Brown"/>
+            <Label Content="Stocks" FontWeight="Bold" Margin="10,10,725.2,10" FontSize="18" FontFamily="MV Boli" Foreground="Brown"/>
             <Grid Margin="10,5,10,0" Background="#FFFFD874">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.5*"/>

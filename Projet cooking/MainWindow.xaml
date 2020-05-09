@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFFFF7B1">
+        Title="MainWindow" Height="450" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <StackPanel Margin="30">

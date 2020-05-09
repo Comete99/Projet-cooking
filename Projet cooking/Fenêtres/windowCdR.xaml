@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowCdR"
         mc:Ignorable="d"
-        Title="windowCdR" Height="500" Width="800" Background="#FFFFF7B1">
+        Title="windowCdR" Height="505" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -451,7 +451,7 @@
                 </Button>
             </Grid>
             <TextBlock Text="Panier" FontWeight="Bold" FontFamily="MV Boli" Foreground="Brown" Margin="0,20,700,0" FontSize="16"/>
-            <ListView x:Name="listPanier" Height="260" Foreground="Brown" Margin="0,5,330.2,0" Background="#FFFFF2E0">
+            <ListView x:Name="listPanier" Height="255" Foreground="Brown" Margin="0,5,330.2,0" Background="#FFFFF2E0">
                 <ListView.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -471,7 +471,29 @@
                         <GridViewColumn Header="Supprimer" Width="75">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Background="#FFFD0000" Click="buttonSupprRecette_Click" Height="Auto" Width="30"/>
+                                    <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Click="buttonSupprRecette_Click" Height="Auto" Width="30">
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Background" Value="#FFC30000"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#FF930404"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

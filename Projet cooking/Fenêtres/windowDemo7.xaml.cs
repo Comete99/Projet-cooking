@@ -28,7 +28,7 @@ namespace Projet_cooking.Fenêtres
         {
             MainWindow w = new MainWindow();
             w.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

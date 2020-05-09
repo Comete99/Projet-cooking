@@ -102,14 +102,14 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonGererStock_Click(object sender, RoutedEventArgs e)
         {
-            windowGererStocks w = new windowGererStocks();
+            windowGererStocks w = new windowGererStocks(this);
             w.Show();
             this.Hide();
         }
 
         private void buttonGererCdR_Click(object sender, RoutedEventArgs e)
         {
-            windowGererCdR w = new windowGererCdR();
+            windowGererCdR w = new windowGererCdR(this);
             w.Show();
             this.Hide();
         }
@@ -118,7 +118,7 @@ namespace Projet_cooking.Fenêtres
         {
             MainWindow w = new MainWindow();
             w.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

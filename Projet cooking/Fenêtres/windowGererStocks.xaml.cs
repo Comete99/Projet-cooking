@@ -21,7 +21,8 @@ namespace Projet_cooking.Fenêtres
     /// </summary>
     public partial class windowGererStocks : Window
     {
-        public windowGererStocks()
+        windowGestionnaire windowGestionnaire;
+        public windowGererStocks(windowGestionnaire w)
         {
             InitializeComponent();
             foreach (Produit p in RessourceSQL.allProduits)
@@ -29,6 +30,7 @@ namespace Projet_cooking.Fenêtres
                 boxIngredients.Items.Add(p);
                 listProduit.Items.Add(p);
             }
+            windowGestionnaire = w;
         }
 
         private void boxIngredients_DropDownClosed(object sender, EventArgs e)
@@ -62,6 +64,12 @@ namespace Projet_cooking.Fenêtres
                     listProduit.Items.Add(p);
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            windowGestionnaire.Show();
         }
     }
 }

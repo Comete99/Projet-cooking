@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowRecettes"
         mc:Ignorable="d"
-        Title="windowRecettes" Height="500" Width="800" Background="#FFFFF7B1">
+        Title="windowRecettes" Height="500" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -286,7 +286,7 @@
         <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="650,280,20,110" Click="buttonRetourAuMenu_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FFDF8100"/>
+                    <Setter Property="Background" Value="#FFC30000"/>
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="Template">
                         <Setter.Value>
@@ -300,13 +300,13 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF744402"/>
+                            <Setter Property="Background" Value="#FF930404"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
         </Button>
-        <ListView x:Name="listRecettes" Foreground="Brown" Margin="10,60,150,0" Width="600" MaxHeight="380" HorizontalContentAlignment="Center" Background="#FFFFD874">
+        <ListView x:Name="listRecettes" Foreground="Brown" Margin="27,60,148.6,0.4" MaxHeight="380" HorizontalContentAlignment="Center" Background="#FFFFD874" Width="610">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -319,7 +319,7 @@
                     <GridViewColumn Header="Produits" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox x:Name="boxProduits" Width="100" ItemsSource="{Binding Ingredients, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Key.NomProduit" Style="{DynamicResource ComboBoxStyle1}">
+                                <ComboBox x:Name="boxProduits" Width="100" ItemsSource="{Binding Ingredients, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Key.NomProduit">
                                     <ComboBox.Resources>
                                         <!-- color of ComboBoxItem -->
                                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFFFF2E0" />
@@ -333,7 +333,7 @@
                     <GridViewColumn Header="Info" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="buttonInfoRecette" Content="Recette" CommandParameter="{Binding}" Click="buttonInfoRecette_Click">
+                                <Button x:Name="buttonInfoRecette" Content="Recette" CommandParameter="{Binding}" Click="buttonInfoRecette_Click" Height="30">
                                     <Button.Style>
                                         <Style TargetType="{x:Type Button}">
                                             <Setter Property="Background" Value="#a29bfe"/>
@@ -350,7 +350,7 @@
                                             </Setter>
                                             <Style.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#a29bfe"/>
+                                                    <Setter Property="Background" Value="#FF8882D9"/>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -364,7 +364,7 @@
                     <GridViewColumn Header="Supprimer" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="buttonSupprRecette" Content="supprimer" CommandParameter="{Binding}" Click="buttonSupprRecette_Click">
+                                <Button x:Name="buttonSupprRecette" Content="Supprimer" CommandParameter="{Binding}" Click="buttonSupprRecette_Click" Height="30">
                                     <Button.Style>
                                         <Style TargetType="{x:Type Button}">
                                             <Setter Property="Background" Value="#FFC30000"/>

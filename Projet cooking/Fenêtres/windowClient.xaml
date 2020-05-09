@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowClient"
         mc:Ignorable="d"
-        Title="windowClient" Height="500" Width="800" Background="#FFFFF7B1">
+        Title="windowClient" Height="500" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -300,7 +300,7 @@
                 <TextBlock x:Name="messageConnection" Text="Bienvenue " Foreground="Brown" FontFamily="MV Boli" FontWeight="Bold" Margin="0,0,130.2,0" FontSize="24"/>
 
 
-                <Button x:Name="buttonDeconnexion" Grid.Column="1" Content="Deconnexion" Margin="5" Click="buttonDeconnexion_Click">
+                <Button x:Name="buttonDeconnexion" Grid.Column="1" Content="Deconnexion" Margin="10,5,5.2,10.4" Click="buttonDeconnexion_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FFC30000"/>
@@ -472,16 +472,14 @@
                                 <DataTemplate>
                                     <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Click="buttonSupprRecette_Click" Height="Auto" Width="30">
                                         <Button.Style>
-                                            <Style TargetType="Button">
+                                            <Style TargetType="{x:Type Button}">
                                                 <Setter Property="Background" Value="#FFC30000"/>
                                                 <Setter Property="Foreground" Value="White"/>
                                                 <Setter Property="Template">
                                                     <Setter.Value>
-                                                        <ControlTemplate TargetType="Button">
+                                                        <ControlTemplate TargetType="{x:Type Button}">
                                                             <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
-                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                                                                </ContentPresenter>
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                             </Border>
 
                                                         </ControlTemplate>

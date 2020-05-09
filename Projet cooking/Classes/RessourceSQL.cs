@@ -44,6 +44,7 @@ namespace Projet_cooking.Classes
             {
                 client = reader.GetValue(0).ToString();
             }
+            connection.Close();
             if (client == "")
             {
                 return false;
@@ -76,6 +77,7 @@ namespace Projet_cooking.Classes
                 }
                 tab = currentRowAsString.Split(',');
             }
+            connection.Close();
             return tab;
         }
         
@@ -96,6 +98,7 @@ namespace Projet_cooking.Classes
             {
                 CdR = reader.GetValue(0).ToString();
             }
+            connection.Close();
             if (CdR == "")
             {
                 return false;
@@ -128,6 +131,7 @@ namespace Projet_cooking.Classes
                 }
                 tab = currentRowAsString.Split(',');
             }
+            connection.Close();
             return tab;
         }
         public static bool est_gestionnaire(string mail, string mdp)
@@ -147,6 +151,7 @@ namespace Projet_cooking.Classes
             {
                 gestionnaire = reader.GetValue(0).ToString();
             }
+            connection.Close();
             if (gestionnaire == "")
             {
                 return false;
@@ -179,6 +184,7 @@ namespace Projet_cooking.Classes
                 }
                 tab = currentRowAsString.Split(',');
             }
+            connection.Close();
             return tab;
         }
 
@@ -218,7 +224,7 @@ namespace Projet_cooking.Classes
         {
             List<string> liste = new List<string>();
 
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD="+ mdp_utilisateur + ";Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             ///On liste les mails des clients
@@ -260,7 +266,7 @@ namespace Projet_cooking.Classes
         {
             List<string> liste = new List<string>();
 
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             connection.Open();
@@ -302,7 +308,7 @@ namespace Projet_cooking.Classes
         {
             List<string> liste = new List<string>();
 
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             connection.Open();
@@ -366,6 +372,7 @@ namespace Projet_cooking.Classes
                     //currentRowAsString += valueAsString + ",";
                 }
             }
+            connection.Close();
             return recettes;
         }
         public static List<Recette> mesRecettes(string mail)
@@ -421,6 +428,7 @@ namespace Projet_cooking.Classes
                 recetteTable.NbCommande = reader.GetInt32(7);
                 allRecettes.Add(recetteTable);
             }
+            connection.Close();
         }
         public static void tousProduits()
         {
@@ -449,6 +457,7 @@ namespace Projet_cooking.Classes
                 allProduits.Add(produitTable);
             }
             allProduits.Sort();
+            connection.Close();
         }
         public static void CdRPaiementCook(Recette recette, bool commande10, bool commande50)
         {
@@ -547,7 +556,9 @@ namespace Projet_cooking.Classes
             {
                 nbCook = reader.GetInt32(0);
             }
+            connection.Close();
             return nbCook;
+            
         }
 
         public static void ajouterRecette(Recette recette)
@@ -568,7 +579,8 @@ namespace Projet_cooking.Classes
 
             MySqlDataReader readerRecette;
             readerRecette = command.ExecuteReader();
-            RessourceSQL.toutesRecettes();
+            toutesRecettes();
+            connection.Close();
         }
         public static string rechercheMailCdR(string nomCdR, string prenomCdR)
         {
@@ -586,7 +598,8 @@ namespace Projet_cooking.Classes
             while (reader.Read())
             {
                 mailCdR = reader.GetValue(0).ToString();
-            }  
+            }
+            connection.Close();
             return mailCdR;
         }
         public static List<string> listeCdR()
@@ -620,6 +633,7 @@ namespace Projet_cooking.Classes
                 }
                 CdR.Add(currentRowAsString);
             }
+            connection.Close();
             return CdR;
         }
         public static void supprCdR(string nomCdR, string prenomCdR)
@@ -694,6 +708,7 @@ namespace Projet_cooking.Classes
             MySqlDataReader reader;
             reader = command.ExecuteReader();
             toutesRecettes();
+            connection.Close();
         }
         public static void devenirCdR(string nom, string prenom)
         {
@@ -834,6 +849,7 @@ namespace Projet_cooking.Classes
                 }
                 fournisseurs.Add(currentRowAsString);
             }
+            connection.Close();
             return fournisseurs;
         }
         public static void commandeProduit(string nomProduit, string stockAjour)
@@ -848,7 +864,8 @@ namespace Projet_cooking.Classes
             commandCdR.CommandText = requeteCdR;
             MySqlDataReader readerCdR;
             readerCdR = commandCdR.ExecuteReader();
-            RessourceSQL.tousProduits();
+            tousProduits();
+            connection.Close();
         }
         public static void commandesProduitsXml()
         {
@@ -857,7 +874,7 @@ namespace Projet_cooking.Classes
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT nomFournisseur, nomProduit, (stockMax-stockActuel), unite FROM produit ORDER BY nomFournisseur, nomProduit;"; //WHERE stockActuel<stockMin
+            command.CommandText = "SELECT nomFournisseur, nomProduit, (stockMax-stockActuel), unite FROM produit WHERE stockActuel<stockMin ORDER BY nomFournisseur, nomProduit;";
             MySqlDataReader reader;
             reader = command.ExecuteReader();
 
@@ -899,10 +916,7 @@ namespace Projet_cooking.Classes
             }
             // enregistrement du document XML ==> à retrouver dans le dossier bin\ debug de Visual Studio
             docXml.Save("Reapprovisionnement_Hebdo.xml");
+            connection.Close();
         }
-
-
-
-
     }
 }

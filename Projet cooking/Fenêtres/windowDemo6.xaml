@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowDemo6"
         mc:Ignorable="d"
-        Title="windowDemo6" Height="450" Width="800" Background="#FFFFF7B1">
+        Title="windowDemo6" Height="460" Width="800" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -318,7 +318,7 @@
             </ComboBox>
         </StackPanel>
 
-        <ListView x:Name="listProduits" Grid.Row="4" Background="#FFFFF2E0" HorizontalAlignment="Center">
+        <ListView x:Name="listProduits" Width="535" Grid.Row="3" Background="#FFFDDDB0" HorizontalAlignment="Center" Margin="0,52,52.2,10" Grid.RowSpan="2">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -326,7 +326,7 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView AllowsColumnReorder="True">
-                    <GridViewColumn Header="Nom de la recette" Width="425" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                    <GridViewColumn Header="Nom de la recette" Width="345" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
 
                     <GridViewColumn Header="Quantité" Width="100" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
 
@@ -337,7 +337,7 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="btnDemo" Content="Suite" Margin="0,84,9.6,20" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40" Grid.Column="1" Grid.Row="4">
+        <Button x:Name="btnDemo" Content="Suite" Margin="0,84,9.6,20" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40" Grid.Column="1" Grid.Row="4" >
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#FFC30000"/>
