@@ -339,7 +339,31 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4D9B3" />
                     </ComboBox.Resources>
                 </ComboBox>
-                <Button Grid.Column="1" Grid.Row="0" x:Name="buttonSupprCdR" Content=" X Supprimer CdR"  Style="{StaticResource RoundButtonTemplate}" Margin="20,20,50,80" Background="#FFC30000" Click="buttonSupprCdR_Click"/>
+                <Button Grid.Column="1" Grid.Row="0" x:Name="buttonSupprCdR" Content=" X Supprimer CdR" Margin="20,20,50,80" Click="buttonSupprCdR_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF8E0000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <ComboBox Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" x:Name="boxRecetteCdR" Margin="50,20,20,0" ItemsSource="{Binding Recette}" SelectedItem="{Binding Nom}" DisplayMemberPath="Nom" Style="{DynamicResource ComboBoxStyle2}">
                     <ComboBox.Resources>
                         <!-- color of ComboBoxItem -->
@@ -348,7 +372,31 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4D9B3" />
                     </ComboBox.Resources>
                 </ComboBox>
-                <Button Grid.Column="1" Grid.Row="1" x:Name="buttonSupprRecette" Content=" X Supprimer Recette" Style="{StaticResource RoundButtonTemplate}" Margin="20,20,50,0" Background="#FFC30000" Click="buttonSupprRecette_Click"/>
+                <Button Grid.Column="1" Grid.Row="1" x:Name="buttonSupprRecette" Content=" X Supprimer Recette"  Margin="20,20,50,0" Click="buttonSupprRecette_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF8E0000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </StackPanel>
     </Grid>

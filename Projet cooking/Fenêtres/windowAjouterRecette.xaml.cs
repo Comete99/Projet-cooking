@@ -38,20 +38,28 @@ namespace Projet_cooking.Fenêtres
         {
             try
             {
-                Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
-                nouvelleRecette.RemunerationCdRCook = 2;
-                nouvelleRecette.MailCdR = mailCdR;
-                RessourceSQL.ajouterRecette(nouvelleRecette);
-                MessageBoxResult message = MessageBox.Show("Recette créée !");
-                recettesCdR.listRecettes.Items.Add(nouvelleRecette);
-                recettesCdR.Show();
-                this.Close();
+                if (Convert.ToDouble(boxPrix.Text) < 10 || Convert.ToDouble(boxPrix.Text) > 40)
+                {
+                    MessageBoxResult messagePrix = MessageBox.Show("Veuillez entrer un prix entre 10 et 40 Cook svp");
+                    return;
+                }
+                else
+                {
+                    Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
+                    nouvelleRecette.RemunerationCdRCook = 2;
+                    nouvelleRecette.MailCdR = mailCdR;
+                    RessourceSQL.ajouterRecette(nouvelleRecette);
+                    MessageBoxResult message = MessageBox.Show("Recette créée !");
+                    recettesCdR.listRecettes.Items.Add(nouvelleRecette);
+                    recettesCdR.Show();
+                    this.Close();
+                }
+
             }
             catch
             {
                 MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
             }
-
         }
 
         private void buttonAjouterARecette_Click(object sender, RoutedEventArgs e)

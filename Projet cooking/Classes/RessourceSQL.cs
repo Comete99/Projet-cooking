@@ -625,22 +625,26 @@ namespace Projet_cooking.Classes
         public static void supprCdR(string nomCdR, string prenomCdR)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
+
+            string mailCdR = rechercheMailCdR(nomCdR, prenomCdR);
+            //On supprime les recettes du CdR de la table recette
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             MySqlCommand command = connection.CreateCommand();
-
-            string mailCdR = rechercheMailCdR(nomCdR, prenomCdR);
-
-            //On supprime les recettes du CdR de la table recette
             string requete = "DELETE FROM recette WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
             command.CommandText = requete;
             MySqlDataReader reader;
             reader = command.ExecuteReader();
+            connection.Close();
 
             //On supprime le CdR de la table
-            requete = "DELETE FROM cdr WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
-            command.CommandText = requete;
-            reader = command.ExecuteReader();
+            MySqlConnection connectionCdR = new MySqlConnection(connectionString);
+            connectionCdR.Open();
+            MySqlCommand commandCdR = connectionCdR.CreateCommand();
+            string requeteCdR = "DELETE FROM cdr WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
+            commandCdR.CommandText = requeteCdR;
+            MySqlDataReader readerCdR;
+            readerCdR = commandCdR.ExecuteReader();
             toutesRecettes();
         }
         public static void supprRecette(string nomRecette, string mailCdR)
@@ -798,7 +802,7 @@ namespace Projet_cooking.Classes
             }
             return fournisseurs;
         }
-        public static void commandeProduit(string nomProduit, double quantiteCommandee, double stockActuel)
+        public static void commandeProduit(string nomProduit, string stockAjour)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -806,8 +810,7 @@ namespace Projet_cooking.Classes
 
             //On met à jour les stocks
             MySqlCommand commandCdR = connection.CreateCommand();
-            double stock = quantiteCommandee + stockActuel;
-            string requeteCdR = "UPDATE produit SET stockActuel=" + "'" + stock + "'" + "WHERE nomProduit=" + "'" + nomProduit + "'" + ";";
+            string requeteCdR = "UPDATE produit SET stockActuel="+ stockAjour + " WHERE nomProduit=" + "'" + nomProduit + "'" + ";";
             commandCdR.CommandText = requeteCdR;
             MySqlDataReader readerCdR;
             readerCdR = commandCdR.ExecuteReader();

@@ -21,6 +21,7 @@ namespace Projet_cooking.Fenêtres
     public partial class windowCdR : Window
     {
         double nbCookCdR = 0;
+        string mailCdR = "";
         
         public windowCdR(string mail, string nom, string prenom, int nombCook)
         {
@@ -30,6 +31,7 @@ namespace Projet_cooking.Fenêtres
             boxNbRecette.Text = "0"; ///nb de recettes commandées
             boxListeRecettes.ItemsSource = RessourceSQL.allRecettes;
             nbCookCdR = Convert.ToDouble(nombCook);
+            mailCdR = mail;
         }
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
@@ -115,7 +117,7 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonRecettes_Click(object sender, RoutedEventArgs e)
         {
-            windowRecettes w = new windowRecettes(this);
+            windowRecettes w = new windowRecettes(this, mailCdR);
             w.Show();
             this.Hide();
         }
@@ -196,6 +198,7 @@ namespace Projet_cooking.Fenêtres
             }
             MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
             listPanier.Items.Clear();
+            nbCook.Text = RessourceSQL.nbCookCdR(mailCdR).ToString();
         }
 
         private void buttonSupprRecette_Click(object sender, RoutedEventArgs e)

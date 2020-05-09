@@ -23,14 +23,16 @@ namespace Projet_cooking.Fenêtres
     public partial class windowRecettes : Window
     {
         private windowCdR currentCdR;
-        public windowRecettes(windowCdR cdR)
+        string mailCdR = "";
+        public windowRecettes(windowCdR cdR, string mail)
         {
             InitializeComponent();
             currentCdR = cdR;
-            foreach(Recette r in RessourceSQL.mesRecettes("kevin.vaut@gmail.com"))
+            foreach(Recette r in RessourceSQL.mesRecettes(mail))
             {
                 listRecettes.Items.Add(r);
             }
+            mailCdR = mail;
         }
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
@@ -41,8 +43,7 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterRecette_Click(object sender, RoutedEventArgs e)
         {
-            string mail = "kevin.vaut@gmail.com";
-            windowAjouterRecette w = new windowAjouterRecette(this, mail);
+            windowAjouterRecette w = new windowAjouterRecette(this, mailCdR);
             this.Hide();
             w.Show();
         }
@@ -65,14 +66,5 @@ namespace Projet_cooking.Fenêtres
                 RessourceSQL.supprRecette(r.Nom, r.MailCdR);
             }
         }
-
-        //private void boxProduits_DropDownClosed(object sender, EventArgs e)
-        //{
-        //    ComboBox comboBox = sender as ComboBox;
-        //    Produit p = comboBox.SelectedItem as Produit;
-        //    Recette r = comboBox.DataContext as Recette;
-        //    TextBox textBox = sender as TextBox;
-        //    textBox.Text = r.Ingredients[p].ToString();
-        //}
     }
 }

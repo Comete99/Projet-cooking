@@ -50,7 +50,10 @@ namespace Projet_cooking.Fenêtres
         {
             if (boxIngredients.SelectedItem != null)
             {
-                RessourceSQL.commandeProduit(((Produit)boxIngredients.SelectedItem).NomProduit, Convert.ToDouble(boxQteCommande), Convert.ToDouble(boxQteActuelle));
+                string[] quantiteCommandee = boxQteCommande.Text.Split(' ');
+                string[] quantiteActuelle = boxQteActuelle.Text.Split(' ');
+                double stock = Convert.ToDouble(quantiteCommandee[0]) + Convert.ToDouble(quantiteActuelle[0]);
+                RessourceSQL.commandeProduit(((Produit)boxIngredients.SelectedItem).NomProduit, stock.ToString());
                 listProduit.Items.Clear();
                 boxIngredients.Items.Clear();
                 foreach (Produit p in RessourceSQL.allProduits)

@@ -28,8 +28,8 @@
         <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="#FF000000"/>
         <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
-            <GradientStop Color="#81ecec"  Offset="0.0"/>
-            <GradientStop Color="#81ecec"  Offset="1.0"/>
+            <GradientStop Color="#FFCEBDA4"  Offset="0.0"/>
+            <GradientStop Color="#FFCEBDA4"  Offset="1.0"/>
         </LinearGradientBrush>
         <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Background" Color="#FFFFFFFF"/>
@@ -354,14 +354,38 @@
                 </ComboBox>
                 <TextBox Grid.Column="1" x:Name="boxQuantite" Foreground="Brown" Text="0" Margin="9,0,0,0" VerticalContentAlignment="Center" TextAlignment="Center" Background="#FFFFF2E0" BorderBrush="Brown" FontFamily="MV Boli"/>
                 <Label x:Name="labelUnite" Grid.Column="2" Margin="10,0,0,0" FontFamily="MV Boli" Foreground="Brown"/>
-                <Button Grid.Column="3" x:Name="buttonAjouterARecette" Style="{StaticResource RoundButtonTemplate}" Content="Ajouter ingredient" Margin="10,0,0,0" Background="#FF30B61C" Click="buttonAjouterARecette_Click" BorderBrush="Black" FontFamily="MV Boli"/>
+                <Button Grid.Column="3" x:Name="buttonAjouterARecette" Content="Ajouter ingredient" Margin="10,0,0,0" Click="buttonAjouterARecette_Click" BorderBrush="Black" FontFamily="MV Boli">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF30B61C"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF1D820E"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
             <Grid Margin="0,15,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox HorizontalContentAlignment="Center" Grid.Column="0" x:Name="boxSupprIngredients" DisplayMemberPath="NomProduit" Margin="0,0,10,0" FontFamily="MV Boli" Style="{DynamicResource ComboBoxStyle1}">
+                <ComboBox HorizontalContentAlignment="Center" Grid.Column="0" x:Name="boxSupprIngredients" DisplayMemberPath="NomProduit" Margin="0,0,10,0" FontFamily="MV Boli" Style="{DynamicResource ComboBoxStyle2}">
                     <ComboBox.Resources>
                         <!-- color of ComboBoxItem -->
                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFFFF2E0" />
@@ -369,7 +393,31 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4D9B3" />
                     </ComboBox.Resources>
                 </ComboBox>
-                <Button x:Name="buttonSupprIngredient" Style="{StaticResource RoundButtonTemplate}" Content="Supprimer l'ingrédient" Grid.Column="1" Background="#FFC30000" Click="buttonSupprIngredient_Click_1" BorderBrush="Black" FontFamily="MV Boli" />
+                <Button x:Name="buttonSupprIngredient" Content="Supprimer l'ingrédient" Grid.Column="1" Click="buttonSupprIngredient_Click_1" BorderBrush="Black" FontFamily="MV Boli" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF930404"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
             <Grid Margin="70,20,70,0">
                 <Grid.ColumnDefinitions>
@@ -381,7 +429,31 @@
                 <TextBox x:Name="boxPrix" Grid.Column="1" Foreground="Brown" Background="#FFFFF2E0" VerticalContentAlignment="Center" TextAlignment="Center" BorderBrush="#FF0E0E0E" FontFamily="MV Boli"/>
                 <Label Content="Cook" Grid.Column="2" FontFamily="MV Boli" Foreground="Brown" HorizontalContentAlignment="Center"/>
             </Grid>
-            <Button x:Name="validerRecette" Style="{StaticResource RoundButtonTemplate}" Content="Proposer la recette" Margin="40,20,40.2,0" Height="29" Click="validerRecette_Click" BorderBrush="Black" Background="#FF5E54DC" FontFamily="MV Boli"/>
+            <Button x:Name="validerRecette" Content="Proposer la recette" Margin="40,20,40.2,0" Height="29" Click="validerRecette_Click" BorderBrush="Black" FontFamily="MV Boli">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF5E54DC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                        </ContentPresenter>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF453CAD"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <TextBlock Text="Toute l'équipe cooking vous remercie pour votre participation active à l'évolution du catalogue de recettes." TextWrapping="Wrap" Margin="30,15,30.2,30" Height="64" TextAlignment="Center" FontFamily="MV Boli" Foreground="Brown"/>
         </StackPanel>
     </Grid>

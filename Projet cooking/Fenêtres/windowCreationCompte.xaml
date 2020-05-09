@@ -50,7 +50,30 @@
             </Image>
         </StackPanel>
 
-        <Button Style="{StaticResource RoundButtonTemplate}"  Name="btnValider" Content="Valider" FontSize="25" Foreground="White" Background="#FF30B61C" Margin="552,325,60.6,46" BorderBrush="#FF97D98E" Click="btnValider_Click2">
+        <Button Name="btnValider" Content="Valider" FontSize="25" Margin="552,325,60.6,46" BorderBrush="#FF97D98E" Click="btnValider_Click2">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FF30B61C"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                    </ContentPresenter>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF1D820E"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
         </Button>
 
     </Grid>

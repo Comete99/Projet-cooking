@@ -382,7 +382,31 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4D9B3" />
                     </ComboBox.Resources>
                 </ComboBox>
-                <Button x:Name="buttonCommander" Style="{StaticResource RoundButtonTemplate}" Content="Commander" Grid.Row="1" Grid.Column="6" Margin="5.2,0.4,5.2,0" Click="buttonCommander_Click" Background="#FFDF8100" Foreground="White" BorderBrush="Brown"/>
+                <Button x:Name="buttonCommander"  Content="Commander" Grid.Row="1" Grid.Column="6" Margin="5.2,0.4,5.2,0" Click="buttonCommander_Click" Foreground="White" BorderBrush="Brown">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFDF8100"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF744402"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
             <ListView x:Name="listProduit" Foreground="Brown" HorizontalAlignment="Center" Margin="0,20,0,0" MaxHeight="250" Background="#FFFFF2E0">
                 <ListView.ItemContainerStyle>

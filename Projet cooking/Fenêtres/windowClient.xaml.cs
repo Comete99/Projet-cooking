@@ -46,7 +46,7 @@ namespace Projet_cooking.Fenêtres
             if (messageDevenirCdR == MessageBoxResult.Yes)
             {
                 RessourceSQL.devenirCdR(nomClient, prenomClient);
-                windowCdR w = new windowCdR("", nomClient, prenomClient, 0);
+                windowCdR w = new windowCdR(RessourceSQL.rechercheMailCdR(nomClient,prenomClient), nomClient, prenomClient, 0);
                 w.Show();
                 this.Close();
                 MessageBoxResult message = MessageBox.Show("Félicitations ! Vous êtes maintenant un créateur de recettes et participez à l'évolution de la plateforme.");

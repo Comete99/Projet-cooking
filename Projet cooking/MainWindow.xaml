@@ -23,10 +23,82 @@
 
                 <Label Content="Mot de passe" Foreground="Brown" FontSize="18"  HorizontalAlignment="Center"></Label>
                 <TextBox Name="txtMDP" Margin="10 0" Background="#FFFFF2E0" Foreground="Brown" FontSize="16" />
-                
-                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnSubmit" Click="btnSubmit_Click" Content="Se connecter" Margin="40 20 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnRegister" Content="Créer un compte" Margin="40 10 40 10" Background="#FFFFF2E0" Foreground="Brown" FontSize="18" Click="btnRegister_Click"/>
-                <Button Style="{StaticResource RoundButtonTemplate}" Name="btnDemo" Content="Démo" Margin="40 25 40 10" Background="#FFDF8100" Foreground="White" FontSize="18" Click="btnDemo_Click"/>
+
+                <Button Name="btnSubmit" Click="btnSubmit_Click" Content="Se connecter" Margin="40 20 40 10" FontSize="18">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFFFF2E0"/>
+                            <Setter Property="Foreground" Value="Brown"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFE5D9C9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Name="btnRegister" Content="Créer un compte" Margin="40 10 40 10" FontSize="18" Click="btnRegister_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFFFF2E0"/>
+                            <Setter Property="Foreground" Value="Brown"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFE5D9C9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Name="btnDemo" Content="Démo" Margin="40 25 40 10" Foreground="White" FontSize="18" Click="btnDemo_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFDF8100"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF744402"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </StackPanel>
 

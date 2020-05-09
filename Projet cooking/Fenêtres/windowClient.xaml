@@ -293,18 +293,40 @@
         <StackPanel Margin="15" Background="#FFFFD874">
             <TextBlock x:Name="messageConnection" Text="Bienvenue " Foreground="Brown" FontFamily="MV Boli" FontWeight="Bold" Margin="0,0,130.2,0" FontSize="24"/>
             <TextBlock x:Name="nbCook" Text="Cook : " Foreground="Brown" FontFamily="MV Boli" Margin="650,0,0,0"/>
-            <Button x:Name="buttonCdR" Content="Devenir CdR" Style="{StaticResource RoundButtonTemplate}" Margin="650,3,0.2,0" Height="22" Click="buttonCdR_Click" Background="#FF5E54DC" BorderBrush="Black"/>
+            <Button x:Name="buttonCdR" Content="Devenir CdR" Margin="650,3,0.2,0" Height="22" Click="buttonCdR_Click" BorderBrush="Black">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF5E54DC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                        </ContentPresenter>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF453CAD"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="51*"/>
-                    <ColumnDefinition Width="226*"/>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="69*"/>
-                    <ColumnDefinition Width="193*"/>
-                    <ColumnDefinition Width="85*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" HorizontalContentAlignment="Center" x:Name="boxListeRecettes" Grid.ColumnSpan="2" Style="{DynamicResource ComboBoxStyle1}" Margin="0,0,29.6,0">
+                <ComboBox Grid.Column="0" HorizontalContentAlignment="Center" x:Name="boxListeRecettes" DisplayMemberPath="Nom" Margin="0,0,30,0" Style="{DynamicResource ComboBoxStyle1}">
                     <ComboBox.Resources>
                         <!-- color of ComboBoxItem -->
                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFFFF2E0" />
@@ -312,10 +334,82 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4D9B3" />
                     </ComboBox.Resources>
                 </ComboBox>
-                <Button Grid.Column="2" x:Name="buttonAjouterRecette" Content="+" Style="{StaticResource RoundButtonTemplate}" Background="#FF30B61C" Margin="0.4,0,15.2,0" FontWeight="Bold" Click="buttonAjouterRecette_Click" BorderBrush="#FFFFFDFD"/>
-                <Button Grid.Column="3" x:Name="buttonRetirerRecette" Content="-" Style="{StaticResource RoundButtonTemplate}" Background="#FFC30000" Margin="14.8,0,68.6,0" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click" BorderBrush="White"/>
-                <TextBox Grid.Column="4" x:Name="boxNbRecette" Foreground="Brown" IsReadOnly="True" Margin="30.2,0,192.5,-1" TextAlignment="Center" BorderBrush="Brown" Background="#FFFFF2E0" Grid.ColumnSpan="2"/>
-                <Button Grid.Column="5" x:Name="buttonAjouterPanier" Content="Ajouter au panier" Style="{StaticResource RoundButtonTemplate}" Margin="30.4,0,0.2,0" Background="#FFDF8100" Click="buttonAjouterPanier_Click" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" FontSize="15" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click" BorderBrush="#FFF7F1F1">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF30B61C"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF1D820E"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" FontSize="15" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click" BorderBrush="White">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF930404"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <TextBox Grid.Column="3" x:Name="boxNbRecette" Foreground="Brown" IsReadOnly="True" Margin="30,0,0,0" VerticalContentAlignment="Center" TextAlignment="Center" BorderBrush="Brown" Background="#FFFFF2E0"/>
+                <Button Grid.Column="4" x:Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Click="buttonAjouterPanier_Click" BorderBrush="Black">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFE17055"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFB05843"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
             <TextBlock Text="Panier" FontWeight="Bold" Foreground="Brown" FontFamily="MV Boli" Margin="0,20,0,0" FontSize="16"/>
             <ListView x:Name="listPanier" Height="260" Foreground="Brown" Margin="0,5,330.2,0" Background="#FFFFF2E0">
@@ -338,14 +432,62 @@
                         <GridViewColumn Header="Supprimer" Width="75">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Background="#FFFD0000" Click="buttonSupprRecette_Click" Height="Auto" Width="30"/>
+                                    <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Click="buttonSupprRecette_Click" Height="Auto" Width="30">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="#FFC30000"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                                                </ContentPresenter>
+                                                            </Border>
+
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#FF930404"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="buttonPaiement" Content="Validation et paiement" Style="{StaticResource RoundButtonTemplate}" Margin="500,-50,50,0" Height="29" Click="buttonPaiement_Click" BorderBrush="Black" Background="#FF3982FD"/>
+            <Button x:Name="buttonPaiement" Content="Validation et paiement" Margin="500,-50,50,0" Height="29" Click="buttonPaiement_Click" BorderBrush="Black">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF3982FD"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                        </ContentPresenter>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF2C64C3"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

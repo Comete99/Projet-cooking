@@ -19,7 +19,31 @@
         </Grid.RowDefinitions>
 
         <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Plats.JPG" Grid.ColumnSpan="2" Margin="118,0,-0.4,0" Grid.RowSpan="3"/>
-        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Suite" Margin="0,35.6,9.6,10" Background="#FFFA1A1A" Foreground="White" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40"></Button>
+        <Button Grid.Row="2" Grid.Column="1" x:Name="btnDemo" Content="Suite" Margin="0,35.6,9.6,10" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FFC30000"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                    </ContentPresenter>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF930404"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         
         <TextBlock Background="#FFFFD874" Grid.Row="0" Text="Grâce à nos nombreux créateurs de recettes, Cooking est heureux de pouvoir vous proposer"  FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" FontSize="28"></TextBlock>
 
