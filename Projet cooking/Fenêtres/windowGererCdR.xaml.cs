@@ -43,8 +43,11 @@ namespace Projet_cooking.Fenêtres
                     if (messageSupprCdR == MessageBoxResult.Yes)
                     {
                         string[] infoCdR = boxCdR.SelectedItem.ToString().Split(' ');
+                        
                         RessourceSQL.supprCdR(infoCdR[0], infoCdR[1]);
                         MessageBoxResult message = MessageBox.Show("Vous avez destitué "+ infoCdR[0]+" "+ infoCdR[1]+" de son statut de CdR, il reste néanmoins client chez Cooking");
+                        boxCdR.Items.Remove(boxCdR.SelectedItem);
+                        boxCdR.Items.Refresh();
                     }
                 }
             }
@@ -82,6 +85,7 @@ namespace Projet_cooking.Fenêtres
                 RessourceSQL.supprRecette(((Recette)boxRecetteCdR.SelectedItem).Nom, ((Recette)boxRecetteCdR.SelectedItem).MailCdR);
                 MessageBoxResult message = MessageBox.Show("Recette supprimée");
                 boxRecetteCdR.Items.Remove((Recette)boxRecetteCdR.SelectedItem);
+                boxRecetteCdR.Items.Refresh();
             }
             catch
             {

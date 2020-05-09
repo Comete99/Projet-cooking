@@ -637,6 +637,38 @@ namespace Projet_cooking.Classes
             reader = command.ExecuteReader();
             connection.Close();
 
+            //On récupère toutes les informations pour transférer le CdR dans la table client
+
+            //Le mot de passe
+            MySqlConnection connectionMDP = new MySqlConnection(connectionString);
+            connectionMDP.Open();
+
+            MySqlCommand commandMDP = connectionMDP.CreateCommand();
+            string requeteMDP = "SELECT mdpCdr FROM cdr WHERE nom =" + "'" + nomCdR + "'" + "AND prenom =" + "'" + prenomCdR + "'" + ";";
+            commandMDP.CommandText = requeteMDP;
+
+            MySqlDataReader readerMDP;
+            readerMDP = commandMDP.ExecuteReader();
+            string mdpCdr = "";
+            while (readerMDP.Read())
+            {
+                mdpCdr = readerMDP.GetValue(0).ToString();
+            }
+            connectionMDP.Close();
+
+            //On l'insère dans la table client
+            MySqlConnection connectionInsertion = new MySqlConnection(connectionString);
+            connectionInsertion.Open();
+            MySqlCommand commandInsertion = connectionInsertion.CreateCommand();
+            string requeteInsertion = "INSERT INTO client (mailClient, nom, prenom, mdpClient) VALUES (" + "'" + mailCdR + "'," + "'" + nomCdR + "'," + "'" + prenomCdR + "'," + "'" + mdpCdr + "') ;";
+            commandInsertion.CommandText = requeteInsertion;
+
+            MySqlDataReader readerInsertion;
+            readerInsertion = commandInsertion.ExecuteReader();
+
+            connectionInsertion.Close();
+
+
             //On supprime le CdR de la table
             MySqlConnection connectionCdR = new MySqlConnection(connectionString);
             connectionCdR.Open();
@@ -646,6 +678,8 @@ namespace Projet_cooking.Classes
             MySqlDataReader readerCdR;
             readerCdR = commandCdR.ExecuteReader();
             toutesRecettes();
+
+            connectionCdR.Close();
         }
         public static void supprRecette(string nomRecette, string mailCdR)
         {
