@@ -404,7 +404,7 @@ namespace Projet_cooking.Classes
                 string[] Ingredients = reader.GetValue(2).ToString().Split(';');
                 foreach(string i in Ingredients)
                 {
-                    string[] ingredient_quantite = i.Split(' ');
+                    string[] ingredient_quantite = i.Split('/');
                     foreach(Produit p in allProduits)
                     {
                         if(p.NomProduit == ingredient_quantite[0])
@@ -475,32 +475,81 @@ namespace Projet_cooking.Classes
                     recette.RemunerationCdRCook = 4;
                 }
 
-                MySqlCommand commandRecette = connection.CreateCommand();
-                string requeteRecette = "UPDATE recette SET prixVente=" + "'" + recette.PrixVente + "'" + ", remuneration=" + recette.RemunerationCdRCook + " AND nbCommande=" + recette.NbCommande + " WHERE mailCdr=" + "'" + recette.MailCdR + "'" + " AND nomRecette=" + "'" + recette.Nom + "'" + ";";
-                commandRecette.CommandText = requeteRecette;
-                MySqlDataReader readerRecette;
-                readerRecette = commandRecette.ExecuteReader();
+            }
+            MySqlCommand commandRecette = connection.CreateCommand();
+            string requeteRecette = "";
+            try
+            {
+                string[] prix = recette.PrixVente.ToString().Split(',');
+                string prixVente = prix[0] + "." + prix[1];
+                requeteRecette = "UPDATE recette SET prixVente=" + prixVente + ", remuneration=" + recette.RemunerationCdRCook + ", nbCommande=" + recette.NbCommande + " WHERE mailCdr=" + "'" + recette.MailCdR + "'" + " AND nomRecette=" + "'" + recette.Nom + "'" + ";";
+            }
+            catch
+            {
+                requeteRecette = "UPDATE recette SET prixVente=" + "'" + recette.PrixVente + "'" + ", remuneration=" + recette.RemunerationCdRCook + ", nbCommande=" + recette.NbCommande + " WHERE mailCdr=" + "'" + recette.MailCdR + "'" + " AND nomRecette=" + "'" + recette.Nom + "'" + ";";
 
-                //On met à jour le stocks des produits
-                foreach (KeyValuePair<Produit, double> produit in recette.Ingredients)
+            }
+            commandRecette.CommandText = requeteRecette;
+            MySqlDataReader readerRecette;
+            readerRecette = commandRecette.ExecuteReader();
+            connection.Close();
+
+            //On met à jour le stocks des produits
+            foreach (KeyValuePair<Produit, double> produit in recette.Ingredients)
+            {
+                MySqlConnection connectionProduit = new MySqlConnection(connectionString);
+                connectionProduit.Open();
+                MySqlCommand commandProduit = connectionProduit.CreateCommand();
+                string requeteProduit = "";
+                try
                 {
-                    MySqlCommand commandProduit = connection.CreateCommand();
-                    string requeteProduit = "UPDATE produit SET stockActuel=" + "'" + produit.Key.StockActuel + "'" + "WHERE nomProduit=" + "'" + produit.Key.NomProduit + "' ;";
-                    commandProduit.CommandText = requeteProduit;
-                    MySqlDataReader readerProduit;
-                    readerProduit = commandProduit.ExecuteReader();
+                    string[] stock = produit.Key.StockActuel.ToString().Split(',');
+                    string stockActuel = stock[0] + "." + stock[1];
+                    requeteProduit = "UPDATE produit SET stockActuel=" + stockActuel + " WHERE nomProduit=" + "'" + produit.Key.NomProduit + "'" + " ;";
                 }
+                catch 
+                {
+                    requeteProduit = "UPDATE produit SET stockActuel=" + produit.Key.StockActuel + " WHERE nomProduit=" + "'" + produit.Key.NomProduit + "'" + " ;";
+
+                }
+                commandProduit.CommandText = requeteProduit;
+                MySqlDataReader readerProduit;
+                readerProduit = commandProduit.ExecuteReader();
+                connectionProduit.Close();
 
             }
             
             //On paie le CdR avec le nb de Cook correspondant
-            MySqlCommand commandCdR = connection.CreateCommand();
-            string requeteCdR = "UPDATE cdr SET nbCook="+"'"+recette.RemunerationCdRCook.ToString()+"'"+ "WHERE mailCdr=" + "'" + recette.MailCdR + "'" + ";";
+            MySqlConnection connectionCdR = new MySqlConnection(connectionString);
+            connectionCdR.Open();
+            MySqlCommand commandCdR = connectionCdR.CreateCommand();
+            int nbCook = recette.RemunerationCdRCook*recette.Quantite + nbCookCdR(recette.MailCdR);
+            string requeteCdR = "UPDATE cdr SET nbCook="+ nbCook + " WHERE mailCdr=" + "'" + recette.MailCdR + "'" + ";";
             commandCdR.CommandText = requeteCdR;
             MySqlDataReader readerCdR;
             readerCdR = commandCdR.ExecuteReader();
-
+            connectionCdR.Close();
         }
+        public static int nbCookCdR(string mailCdR)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            string requete = "SELECT nbCook FROM cdr WHERE mailCdR=" + "'" + mailCdR + "'" + " ;";
+            command.CommandText = requete;
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            int nbCook = 0;
+            while (reader.Read())
+            {
+                nbCook = reader.GetInt32(0);
+            }
+            return nbCook;
+        }
+
         public static void ajouterRecette(Recette recette)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
@@ -511,7 +560,7 @@ namespace Projet_cooking.Classes
             string ingredients = "";
             foreach (KeyValuePair<Produit, double> produit in recette.Ingredients)
             {
-                ingredients+=produit.Key.NomProduit + " " + produit.Value+";";
+                ingredients+=produit.Key.NomProduit + "/" + produit.Value+";";
             }
             ingredients = ingredients.Remove(ingredients.Length - 1);
             string requete = "INSERT INTO recette (nomRecette, type, ingredients, descriptif, prixVente, remuneration, mailCdR) VALUES (" + "'" + recette.Nom + "'," + "'" + recette.Type + "'," + "'" + ingredients + "'," + "'" + recette.Descriptif + "'," + "'" + recette.PrixVente.ToString() + "'," + "'" + recette.RemunerationCdRCook.ToString() + "'," + "'" + recette.MailCdR + "') ;";
