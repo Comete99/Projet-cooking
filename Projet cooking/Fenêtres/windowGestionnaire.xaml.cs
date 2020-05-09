@@ -113,5 +113,12 @@ namespace Projet_cooking.Fenêtres
             w.Show();
             this.Hide();
         }
+
+        private void buttonDeconnexion_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = new MainWindow();
+            w.Show();
+            this.Hide();
+        }
     }
 }

@@ -8,7 +8,43 @@
         Title="windowGestionnaire" Height="450" Width="900" Background="#FFFFF7B1">
     <Grid>
         <StackPanel Margin="15" Background="#FFFFD874">
-            <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" FontFamily="MV Boli" Foreground="Brown" Margin="0,0,130.2,0" FontSize="24"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" FontFamily="MV Boli" Foreground="Brown" Margin="0,0,130.2,0" FontSize="24"/>
+
+                <Button x:Name="buttonDeconnexion" Grid.Column="1" Content="Deconnexion" Margin="5" Click="buttonDeconnexion_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF930404"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+            </Grid>
+            
             <Grid Margin="0,30,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

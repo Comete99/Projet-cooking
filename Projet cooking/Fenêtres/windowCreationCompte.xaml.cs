@@ -100,5 +100,12 @@ namespace Projet_cooking.Fenêtres
 
             
         }
+
+        private void buttonRetour_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = new MainWindow();
+            w.Show();
+            this.Hide();
+        }
     }
 }

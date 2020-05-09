@@ -156,5 +156,12 @@ namespace Projet_cooking.Fenêtres
             Recette r = button.DataContext as Recette;
             listPanier.Items.Remove(r);
         }
+
+        private void buttonDeconnexion_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = new MainWindow();
+            w.Show();
+            this.Hide();
+        }
     }
 }

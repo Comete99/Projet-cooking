@@ -312,7 +312,45 @@
     </Window.Resources>
     <Grid>
         <StackPanel Margin="15" Background="#FFFFD874">
-            <TextBlock Text="Une idée ? Une recette" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Cursor="None" FontFamily="MV Boli" FontSize="16" Foreground="Brown"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Text="Une idée ? Une recette" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Cursor="None" FontFamily="MV Boli" FontSize="16" Foreground="Brown"/>
+
+                <Button x:Name="buttonRetour" Grid.Column="2" Content="Retour" Margin="5 10" Click="buttonRetour_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFC30000"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                            </ContentPresenter>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF930404"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+                
+            </Grid>
+            
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
