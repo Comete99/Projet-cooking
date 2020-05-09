@@ -14,7 +14,7 @@ namespace Projet_cooking.Classes
         //public static MySqlConnection connection;
         public static List<Recette> allRecettes = new List<Recette> { };
         public static List<Produit> allProduits = new List<Produit> { };
-        public static string mdp_utilisateur = "Nico72Newbie05";
+        public static string mdp_utilisateur = "SQL.ESILV.Comete.99";
 
         public static Recette rechercheRecette(string nom)
         {
@@ -53,6 +53,32 @@ namespace Projet_cooking.Classes
                 return true;
             }
         }
+        public static string[] nom_prenom_Client(string mail)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + RessourceSQL.mdp_utilisateur + ";Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT nom,prenom FROM Client where mailClient='" + mail + "';";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string[] tab = null;
+
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                tab = currentRowAsString.Split(',');
+            }
+            return tab;
+        }
+        
         public static bool est_CdR(string mail, string mdp)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
@@ -78,6 +104,31 @@ namespace Projet_cooking.Classes
             {
                 return true;
             }
+        }
+        public static string[] nom_prenom_CdR(string mail)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + RessourceSQL.mdp_utilisateur + ";Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT mailCdr,nom,prenom,nbCook FROM cdr where mailCdr='" + mail + "';";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string[] tab = null;
+
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                tab = currentRowAsString.Split(',');
+            }
+            return tab;
         }
         public static bool est_gestionnaire(string mail, string mdp)
         {
@@ -105,100 +156,19 @@ namespace Projet_cooking.Classes
                 return true;
             }
         }
-
-
-
-        //On récolte tous les mails
-        #region : Get All Mails
-        public static List<string> allMails()
+        public static string[] nom_prenom_Gestionnaire(string mail)
         {
-            List<string> clients = Mails_Client();
-            List<string> cdrs = Mails_Cdr();
-            List<string> gerants = Mails_Gestionnaire();
-
-            List<string> liste = new List<string>();
-
-            for (int i = 0; i < clients.Count; i++)
-            {
-                liste.Add(clients[i]);
-            }
-
-            for (int i = 0; i < cdrs.Count; i++)
-            {
-                liste.Add(cdrs[i]);
-            }
-
-            for (int i = 0; i < gerants.Count; i++)
-            {
-                liste.Add(gerants[i]);
-            }
-
-            for (int i = 0; i < liste.Count; i++)
-            {
-                Console.WriteLine(liste[i]);
-            }
-
-            return liste;
-        }
-
-        public static List<string> Mails_Client()
-        {
-            List<string> liste = new List<string>();
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + RessourceSQL.mdp_utilisateur + ";Convert Zero Datetime=True";
             MySqlConnection connection = new MySqlConnection(connectionString);
-
-            ///On liste les mails des clients
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT mailClient from client";
+            command.CommandText = "SELECT nom,prenom FROM gestionnaire where mailGestionnaire='" + mail + "';";
 
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-            string resultat = "";
             string[] tab = null;
-            while (reader.Read())
-            {
-                string currentRowAsString = "";
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string valueAsString = reader.GetValue(i).ToString();
-                    currentRowAsString += valueAsString + ",";
-                    resultat += currentRowAsString;
-                }
-                tab = resultat.Split(',');
-            }
 
-            if (tab != null)
-            {
-                for (int i = 0; i < tab.Length; i++)
-                {
-                    liste.Add(tab[i]);
-                }
-            }
-            connection.Close();
-
-
-            return liste;
-        }
-
-        public static List<string> Mails_Cdr()
-        {
-            List<string> liste = new List<string>();
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-
-            connection.Open();
-
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT mailCdr from cdr";
-
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-            string resultat = "";
-            string[] tab = null;
             while (reader.Read())
             {
                 string currentRowAsString = "";
@@ -207,69 +177,10 @@ namespace Projet_cooking.Classes
                     string valueAsString = reader.GetValue(i).ToString();
                     currentRowAsString += valueAsString + ",";
                 }
-                resultat += currentRowAsString;
-                ///Console.WriteLine(currentRowAsString);
-                tab = resultat.Split(',');
+                tab = currentRowAsString.Split(',');
             }
-
-            if (tab != null)
-            {
-                for (int i = 0; i < tab.Length; i++)
-                {
-                    liste.Add(tab[i]);
-                }
-            }
-
-            connection.Close();
-
-            return liste;
+            return tab;
         }
-
-        public static List<string> Mails_Gestionnaire()
-        {
-            List<string> liste = new List<string>();
-
-            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-
-            connection.Open();
-
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT mailGestionnaire from gestionnaire";
-
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-            string resultat = "";
-            string[] tab = null;
-            while (reader.Read())
-            {
-                string currentRowAsString = "";
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string valueAsString = reader.GetValue(i).ToString();
-                    currentRowAsString += valueAsString + ",";
-                }
-                resultat += currentRowAsString;
-                ///Console.WriteLine(currentRowAsString);
-                tab = resultat.Split(',');
-            }
-
-            if (tab != null)
-            {
-                for (int i = 0; i < tab.Length; i++)
-                {
-                    liste.Add(tab[i]);
-                }
-            }
-
-            connection.Close();
-
-            return liste;
-
-        }
-
-        #endregion
-
 
         public static List<string> recetteCdR(string mail)
         {
@@ -376,6 +287,7 @@ namespace Projet_cooking.Classes
                 produitTable.NomFournisseur = reader.GetValue(6).ToString();
                 allProduits.Add(produitTable);
             }
+            allProduits.Sort();
         }
         public static void CdRPaiementCook(Recette recette, bool commande10, bool commande50)
         {
@@ -403,10 +315,20 @@ namespace Projet_cooking.Classes
                 }
 
                 MySqlCommand commandRecette = connection.CreateCommand();
-                string requeteRecette = "UPDATE recette SET prixVente=" + "'"+ recette.PrixVente.ToString() + "'"+ "AND remuneration=" + "'" + recette.RemunerationCdRCook.ToString() +"'"+ "WHERE mailCdr=" + "'" + recette.MailCdR + "'" + " AND nomRecette=" + "'" + recette.Nom + "'" + ";";
+                string requeteRecette = "UPDATE recette SET prixVente=" + "'" + recette.PrixVente + "'" + ", remuneration=" + recette.RemunerationCdRCook + " AND nbCommande=" + recette.NbCommande + " WHERE mailCdr=" + "'" + recette.MailCdR + "'" + " AND nomRecette=" + "'" + recette.Nom + "'" + ";";
                 commandRecette.CommandText = requeteRecette;
                 MySqlDataReader readerRecette;
                 readerRecette = commandRecette.ExecuteReader();
+
+                //On met à jour le stocks des produits
+                foreach (KeyValuePair<Produit, double> produit in recette.Ingredients)
+                {
+                    MySqlCommand commandProduit = connection.CreateCommand();
+                    string requeteProduit = "UPDATE produit SET stockActuel=" + "'" + produit.Key.StockActuel + "'" + "WHERE nomProduit=" + "'" + produit.Key.NomProduit + "' ;";
+                    commandProduit.CommandText = requeteProduit;
+                    MySqlDataReader readerProduit;
+                    readerProduit = commandProduit.ExecuteReader();
+                }
 
             }
             
@@ -509,6 +431,7 @@ namespace Projet_cooking.Classes
             requete = "DELETE FROM cdr WHERE mailCdR =" + "'" + mailCdR + "'" + ";";
             command.CommandText = requete;
             reader = command.ExecuteReader();
+            toutesRecettes();
         }
         public static void supprRecette(string nomRecette, string mailCdR)
         {
@@ -522,7 +445,7 @@ namespace Projet_cooking.Classes
             command.CommandText = requete;
             MySqlDataReader reader;
             reader = command.ExecuteReader();
-            RessourceSQL.toutesRecettes();
+            toutesRecettes();
         }
         public static void devenirCdR(string nom, string prenom)
         {
@@ -702,19 +625,18 @@ namespace Projet_cooking.Classes
             XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
             docXml.InsertBefore(xmldecl, racine);
 
-            // création noeud fournisseur
             XmlNode fournisseur = docXml.CreateElement("Fournisseur");
-            
-
             string nomFournisseur = "";
 
             while (reader.Read())
             {
                 if (reader.GetValue(0).ToString()!=nomFournisseur)
                 {
+                    XmlNode newFournisseur = docXml.CreateElement("Fournisseur");
                     nomFournisseur = reader.GetValue(0).ToString();
-                    fournisseur.InnerText = nomFournisseur;
-                    racine.AppendChild(fournisseur);
+                    newFournisseur.InnerText = nomFournisseur;
+                    racine.AppendChild(newFournisseur);
+                    fournisseur = newFournisseur;
                 }
                 string nomProduit = reader.GetValue(1).ToString();
                 double quantiteCommandee = reader.GetDouble(2);

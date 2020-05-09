@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowGererStocks" Height="450" Width="850" WindowStartupLocation="CenterScreen">
+        Title="windowGererStocks" Height="450" Width="850" WindowStartupLocation="CenterScreen" Background="#FFFFF7B1">
     <Grid>
         <StackPanel>
             <Label Content="Stocks" FontWeight="Bold" Margin="10" FontSize="18"/>
@@ -24,26 +24,32 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Produits" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                <ComboBox Grid.Row="1" Grid.Column="0" x:Name="boxIngredients" DisplayMemberPath="NomProduit" Margin="10,0,10,0" DropDownClosed="boxIngredients_DropDownClosed"/>
+                <ComboBox Grid.Row="1" HorizontalContentAlignment="Center" Grid.Column="0" x:Name="boxIngredients" DisplayMemberPath="NomProduit" Margin="10,0,10,0" DropDownClosed="boxIngredients_DropDownClosed"/>
                 <Label Grid.Row="0" Grid.Column="1" Content="Quantité actuelle"/>
-                <TextBox x:Name="boxQteActuelle" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="25,0,25,0"/>
+                <TextBox x:Name="boxQteActuelle" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="25,0,25,0" TextAlignment="Center" BorderBrush="Black"/>
                 <Label Grid.Row="0" Grid.Column="2" Content="Quantité max" HorizontalAlignment="Center"/>
-                <TextBox x:Name="boxQteMax" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Margin="20,0,20,0"/>
+                <TextBox x:Name="boxQteMax" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Margin="20,0,20,0" TextAlignment="Center" BorderBrush="Black"/>
                 <Label Grid.Row="0" Grid.Column="3" Content="Quantité min" HorizontalAlignment="Center"/>
-                <TextBox x:Name="boxQteMin" Grid.Row="1" Grid.Column="3" IsReadOnly="True" Margin="20,0,20,0"/>
+                <TextBox x:Name="boxQteMin" Grid.Row="1" Grid.Column="3" IsReadOnly="True" Margin="20,0,20,0" TextAlignment="Center" BorderBrush="Black"/>
                 <Label Grid.Row="0" Grid.Column="4" Content="Commande" HorizontalAlignment="Center"/>
-                <TextBox x:Name="boxQteCommande" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="20,0,20,0"/>
+                <TextBox x:Name="boxQteCommande" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="20,0,20,0" TextAlignment="Center" BorderBrush="Black"/>
                 <Label Grid.Row="0" Grid.Column="5" Content="Fournisseur" HorizontalAlignment="Center" Margin="0,0,15,0"/>
-                <ComboBox x:Name="boxFournisseur" Grid.Row="1" Grid.Column="5" Margin="0,0,15,0"/>
-                <Button x:Name="buttonCommander" Content="Commander" Grid.Row="1" Grid.Column="6" Margin="5.2,0.4,5.2,0" Click="buttonCommander_Click"/>
+                <ComboBox x:Name="boxFournisseur" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="5" Margin="0,0,15,0"/>
+                <Button x:Name="buttonCommander" Content="Commander" Grid.Row="1" Grid.Column="6" Margin="5.2,0.4,5.2,0" Click="buttonCommander_Click" BorderBrush="Black"/>
             </Grid>
-            <ListView x:Name="listProduit" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <ListView x:Name="listProduit" HorizontalAlignment="Center" Margin="0,20,0,0" MaxHeight="250" Background="#FFFAB1A0">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Produit" Width="120" DisplayMemberBinding="{Binding NomProduit, Mode=TwoWay}"/>
                         <GridViewColumn Header="Quantité actuelle" Width="110" DisplayMemberBinding="{Binding StockActuel, Mode=TwoWay}"/>
                         <GridViewColumn Header="Quantité max" Width="100" DisplayMemberBinding="{Binding StockMax, Mode=TwoWay}"/>
                         <GridViewColumn Header="Quantité min" Width="100" DisplayMemberBinding="{Binding StockMin, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Unité" Width="60" DisplayMemberBinding="{Binding Unite, Mode=TwoWay}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

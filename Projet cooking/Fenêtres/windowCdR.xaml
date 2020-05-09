@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowCdR" Height="500" Width="800">
+        Title="windowCdR" Height="500" Width="800" Background="#FFFFF7B1">
     <Grid>
         <StackPanel Margin="15">
             <TextBlock x:Name="messageConnection" Text="Bienvenue " FontWeight="Bold" Margin="0,0,130.2,0" FontSize="24"/>
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Cook : " Margin="650,0,0,0"/>
-                    <TextBox x:Name="nbCook" Margin="0,0,0,0" Width="46" Height="20"/>
+                    <TextBox x:Name="nbCook" Margin="0,0,0,0" Width="46" Height="20" TextAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <Button x:Name="buttonRecettes" Content="Gérer mes recettes" Margin="600,3,0.2,0" Height="17" Background="#FFFDE37F" Click="buttonRecettes_Click"/>
-            <Grid Margin="0,20,0,0">
+            <Button x:Name="buttonRecettes" Content="Gérer mes recettes" Margin="600,3,0.2,0" Height="27" Background="#FFFDDC5B" Click="buttonRecettes_Click" BorderBrush="Black"/>
+            <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
@@ -24,24 +24,42 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Name="boxListeRecettes" DisplayMemberPath="Nom" Margin="0,0,30,0"/>
-                <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click"/>
-                <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click"/>
-                <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0"/>
-                <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFE48383" Click="buttonAjouterPanier_Click"/>
+                <ComboBox Grid.Column="0" HorizontalContentAlignment="Center" Name="boxListeRecettes" DisplayMemberPath="Nom" Margin="0,0,30,0"/>
+                <Button Grid.Column="1" x:Name="buttonAjouterRecette" Content="+" Background="#FF34E507" Margin="0,0,15,0" FontWeight="Bold" Click="buttonAjouterRecette_Click" BorderBrush="#FFF7F1F1"/>
+                <Button Grid.Column="2" x:Name="buttonRetirerRecette" Content="-" Background="#FFD30202" Margin="14.8,0,68.6,0.4" FontWeight="Bold" RenderTransformOrigin="0.502,0.5" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom" Click="buttonRetirerRecette_Click" BorderBrush="White"/>
+                <TextBox Grid.Column="3" x:Name="boxNbRecette" IsReadOnly="True" Margin="30,0,0,0" VerticalContentAlignment="Center" TextAlignment="Center" BorderBrush="Black"/>
+                <Button Grid.Column="4" Name="buttonAjouterPanier" Content="Ajouter au panier" Margin="30,0,0,0" Background="#FFFAB1A0" Click="buttonAjouterPanier_Click" BorderBrush="Black"/>
             </Grid>
-            <TextBlock Text="Panier" FontWeight="Bold" Margin="0,20,700,0"/>
-            <ListView x:Name="listPanier" Height="260" Margin="0,5,400.2,0">
+            <TextBlock Text="Panier" FontWeight="Bold" Margin="0,20,700,0" FontSize="16"/>
+            <ListView x:Name="listPanier" Height="260" Margin="0,5,330.2,0" Background="#FFFAB1A0">
+                <ListView.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FF080101" Offset="1"/>
+                    </LinearGradientBrush>
+                </ListView.BorderBrush>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Recette" Width="160" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Recette" Width="155" DisplayMemberBinding="{Binding Nom, Mode=TwoWay}"/>
                         <GridViewColumn Header="Quantite" Width="80" DisplayMemberBinding="{Binding Quantite, Mode=TwoWay}"/>
-                        <GridViewColumn Header="Prix (en €)" Width="118" DisplayMemberBinding="{Binding PrixTotal, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Prix (en Cook)" Width="118" DisplayMemberBinding="{Binding PrixTotal, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Supprimer" Width="75">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="buttonSupprRecette" Content="X" CommandParameter="{Binding}" Background="#FFFD0000" Click="buttonSupprRecette_Click" Height="Auto" Width="30"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="buttonPaiementCB" Content="Payer par CB" Margin="400,-50,200,0" Height="29" Click="buttonPaiementCB_Click"/>
-            <Button x:Name="buttonPaiementCook" Content="Payer avec Cook" Margin="600,-50,0.2,0" Height="29" Click="buttonPaiementCook_Click"/>
+            <Button x:Name="buttonPaiementCB" Content="Payer par CB" Margin="460,-50,170,0" Height="29" Click="buttonPaiementCB_Click" BorderBrush="Black" Background="#FF74B9FF"/>
+            <Button x:Name="buttonPaiementCook" Content="Payer avec Cook" Margin="620,-50,10,0" Height="29" Click="buttonPaiementCook_Click" BorderBrush="Black" Background="#FF74B9FF"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -56,7 +56,7 @@ namespace Projet_cooking.Classes
         }
         public int CompareTo(Produit p)
         {
-            return this.nomFournisseur.CompareTo(p.nomFournisseur);
+            return this.categorie.CompareTo(p.Categorie);
         }
     }
 }

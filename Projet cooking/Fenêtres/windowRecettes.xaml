@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         mc:Ignorable="d"
-        Title="windowRecettes" Height="500" Width="800">
+        Title="windowRecettes" Height="500" Width="800" Background="#FFFFF7B1">
     <Grid>
-        <TextBox x:Name="boxTest"/>
         <TextBlock x:Name="messageConnection" Text="Mes Recettes" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
         
         <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="650,150,20,240" Click="buttonAjouterRecette_Click"/>
         <Button x:Name="buttonRetourAuMenu" Content="Retour au menu" Margin="650,280,20,110" Click="buttonRetourAuMenu_Click"/>
-        <ListView x:Name="listRecettes" Margin="10,60,150,0" Width="600" Height="380" HorizontalAlignment="Center">
+        <ListView x:Name="listRecettes" Margin="10,60,150,0" Width="600" MaxHeight="380" HorizontalContentAlignment="Center" Background="#FFF7E497">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />

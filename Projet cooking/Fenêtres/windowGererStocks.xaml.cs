@@ -29,21 +29,19 @@ namespace Projet_cooking.Fenêtres
                 boxIngredients.Items.Add(p);
                 listProduit.Items.Add(p);
             }
-            foreach(string f in RessourceSQL.listeFournisseur())
-            {
-                boxFournisseur.Items.Add(f);
-            }
         }
 
         private void boxIngredients_DropDownClosed(object sender, EventArgs e)
         {
             if (boxIngredients.SelectedItem != null)
             {
+                boxFournisseur.Items.Clear();
                 boxQteCommande.Text = "0";
                 Produit produitSelectionne = (Produit)boxIngredients.SelectedItem;
                 boxQteMax.Text = produitSelectionne.StockMax.ToString() + " " + produitSelectionne.Unite;
                 boxQteMin.Text = produitSelectionne.StockMin.ToString() + " " + produitSelectionne.Unite;
                 boxQteActuelle.Text = produitSelectionne.StockActuel.ToString() + " " + produitSelectionne.Unite;
+                boxFournisseur.Items.Add(produitSelectionne.NomFournisseur);
                 boxQteCommande.Text = (produitSelectionne.StockMax - produitSelectionne.StockActuel).ToString() + " " + produitSelectionne.Unite;
             }
         }

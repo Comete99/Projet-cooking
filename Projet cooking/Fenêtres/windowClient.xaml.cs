@@ -97,8 +97,9 @@ namespace Projet_cooking.Fenêtres
                 //Verifier stock
                 foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
                 {
-                    if (produit.Value * r.Quantite < produit.Key.StockActuel)
+                    if (produit.Value * r.Quantite > produit.Key.StockActuel)
                     {
+                        r.Quantite = 0;
                         listPanier.Items.Remove(r);
                         MessageBoxResult message = MessageBox.Show("Veuillez-nous excuser mais la recette : " + r.Nom + " ne peut pas être commandée par manque de " + produit.Key.NomProduit + "cette recette a été retirée de votre panier, veuillez repasser la commande si vous le souhaitez");
                         return;
@@ -118,22 +119,25 @@ namespace Projet_cooking.Fenêtres
                 {
                     if (r.NbCommande + r.Quantite >= 50)
                     {
+                        r.NbCommande += r.Quantite;
                         RessourceSQL.CdRPaiementCook(r, true, true);
                     }
                     else
                     {
+                        r.NbCommande += r.Quantite;
                         RessourceSQL.CdRPaiementCook(r, true, false);
                     }
                 }
                 else if (r.NbCommande < 50 && r.NbCommande + r.Quantite >= 50)
                 {
+                    r.NbCommande += r.Quantite;
                     RessourceSQL.CdRPaiementCook(r, false, true);
                 }
                 else
                 {
+                    r.NbCommande += r.Quantite;
                     RessourceSQL.CdRPaiementCook(r, false, false);
                 }
-                r.NbCommande += r.Quantite;
                 for (int i = 0; i < r.Quantite; i++)
                 {
                     r.Commandes.Add(DateTime.Now);
@@ -144,6 +148,13 @@ namespace Projet_cooking.Fenêtres
             }
             MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
             listPanier.Items.Clear();
+        }
+
+        private void buttonSupprRecette_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Recette r = button.DataContext as Recette;
+            listPanier.Items.Remove(r);
         }
     }
 }

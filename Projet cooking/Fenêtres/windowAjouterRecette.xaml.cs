@@ -36,8 +36,8 @@ namespace Projet_cooking.Fenêtres
 
         private void validerRecette_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
                 nouvelleRecette.RemunerationCdRCook = 2;
                 nouvelleRecette.MailCdR = mailCdR;
@@ -46,11 +46,11 @@ namespace Projet_cooking.Fenêtres
                 recettesCdR.listRecettes.Items.Add(nouvelleRecette);
                 recettesCdR.Show();
                 this.Close();
-            //}
-            //catch
-            //{
-            //    MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
-            //}
+            }
+            catch
+            {
+                MessageBoxResult message = MessageBox.Show("Informations incorrectes, veuillez vérifier les informations saisies.");
+            }
 
         }
 
@@ -71,6 +71,7 @@ namespace Projet_cooking.Fenêtres
                 boxListeIngredients.Items.Remove(p);
                 boxListeIngredients.Items.Refresh();
                 labelUnite.Content = "";
+                boxQuantite.Text = "0";
             }
         }
 
