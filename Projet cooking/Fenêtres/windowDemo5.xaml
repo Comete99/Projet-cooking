@@ -11,7 +11,7 @@
         <TextBlock Height="50" VerticalAlignment="Top" Background="#FFFFD874" Text="Voici un aperçu des produits actuellement en stock ainsi que leurs quantitées. Comme vous le voyez, nous en possédons une grande quantité, chaque produit est issu de fournisseurs locaux." FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" Margin="10,10,136.6,0"/>
 
 
-        <ListView x:Name="listProduits" Margin="10,60,150,0" Width="600" Height="380" HorizontalAlignment="Center">
+        <ListView x:Name="listProduits" Margin="10,60,150,0" Background="#FFFFF2E0" Width="600" Height="380" HorizontalAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />

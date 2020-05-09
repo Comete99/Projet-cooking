@@ -253,6 +253,7 @@
     <Resource Include="Images\Demo_3.JPG" />
     <Resource Include="Images\Miam miam.JPG" />
     <Resource Include="Images\Miam.JPG" />
+    <Resource Include="Images\Cdr d%27or.jpg" />
     <Content Include="Images\oignon.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

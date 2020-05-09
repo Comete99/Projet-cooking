@@ -182,6 +182,167 @@ namespace Projet_cooking.Classes
             return tab;
         }
 
+
+        public static List<string> allMails()
+        {
+            List<string> clients = Mails_Client();
+            List<string> cdrs = Mails_Cdr();
+            List<string> gerants = Mails_Gestionnaire();
+
+            List<string> liste = new List<string>();
+
+            for (int i = 0; i < clients.Count; i++)
+            {
+                liste.Add(clients[i]);
+            }
+
+            for (int i = 0; i < cdrs.Count; i++)
+            {
+                liste.Add(cdrs[i]);
+            }
+
+            for (int i = 0; i < gerants.Count; i++)
+            {
+                liste.Add(gerants[i]);
+            }
+
+            for (int i = 0; i < liste.Count; i++)
+            {
+                Console.WriteLine(liste[i]);
+            }
+
+            return liste;
+        }
+
+        public static List<string> Mails_Client()
+        {
+            List<string> liste = new List<string>();
+
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            ///On liste les mails des clients
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT mailClient from client";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string resultat = "";
+            string[] tab = null;
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                    resultat += currentRowAsString;
+                }
+                tab = resultat.Split(',');
+            }
+
+            if (tab != null)
+            {
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    liste.Add(tab[i]);
+                }
+            }
+            connection.Close();
+
+
+            return liste;
+        }
+
+        public static List<string> Mails_Cdr()
+        {
+            List<string> liste = new List<string>();
+
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT mailCdr from cdr";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string resultat = "";
+            string[] tab = null;
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                resultat += currentRowAsString;
+                ///Console.WriteLine(currentRowAsString);
+                tab = resultat.Split(',');
+            }
+
+            if (tab != null)
+            {
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    liste.Add(tab[i]);
+                }
+            }
+
+            connection.Close();
+
+            return liste;
+        }
+
+        public static List<string> Mails_Gestionnaire()
+        {
+            List<string> liste = new List<string>();
+
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=Nico72Newbie05;Convert Zero Datetime=True";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            connection.Open();
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT mailGestionnaire from gestionnaire";
+
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            string resultat = "";
+            string[] tab = null;
+            while (reader.Read())
+            {
+                string currentRowAsString = "";
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string valueAsString = reader.GetValue(i).ToString();
+                    currentRowAsString += valueAsString + ",";
+                }
+                resultat += currentRowAsString;
+                ///Console.WriteLine(currentRowAsString);
+                tab = resultat.Split(',');
+            }
+
+            if (tab != null)
+            {
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    liste.Add(tab[i]);
+                }
+            }
+
+            connection.Close();
+
+            return liste;
+
+        }
+
+
+
         public static List<string> recetteCdR(string mail)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";

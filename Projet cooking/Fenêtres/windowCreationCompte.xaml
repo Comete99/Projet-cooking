@@ -12,27 +12,27 @@
             <Separator/>
             <Label Content="Nom" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="415"/>
             <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,0,0" Width="400" HorizontalAlignment="Left">
-                <TextBox x:Name="txtNom" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+                <TextBox x:Name="txtNom" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
             </Border>
 
             <Label Content="Prenom" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
             <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,0,0" HorizontalAlignment="Left" Width="400">
-                <TextBox x:Name="txtPrenom" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+                <TextBox x:Name="txtPrenom" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
             </Border>
 
             <Label Content="Mail" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
             <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400" >
-                <TextBox x:Name="txtMail" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+                <TextBox x:Name="txtMail" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
             </Border>
 
             <Label Content="Mot de passe" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
             <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400">
-                <TextBox x:Name="txtMDP" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+                <TextBox x:Name="txtMDP" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
             </Border>
 
             <Label Content="Verification du mot de passe" Foreground="Brown" FontSize="15"  HorizontalAlignment="Left" Margin="10,0,0,0" Width="400"/>
             <Border CornerRadius="5" BorderThickness="1" BorderBrush="Brown" Margin="10,0,42.8,0" HorizontalAlignment="Left" Width="400">
-                <TextBox x:Name="txtVerification" Background="#FFFFF2E0" Foreground="Black" FontSize="18"/>
+                <TextBox x:Name="txtVerification" Background="#FFFFF2E0" Foreground="Brown" FontSize="18"/>
             </Border>
 
 

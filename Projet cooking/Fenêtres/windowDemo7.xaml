@@ -24,7 +24,7 @@
 
         <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RoundButtonTemplate}" x:Name="btnDemo" Content="Retour au Menu" Margin="0,29.6,9.6,20" Background="#FFFA1A1A" Foreground="White" FontSize="15" Click="btnDemo_Click" HorizontalAlignment="Right" Width="120" Height="40"  RenderTransformOrigin="0.5,0.5"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Fin du mode Démo !" FontSize="30" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Fin du mode Démo !" FontWeight="Bold" FontSize="30" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" VerticalAlignment="Center"/>
 
 
         <TextBlock Background="#FFFFD874" Grid.Column="1" Text="Merci d'avoir testé le mode démo.     Nous espérons que cet avant-goût de Cooking vous a mis en appétit et vous donnera envie de participer au développement de notre plateforme   quelque soit votre statut." FontSize="17" FontFamily="MV Boli" TextAlignment="Center" TextWrapping="Wrap" Foreground="Brown" HorizontalAlignment="Center" VerticalAlignment="Center" Height="180" Margin="0.4,90,0,0.4" Grid.RowSpan="2" />
