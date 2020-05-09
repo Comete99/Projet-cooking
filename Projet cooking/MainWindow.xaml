@@ -100,9 +100,11 @@
                     </Button.Style>
                 </Button>
             </StackPanel>
+
+
         </StackPanel>
 
-
+        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Label bio.JPG" Height="48" Margin="727,342,-0.4,30" HorizontalAlignment="Left" Width="67" />
 
     </Grid>
 </Window>

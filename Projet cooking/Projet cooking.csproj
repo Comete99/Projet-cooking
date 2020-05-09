@@ -244,6 +244,7 @@
     <Resource Include="Images\legume.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Panier.JPG" />
     <Resource Include="Images\Plats.JPG" />
     <Resource Include="Images\Accueil1.JPG" />
     <Resource Include="Images\Creation compte.JPG" />
@@ -254,6 +255,7 @@
     <Resource Include="Images\Miam miam.JPG" />
     <Resource Include="Images\Miam.JPG" />
     <Resource Include="Images\Cdr d%27or.jpg" />
+    <Resource Include="Images\Label bio.JPG" />
     <Content Include="Images\oignon.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
