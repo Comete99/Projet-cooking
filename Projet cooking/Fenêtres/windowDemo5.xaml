@@ -56,7 +56,7 @@
             </Button.Style>
         </Button>
 
-        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Label bio.JPG" Height="48" Margin="695,0,-28.4,322.4" HorizontalAlignment="Left" Width="67" />
+        <Image Source="/Projet cooking;component/bin/Debug/Label bio.JPG" Height="48" Margin="695,0,-28.4,322.4" HorizontalAlignment="Left" Width="67" />
 
     </Grid>
 </Window>

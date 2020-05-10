@@ -19,8 +19,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="0,0,203.4,-1"></Image>
-                <Image Grid.Column="1" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="205.8,0,-0.4,0" ></Image>
+                <Image Grid.Column="0" Source="/Projet cooking;component/Images/Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="0,0,203.4,-1"></Image>
+                <Image Grid.Column="1" Source="/Projet cooking;component/Images/Demo_1_bis.JPG" Grid.ColumnSpan="2" Margin="205.8,0,-0.4,0" ></Image>
 
                 <TextBlock FontSize="19" FontFamily="MV Boli" Foreground="Brown" Background="#FFFFF7B1" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Height="180" HorizontalAlignment="Right" Margin="0,0,0.4,-1" Width="367" Grid.ColumnSpan="2">
                     <LineBreak/>

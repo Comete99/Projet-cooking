@@ -303,7 +303,7 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="1" Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Demo_3.JPG" Grid.ColumnSpan="2" Margin="83.2,0,-0.4,0" Grid.RowSpan="4"/>
+        <Image Grid.Column="1" Source="/Projet cooking;component/Images/Demo_3.JPG" Grid.ColumnSpan="2" Margin="83.2,0,-0.4,0" Grid.RowSpan="4"/>
         <Button Grid.Column="2" Grid.Row="3" x:Name="btnDemo" Content="Suite" Margin="0,84,9.6,20" FontSize="18" Click="btnDemo_Click" HorizontalAlignment="Right" Width="70" Height="40">
             <Button.Style>
                 <Style TargetType="Button">

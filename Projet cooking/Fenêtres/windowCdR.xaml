@@ -552,7 +552,7 @@
             </Button>
         </StackPanel>
 
-        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Panier.JPG" Margin="413,202,-28.4,106.4" />
+        <Image Source="/Projet cooking;component/Images/Panier.JPG" Margin="413,202,-28.4,106.4" />
 
     </Grid>
 </Window>
