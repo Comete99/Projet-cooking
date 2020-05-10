@@ -231,6 +231,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\Accueil1 - Raccourci.lnk" />
+    <None Include="bin\Debug\Projet cooking.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -256,7 +258,22 @@
     <Resource Include="Images\Miam.JPG" />
     <Resource Include="Images\Cdr d%27or.jpg" />
     <Resource Include="Images\Label bio.JPG" />
+    <Content Include="bin\Debug\BouncyCastle.Crypto.dll" />
+    <Content Include="bin\Debug\Google.Protobuf.dll" />
+    <Resource Include="bin\Debug\Google.Protobuf.xml" />
+    <Resource Include="bin\Debug\Label bio.JPG" />
+    <Content Include="bin\Debug\MySql.Data.dll" />
+    <Resource Include="bin\Debug\MySql.Data.xml" />
+    <Content Include="bin\Debug\Projet cooking.exe" />
+    <Content Include="bin\Debug\Projet cooking.pdb" />
+    <Resource Include="bin\Debug\Reapprovisionnement_Hebdo.xml" />
+    <Content Include="bin\Debug\Renci.SshNet.dll" />
+    <Resource Include="bin\Debug\Renci.SshNet.xml" />
+    <Content Include="bin\Debug\Ubiety.Dns.Core.dll" />
     <Content Include="Images\oignon.jfif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

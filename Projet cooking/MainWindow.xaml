@@ -10,7 +10,7 @@
     <Grid>
 
         <StackPanel Margin="30">
-            <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Accueil1.JPG" Height="360" Margin="93,0,-0.4,0"/>
+            <Image Source="Images/Accueil1.JPG" Height="360" Margin="93,0,-0.4,0"/>
         </StackPanel>
 
         <StackPanel Margin="30">
@@ -104,7 +104,7 @@
 
         </StackPanel>
 
-        <Image Source="C:\Users\natal\Source\Repos\Comete99\Projet-cooking\Projet cooking\Images\Label bio.JPG" Height="48" Margin="727,342,-0.4,30" HorizontalAlignment="Left" Width="67" />
+        <Image Source="Images\Label bio.JPG" Height="48" Margin="727,342,-0.4,30" HorizontalAlignment="Left" Width="67" />
 
     </Grid>
 </Window>
