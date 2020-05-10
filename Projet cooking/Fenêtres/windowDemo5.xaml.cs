@@ -24,6 +24,7 @@ namespace Projet_cooking.Fenêtres
         {
             InitializeComponent();
 
+            //on remplit la listview grâce à la classe MyItem
             foreach(Produit p in RessourceSQL.allProduits)
             {
                 listProduits.Items.Add(new MyItem { Nom = p.NomProduit, Quantite = p.StockActuel, Unite=p.Unite });

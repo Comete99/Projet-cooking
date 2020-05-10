@@ -31,6 +31,7 @@ namespace Projet_cooking.Fenêtres
 
         public bool Verification_MDP()
         {
+            //On vérifie si le mail et la vérification sont identiques
             bool identique = false;
 
             string mdp = txtMDP.Text;
@@ -42,6 +43,21 @@ namespace Projet_cooking.Fenêtres
             }
 
             return identique;
+        }
+
+
+        public bool IsNumeric(string Nombre)
+        {
+            //permet de savoir si le string en entrée peut être converti en int ou non
+            try
+            {
+                int.Parse(Nombre);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
@@ -57,36 +73,45 @@ namespace Projet_cooking.Fenêtres
             string mail = txtMail.Text;
             
 
-            if (verif==true)
+            if (verif==true) //on vérifie que la vérification du mail est correcte
             {
                 List<string> liste = RessourceSQL.allMails();
-                if (!(liste.Contains(mail)))
+                if (!(liste.Contains(mail))) //on vérifie que le mail n'existe pas déjà
                 {
-                    try
+                    if (!(IsNumeric(mail))&&(!IsNumeric(txtPrenom.Text))&&(!IsNumeric(txtNom.Text))) //on vérifie si le nom, le prenom ou le mail en entrée n'est pas une suite numérique
                     {
-                        string nom = txtNom.Text;
-                        string prenom = txtPrenom.Text;
-                        string mdp = txtMDP.Text;
+                        try
+                        {
+                            //on ajoute le nouveau client à la base de données
 
-                        MySqlCommand commandInsertion = connection.CreateCommand();
-                        string requeteInsertion = "INSERT INTO client (mailClient, nom, prenom,  mdpClient) VALUES (" + "'" + mail + "'," + "'" + nom + "'," + "'" + prenom + "'," + "'" + mdp + "') ;";
-                        commandInsertion.CommandText = requeteInsertion;
+                            string nom = txtNom.Text;
+                            string prenom = txtPrenom.Text;
+                            string mdp = txtMDP.Text;
 
-                        MySqlDataReader readerInsertion;
-                        readerInsertion = commandInsertion.ExecuteReader();
+                            MySqlCommand commandInsertion = connection.CreateCommand();
+                            string requeteInsertion = "INSERT INTO client (mailClient, nom, prenom,  mdpClient) VALUES (" + "'" + mail + "'," + "'" + nom + "'," + "'" + prenom + "'," + "'" + mdp + "') ;";
+                            commandInsertion.CommandText = requeteInsertion;
 
-                        connection.Close();
+                            MySqlDataReader readerInsertion;
+                            readerInsertion = commandInsertion.ExecuteReader();
 
-                        MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
+                            connection.Close();
 
-                        MainWindow w = new MainWindow();
-                        w.Show();
-                        this.Close();
+                            MessageBox.Show("Vous êtes désormais un client de Cooking. Félicitations !");
 
+                            MainWindow w = new MainWindow();
+                            w.Show();
+                            this.Close();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("Attention, le nom, le prénom ou le mail ne peut pas être une suite de chiffres.");
                     }
                 }
             }

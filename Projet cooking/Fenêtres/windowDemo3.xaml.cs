@@ -25,6 +25,8 @@ namespace Projet_cooking.Fenêtres
             InitializeComponent();
             int countCdr = RessourceSQL.listeCdR().Count;
             nbCdr.Text = Convert.ToString(countCdr);
+
+            //on remplit la combobox avec la liste des Cdr
             foreach (string s in RessourceSQL.listeCdR())
             {
                 boxListeCdr.Items.Add(s);
@@ -42,17 +44,12 @@ namespace Projet_cooking.Fenêtres
 
         private void boxListeCdr_DropDownClosed(object sender, EventArgs e)
         {
-            string cdr = (string)boxListeCdr.SelectedItem;
-            string[] tab = cdr.Split(' ');
-            string mail = RessourceSQL.rechercheMailCdR(tab[0], tab[1]);
-            List<string> listeRecettes = RessourceSQL.recetteCdR(mail);
-
-            nbRecettes.Text = Convert.ToString(listeRecettes.Count);
-
             int count = 0;
 
+            //on vérifie que le sélection n'est pas null
             if (boxListeCdr.SelectedItem != null)
             {
+                //on récupère les infos sur le cdr : son nom et son prenom
                 string[] infoCdR = boxListeCdr.SelectedItem.ToString().Split(' ');
                 foreach (Recette r in RessourceSQL.allRecettes)
                 {
