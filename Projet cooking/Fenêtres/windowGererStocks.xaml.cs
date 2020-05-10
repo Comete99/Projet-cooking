@@ -33,6 +33,7 @@ namespace Projet_cooking.Fenêtres
             windowGestionnaire = w;
         }
 
+        //On met à jour les informations des cases en fonction du produit sélectionné
         private void boxIngredients_DropDownClosed(object sender, EventArgs e)
         {
             if (boxIngredients.SelectedItem != null)
@@ -48,6 +49,7 @@ namespace Projet_cooking.Fenêtres
             }
         }
 
+        //On peut commander les produits que l'on souhaite
         private void buttonCommander_Click(object sender, RoutedEventArgs e)
         {
             if (boxIngredients.SelectedItem != null)

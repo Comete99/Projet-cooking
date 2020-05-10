@@ -25,12 +25,7 @@ namespace Projet_cooking.Fenêtres
             InitializeComponent();
             messageConnection.Text += " " + nom + " " + prenom;
             RessourceSQL.allRecettes.Sort();
-            //int i = 0;
-            //while (i < 5 && i < RessourceSQL.allRecettes.Count)
-            //{
-            //    listTopRecette.Items.Add(RessourceSQL.allRecettes[i]);
-            //    i++;
-            //}
+
             //Recherche du CdR d'Or
             string nomPrenomCdROr = "";
             int maxRecettesCommandees = 0;
@@ -64,6 +59,7 @@ namespace Projet_cooking.Fenêtres
                 listRecetteOr.Items.Add(recettesCdR_Or[j]);
                 j++;
             }
+
             //Recherche du CdR de la semaine
             string nomPrenomCdRSemaine = "";
             int maxRecettesCommandeesSemaine = 0;
@@ -90,8 +86,10 @@ namespace Projet_cooking.Fenêtres
                 }
                 nbRecettesCommandeesSemaine = 0;
             }
-            //On modifie l'affichage CdR Semaine et top 5 des recettes
+            //On modifie l'affichage CdR Semaine
             labelCdRSemaine.Content += nomPrenomCdRSemaine;
+
+            //Top 5 des recettes
             int k = 0;
             while (k < 5 && k < RessourceSQL.allRecettes.Count)
             {

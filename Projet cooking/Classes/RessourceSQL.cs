@@ -11,7 +11,6 @@ namespace Projet_cooking.Classes
 {
     public static class RessourceSQL
     {
-        //public static MySqlConnection connection;
         public static List<Recette> allRecettes = new List<Recette> { };
         public static List<Produit> allProduits = new List<Produit> { };
         public static string mdp_utilisateur = "SQL.ESILV.Comete.99";
@@ -348,7 +347,7 @@ namespace Projet_cooking.Classes
         }
 
 
-
+        //Toutes les recettes d'un CdR
         public static List<string> recetteCdR(string mail)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
@@ -387,6 +386,8 @@ namespace Projet_cooking.Classes
             }
             return recettes;
         }
+
+        //On met à jour la liste des recettes
         public static void toutesRecettes()
         {
             allRecettes.Clear();
@@ -430,6 +431,8 @@ namespace Projet_cooking.Classes
             }
             connection.Close();
         }
+
+        //On met à jour la liste des produits
         public static void tousProduits()
         {
             allProduits.Clear();
@@ -459,6 +462,8 @@ namespace Projet_cooking.Classes
             allProduits.Sort();
             connection.Close();
         }
+
+        //Fonction lancée à chaque commande
         public static void CdRPaiementCook(Recette recette, bool commande10, bool commande50)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
@@ -538,6 +543,31 @@ namespace Projet_cooking.Classes
             MySqlDataReader readerCdR;
             readerCdR = commandCdR.ExecuteReader();
             connectionCdR.Close();
+        }
+        public static int miseAjourNbCook(string mailCdR, bool cookNecessaire, int prixCookCommande)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=cooking;UID=root;PASSWORD=" + mdp_utilisateur + ";Convert Zero Datetime=True";
+            MySqlConnection connectionCdR = new MySqlConnection(connectionString);
+            connectionCdR.Open();
+            MySqlCommand commandCdR = connectionCdR.CreateCommand();
+            string requeteCdR = "";
+            int nbCook = 0;
+            //Si le CdR a assez de cook on déduit le montant de la commande
+            if (cookNecessaire)
+            {
+                nbCook = nbCookCdR(mailCdR)- prixCookCommande;
+                requeteCdR = "UPDATE cdr SET nbCook=" + nbCook + " WHERE mailCdr=" + "'" + mailCdR + "'" + ";";
+            }
+            //Sinon son nombre de cook passe à 0 et le reste de la commande est déduit par CB
+            else
+            {
+                requeteCdR = "UPDATE cdr SET nbCook=" + 0 + " WHERE mailCdr=" + "'" + mailCdR + "'" + ";";
+            }
+            commandCdR.CommandText = requeteCdR;
+            MySqlDataReader readerCdR;
+            readerCdR = commandCdR.ExecuteReader();
+            connectionCdR.Close();
+            return nbCook;
         }
         public static int nbCookCdR(string mailCdR)
         {

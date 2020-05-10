@@ -59,6 +59,7 @@ namespace Projet_cooking.Fenêtres
             }
         }
 
+        //On met à jour la liste des recettes de la combo box en fonction du CdR sélectionné
         private void boxCdR_DropDownClosed(object sender, EventArgs e)
         {
             boxRecetteCdR.Items.Clear();

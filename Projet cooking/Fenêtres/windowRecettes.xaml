@@ -260,7 +260,7 @@
     <Grid>
         <TextBlock x:Name="messageConnection" Text="Mes Recettes" Foreground="Brown" FontFamily="MV Boli" FontWeight="Bold" Margin="10,10,600,420" FontSize="24"/>
 
-        <Button x:Name="buttonAjouterRecette" Content="Ajouter une recette" Margin="650,150,20,240" Click="buttonAjouterRecette_Click">
+        <Button x:Name="buttonAjouterRecette" Content="Créer une recette" Margin="650,150,20,240" Click="buttonAjouterRecette_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF30B61C"/>

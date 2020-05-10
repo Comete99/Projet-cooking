@@ -48,6 +48,7 @@ namespace Projet_cooking.Fenêtres
             w.Show();
         }
 
+        //Fonctions liées aux recettes présentes dans la list view
         private void buttonInfoRecette_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

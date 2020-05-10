@@ -40,6 +40,7 @@ namespace Projet_cooking.Fenêtres
             boxListeRecettes.Items.Refresh();
         }
 
+        //Fonction pour que le client devienne CdR
         private void buttonCdR_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult messageDevenirCdR = MessageBox.Show("Voulez-vous devenir CdR ?", "Devenir CdR", MessageBoxButton.YesNo);
@@ -72,6 +73,7 @@ namespace Projet_cooking.Fenêtres
             }
         }
 
+        //Ajouter une recette au panier
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
             Recette recette = (Recette)boxListeRecettes.SelectedItem;
@@ -90,11 +92,12 @@ namespace Projet_cooking.Fenêtres
             boxNbRecette.Text = "0";
         }
 
+        //Paiement de la commande
         private void buttonPaiement_Click(object sender, RoutedEventArgs e)
         {
             foreach (Recette r in listPanier.Items)
             {
-                //Verifier stock
+                //Verification des stock en amont
                 foreach (KeyValuePair<Produit, double> produit in r.Ingredients)
                 {
                     if (produit.Value * r.Quantite > produit.Key.StockActuel)
@@ -150,6 +153,7 @@ namespace Projet_cooking.Fenêtres
             listPanier.Items.Clear();
         }
 
+        //Supprimer une recette du panier
         private void buttonSupprRecette_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

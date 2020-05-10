@@ -63,7 +63,7 @@ namespace Projet_cooking.Fenêtres
                     }
                 }
             }
-            double prixCook = 0;
+            int prixCook = 0;
             foreach (Recette r in listPanier.Items)
             {
                 //On ajuste les stocks
@@ -100,26 +100,26 @@ namespace Projet_cooking.Fenêtres
                 {
                     r.Commandes.Add(DateTime.Now);
                 }
-                prixCook += r.PrixTotal;
+                prixCook += Convert.ToInt32(r.PrixTotal);
                 r.Quantite = 0;
                 r.PrixTotal = 0;
             }
-            if (nbCookCdR >= prixCook)
+            //On met à jour les cook du CdR qui paie
+            if (RessourceSQL.nbCookCdR(mailCdR) >= prixCook)
             {
                 MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
-                nbCookCdR -= prixCook;
-                nbCook.Text = Convert.ToString(nbCookCdR);
+                nbCook.Text = RessourceSQL.miseAjourNbCook(mailCdR, true, prixCook).ToString();
                 listPanier.Items.Clear();
             }
             else
             {
-                MessageBoxResult messageCommande = MessageBox.Show("Vous n'avez pas assez de Cook. \nPrix de la commande : " + prixCook + " Cook \nLe reste a été crédité sur votre CB");
-                nbCookCdR = 0;
-                nbCook.Text = Convert.ToString(nbCookCdR);
+                MessageBoxResult messageCommande = MessageBox.Show("Vous n'avez pas assez de Cook. \nPrix de la commande : " + prixCook + " Cook. \nLe montant restant est de : " + (prixCook - RessourceSQL.nbCookCdR(mailCdR)) / 3 + " €, il a été crédité sur votre CB.");
+                nbCook.Text = RessourceSQL.miseAjourNbCook(mailCdR, false, prixCook).ToString();
                 listPanier.Items.Clear();
             }
         }
 
+        //Le CdR peut accéder à ses recettes
         private void buttonRecettes_Click(object sender, RoutedEventArgs e)
         {
             windowRecettes w = new windowRecettes(this, mailCdR);
@@ -127,6 +127,7 @@ namespace Projet_cooking.Fenêtres
             this.Hide();
         }
 
+        //Ajouter une recette au panier
         private void buttonAjouterPanier_Click(object sender, RoutedEventArgs e)
         {
             Recette recette = (Recette)boxListeRecettes.SelectedItem;
@@ -206,6 +207,7 @@ namespace Projet_cooking.Fenêtres
             nbCook.Text = RessourceSQL.nbCookCdR(mailCdR).ToString();
         }
 
+        //Supprimer une recette du panier
         private void buttonSupprRecette_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

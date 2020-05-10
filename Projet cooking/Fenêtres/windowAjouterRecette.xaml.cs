@@ -38,6 +38,7 @@ namespace Projet_cooking.Fenêtres
         {
             try
             {
+                //On vérifie que les informations entrées sont correctes 
                 if (Convert.ToDouble(boxPrix.Text) < 10 || Convert.ToDouble(boxPrix.Text) > 40)
                 {
                     MessageBoxResult messagePrix = MessageBox.Show("Veuillez entrer un prix entre 10 et 40 Cook svp");
@@ -45,6 +46,7 @@ namespace Projet_cooking.Fenêtres
                 }
                 else
                 {
+                    //On crée la nouvelle recette et on l'ajoute à la BDD
                     Recette nouvelleRecette = new Recette(boxNomRecette.Text, boxTypeRecette.Text, ingredientsRecette, BoxDescriptifRecette.Text, Convert.ToDouble(boxPrix.Text));
                     nouvelleRecette.RemunerationCdRCook = 2;
                     nouvelleRecette.MailCdR = mailCdR;
@@ -64,6 +66,7 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonAjouterARecette_Click(object sender, RoutedEventArgs e)
         {
+            //On sélectionne les ingrédients à ajouter à la recette
             if (boxListeIngredients.SelectedItem != null)
             {
                 Produit p = (Produit)boxListeIngredients.SelectedItem;
