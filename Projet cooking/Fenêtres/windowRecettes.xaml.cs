@@ -37,6 +37,11 @@ namespace Projet_cooking.Fenêtres
 
         private void buttonRetourAuMenu_Click(object sender, RoutedEventArgs e)
         {
+            currentCdR.boxListeRecettes.Items.Clear();
+            foreach(Recette r in RessourceSQL.allRecettes)
+            {
+                currentCdR.boxListeRecettes.Items.Add(r);
+            }
             currentCdR.Show();
             this.Close();
         }
@@ -63,6 +68,11 @@ namespace Projet_cooking.Fenêtres
             MessageBoxResult supprimerRecette = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette recette ?", "Supprimer recette", MessageBoxButton.YesNo);
             if (supprimerRecette == MessageBoxResult.Yes)
             {
+                currentCdR.boxListeRecettes.Items.Remove(r);
+                if (currentCdR.listPanier.Items.Contains(r))
+                {
+                    currentCdR.listPanier.Items.Remove(r);
+                }
                 listRecettes.Items.Remove(r);
                 RessourceSQL.supprRecette(r.Nom, r.MailCdR);
             }

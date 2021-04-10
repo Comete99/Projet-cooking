@@ -1,0 +1,82 @@
+﻿<Window x:Class="Projet_cooking.Fenêtres.Flash_Unlock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="325" >
+    <Grid Margin="5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Background="#FFEAEA4C"/>
+
+        <Grid Grid.Row="1" Background="#FF2F489D" Margin="0 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"/>
+            <TextBlock Grid.Column="1" Text="Flash'Unlock" Foreground="White" FontFamily="Rockwell" FontSize="20"/>
+            <Button Grid.Column="2" Content="Déconnexion" VerticalAlignment="Center"  Margin="5">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFC30000"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                        </ContentPresenter>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF930404"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+
+
+        <Button Grid.Row="2" x:Name="Serrures" Click="Serrures_Click2">
+            <Image Source="Images/Serrure bis.jpg" Height="207" VerticalAlignment="Center" Opacity="0.7" />
+        </Button>
+
+        <Button Grid.Row="3" x:Name="Compte" Click="Compte_Click">
+            <Image Source="Images/Copie de profil.jpg" Width="318" Height="300" VerticalAlignment="Center" Opacity="0.7" />
+        </Button>
+
+        <Button Grid.Row="4" x:Name="Settings" Click="Settings_Click">
+            <Image Source="Images/Copie de settings.jpg" Height="313" VerticalAlignment="Center" Opacity="0.7"/>
+        </Button>
+
+        <Button Grid.Row="5" x:Name="Contact" Click="Contact_Click">
+            <Image Source="Images/Copie de telephone.jpg" Height="404" VerticalAlignment="Center" Opacity="0.7"/>
+        </Button>
+
+        <StackPanel Grid.Row="6" Background="#FF2F489D"/>
+        <StackPanel Grid.Row="7" Background="#FFEAEA4C"/>
+
+    </Grid>
+</Window>

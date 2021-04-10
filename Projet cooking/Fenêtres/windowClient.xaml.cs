@@ -32,7 +32,7 @@ namespace Projet_cooking.Fenêtres
             prenomClient = prenom;
             messageConnection.Text += nom + " " + prenom;
             nbCook.Text += "0";
-            boxNbRecette.Text = "5";
+            boxNbRecette.Text = "0";
             foreach (Recette recette in RessourceSQL.allRecettes)
             {
                 boxListeRecettes.Items.Add(recette);
@@ -148,6 +148,7 @@ namespace Projet_cooking.Fenêtres
                 prixCook += r.PrixTotal;
                 r.Quantite = 0;
                 r.PrixTotal = 0;
+                r.Commandes.Add(DateTime.Now);
             }
             MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
             listPanier.Items.Clear();

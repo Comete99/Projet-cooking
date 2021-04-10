@@ -29,7 +29,10 @@ namespace Projet_cooking.Fenêtres
             messageConnection.Text += nom + " " + prenom;
             nbCook.Text = Convert.ToString(nombCook);
             boxNbRecette.Text = "0"; ///nb de recettes commandées
-            boxListeRecettes.ItemsSource = RessourceSQL.allRecettes;
+            foreach (Recette r in RessourceSQL.allRecettes)
+            {
+                boxListeRecettes.Items.Add(r);
+            };
             nbCookCdR = Convert.ToDouble(nombCook);
             mailCdR = mail;
         }
@@ -103,6 +106,7 @@ namespace Projet_cooking.Fenêtres
                 prixCook += Convert.ToInt32(r.PrixTotal);
                 r.Quantite = 0;
                 r.PrixTotal = 0;
+                r.Commandes.Add(DateTime.Now);
             }
             //On met à jour les cook du CdR qui paie
             if (RessourceSQL.nbCookCdR(mailCdR) >= prixCook)
@@ -201,6 +205,7 @@ namespace Projet_cooking.Fenêtres
                 prixCook += r.PrixTotal;
                 r.Quantite = 0;
                 r.PrixTotal = 0;
+                r.Commandes.Add(DateTime.Now);
             }
             MessageBoxResult messageCommande = MessageBox.Show("Prix de la commande : " + prixCook + " Cook");
             listPanier.Items.Clear();

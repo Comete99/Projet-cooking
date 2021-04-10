@@ -35,10 +35,6 @@ namespace Projet_cooking.Fenêtres
                 string[] infoCdR = cdr.Split(' ');
                 foreach (Recette r in RessourceSQL.mesRecettes(RessourceSQL.rechercheMailCdR(infoCdR[0], infoCdR[1])))
                 {
-                    if(r.MailCdR== "kevin.vaut@gmail.com")
-                    {
-                        r.NbCommande = 1;
-                    }
                     nbRecettesCommandees += r.NbCommande;
                 }
                 if (nbRecettesCommandees > maxRecettesCommandees)
@@ -53,16 +49,18 @@ namespace Projet_cooking.Fenêtres
             string[] CdR_Or = nomPrenomCdROr.Split(' ');
             List<Recette> recettesCdR_Or = RessourceSQL.mesRecettes(RessourceSQL.rechercheMailCdR(CdR_Or[0], CdR_Or[1]));
             recettesCdR_Or.Sort();
-            int j = 0;
-            while (j < 5 && j < recettesCdR_Or.Count)
+            int j = recettesCdR_Or.Count()-1;
+            int compteur = 5;
+            while (j >0 && compteur>0)
             {
                 listRecetteOr.Items.Add(recettesCdR_Or[j]);
-                j++;
+                j--;
+                compteur--;
             }
 
             //Recherche du CdR de la semaine
             string nomPrenomCdRSemaine = "";
-            int maxRecettesCommandeesSemaine = 0;
+            int maxRecettesCommandeesSemaine = -1;
             int nbRecettesCommandeesSemaine = 0;
             foreach (string cdr in RessourceSQL.listeCdR())
             {
@@ -71,12 +69,9 @@ namespace Projet_cooking.Fenêtres
                 {
                     foreach(DateTime d in r.Commandes)
                     {
-                        DateTime week = DateTime.Now;
-                        week.Subtract(new DateTime(0, 0, Convert.ToInt32(DateTime.Now.DayOfWeek)));
-                        if (d >= week)
-                        {
-                            nbRecettesCommandeesSemaine++;
-                        }
+                        
+                        nbRecettesCommandeesSemaine++;
+                        
                     }
                 }
                 if (nbRecettesCommandeesSemaine > maxRecettesCommandeesSemaine)
@@ -90,11 +85,13 @@ namespace Projet_cooking.Fenêtres
             labelCdRSemaine.Content += nomPrenomCdRSemaine;
 
             //Top 5 des recettes
-            int k = 0;
-            while (k < 5 && k < RessourceSQL.allRecettes.Count)
+            int count = 5;
+            int k = RessourceSQL.allRecettes.Count()-1;
+            while (count > 0 && k > 0)
             {
                 listTopRecette.Items.Add(RessourceSQL.allRecettes[k]);
-                k++;
+                k--;
+                count--;
             }
         }
 

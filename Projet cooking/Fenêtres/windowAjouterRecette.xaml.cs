@@ -56,6 +56,7 @@ namespace Projet_cooking.Fenêtres
                     recettesCdR.Show();
                     this.Close();
                 }
+                
 
             }
             catch
@@ -70,19 +71,21 @@ namespace Projet_cooking.Fenêtres
             if (boxListeIngredients.SelectedItem != null)
             {
                 Produit p = (Produit)boxListeIngredients.SelectedItem;
-                boxSupprIngredients.Items.Add(p);
+                
                 try
                 {
                     ingredientsRecette.Add(p, Convert.ToDouble(boxQuantite.Text));
+                    boxSupprIngredients.Items.Add(p);
+                    boxListeIngredients.Items.Remove(p);
+                    boxListeIngredients.Items.Refresh();
+                    labelUnite.Content = "";
+                    boxQuantite.Text = "0";
                 }
                 catch
                 {
                     MessageBoxResult message = MessageBox.Show("Veuillez vérifier la quantité entrée, veillez à mettre une virgule et non un point s'il s'agit d'une quantité non entière");
                 }
-                boxListeIngredients.Items.Remove(p);
-                boxListeIngredients.Items.Refresh();
-                labelUnite.Content = "";
-                boxQuantite.Text = "0";
+                
             }
         }
 

@@ -38,5 +38,10 @@ namespace Projet_cooking.Fenêtres
             w.Show();
             this.Hide();
         }
+
+        private void listProduits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

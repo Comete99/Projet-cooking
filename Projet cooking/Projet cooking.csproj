@@ -81,6 +81,9 @@
     </ApplicationDefinition>
     <Compile Include="Classes\MyItem.cs" />
     <Compile Include="Classes\Produit.cs" />
+    <Compile Include="Fenêtres\Flash%27Unlock.xaml.cs">
+      <DependentUpon>Flash%27Unlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fenêtres\windowDemo2.xaml.cs">
       <DependentUpon>windowDemo2.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
     <Compile Include="windowCreationBis.xaml.cs">
       <DependentUpon>windowCreationBis.xaml</DependentUpon>
     </Compile>
+    <Page Include="Fenêtres\Flash%27Unlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fenêtres\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

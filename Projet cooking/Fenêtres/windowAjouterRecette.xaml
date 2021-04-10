@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projet_cooking.Fenêtres"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Projet_cooking.Fenêtres.windowAjouterRecette"
         mc:Ignorable="d"
-        Title="windowAjouterRecette" Height="490" Width="380" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
+        Title="windowAjouterRecette" Height="490" Width="400" Background="#FFFFF7B1" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -379,7 +379,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="3.5*"/>
                 </Grid.ColumnDefinitions>
                 <ComboBox HorizontalContentAlignment="Center" Grid.Column="0" x:Name="boxListeIngredients" Margin="0,0,9.8,-0.2" DisplayMemberPath="NomProduit" DropDownClosed="boxListeIngredients_DropDownClosed" FontFamily="MV Boli" Style="{DynamicResource ComboBoxStyle2}">
