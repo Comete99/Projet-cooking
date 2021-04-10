@@ -13,7 +13,7 @@ namespace Projet_cooking.Classes
     {
         public static List<Recette> allRecettes = new List<Recette> { };
         public static List<Produit> allProduits = new List<Produit> { };
-        public static string mdp_utilisateur = "Nico72Newbie05";
+        public static string mdp_utilisateur = "***";
 
         public static Recette rechercheRecette(string nom)
         {
